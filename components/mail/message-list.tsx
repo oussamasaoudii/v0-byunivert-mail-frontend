@@ -35,6 +35,16 @@ export default function MessageList({ selectedMessageId, onSelectMessage, active
   
   // Ensure folder is always defined for stable dependency
   const currentFolder = activeFolder || 'inbox'
+  
+  // Folder titles in French
+  const folderTitles: Record<string, string> = {
+    inbox: 'Boîte de réception',
+    starred: 'Favoris',
+    sent: 'Envoyés',
+    drafts: 'Brouillons',
+    spam: 'Spam',
+    trash: 'Corbeille',
+  }
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -73,9 +83,9 @@ export default function MessageList({ selectedMessageId, onSelectMessage, active
 
   return (
     <div className="flex flex-col bg-[#0a0a0a] min-w-0 w-[420px] flex-shrink-0">
-      {/* Top header bar - Inbox title + Contact/Chat buttons */}
+      {/* Top header bar - Folder title + Contact/Chat buttons */}
       <div className="h-[68px] px-6 flex items-center justify-between border-b border-white/[0.08]">
-        <h1 className="text-[20px] font-bold text-white">Boîte de réception</h1>
+        <h1 className="text-[20px] font-bold text-white">{folderTitles[currentFolder] || 'Boîte de réception'}</h1>
         <div className="flex items-center gap-2">
           <ContactsButton />
           <DiscuterButton />
