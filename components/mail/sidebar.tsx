@@ -134,7 +134,7 @@ export default function MailSidebar({ activeFolder = 'inbox', onFolderChange }: 
       )}
 
       {/* Sidebar - exact 220px width like reference */}
-      <aside className={`fixed md:relative w-[220px] h-full bg-[#0a0a0a] flex flex-col z-40 transition-transform md:translate-x-0 ${
+      <aside className={`fixed md:relative w-[220px] h-full bg-transparent flex flex-col z-40 transition-transform md:translate-x-0 border-r border-white/[0.05] ${
         mobileOpen ? 'translate-x-0' : '-translate-x-full'
       }`}>
         

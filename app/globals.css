@@ -142,7 +142,7 @@
   }
   body {
     @apply text-foreground;
-    background-color: #0a0a0a;
+    background: linear-gradient(135deg, #0a0a0a 0%, #0a1210 50%, #0a0a0a 100%);
   }
 }
 
@@ -169,4 +169,30 @@
 /* Premium layered shadows */
 .shadow-premium {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 1px rgba(0, 217, 165, 0.1);
+}
+
+/* Subtle vignette - adds cinematic depth */
+.vignette {
+  position: relative;
+}
+
+.vignette::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.15) 100%);
+  pointer-events: none;
+}
+
+/* Atmospheric backgrounds for different surfaces */
+.bg-surface-primary {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0a1210 100%);
+}
+
+.bg-surface-secondary {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0a0f0d 100%);
+}
+
+.bg-surface-tertiary {
+  background: linear-gradient(180deg, #0a1210 0%, #0a0a0a 100%);
 }
