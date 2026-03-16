@@ -7,29 +7,29 @@
 /* Dark cinematic theme with emerald/teal neon accent */
 
 :root {
-  /* Main background - deep teal/emerald gradient feel */
-  --background: #0d4d45;
-  --foreground: #e8e8e8;
+  /* Main background - deep forest/teal */
+  --background: #0c4a42;
+  --foreground: #e4e8ec;
   
-  /* Card surfaces - pure black with slight transparency feel */
+  /* Card surfaces - near-black with slight warmth */
   --card: #0a0a0a;
-  --card-foreground: #e8e8e8;
+  --card-foreground: #e4e8ec;
   
   /* Popover */
   --popover: #0c0c0c;
-  --popover-foreground: #e8e8e8;
+  --popover-foreground: #e4e8ec;
   
-  /* Primary - neon teal/cyan */
+  /* Primary - bright emerald/cyan */
   --primary: #00d9a5;
   --primary-foreground: #000000;
   
-  /* Secondary - darker panels */
+  /* Secondary - dark panels */
   --secondary: #0e0e0e;
-  --secondary-foreground: #e8e8e8;
+  --secondary-foreground: #e4e8ec;
   
   /* Muted */
-  --muted: #1a1a1a;
-  --muted-foreground: #7a7a7a;
+  --muted: #191919;
+  --muted-foreground: #8a8a8a;
   
   /* Accent */
   --accent: #00d9a5;
@@ -40,18 +40,18 @@
   --destructive-foreground: #ffffff;
   
   /* Borders and inputs */
-  --border: #1c1c1c;
+  --border: #1a1a1a;
   --input: #0c0c0c;
   --ring: #00d9a5;
   
   /* Sidebar */
   --sidebar: #0a0a0a;
-  --sidebar-foreground: #e8e8e8;
+  --sidebar-foreground: #e4e8ec;
   --sidebar-primary: #00d9a5;
   --sidebar-primary-foreground: #000000;
   --sidebar-accent: #111111;
   --sidebar-accent-foreground: #00d9a5;
-  --sidebar-border: #1c1c1c;
+  --sidebar-border: #1a1a1a;
   --sidebar-ring: #00d9a5;
   
   /* Radius */
@@ -145,26 +145,27 @@
   }
 }
 
-/* Custom glow effects for the DMail look */
+/* Custom glow effects - enhanced for premium feel */
 .glow-primary {
-  box-shadow: 0 0 20px rgba(0, 217, 165, 0.4), 0 0 40px rgba(0, 217, 165, 0.2);
+  box-shadow: 0 0 24px rgba(0, 217, 165, 0.35), 0 0 48px rgba(0, 217, 165, 0.15), inset 0 0 12px rgba(0, 217, 165, 0.08);
 }
 
 .glow-primary-subtle {
-  box-shadow: 0 0 12px rgba(0, 217, 165, 0.3);
+  box-shadow: 0 0 16px rgba(0, 217, 165, 0.25), inset 0 0 8px rgba(0, 217, 165, 0.05);
 }
 
 .glow-primary-intense {
-  box-shadow: 0 0 25px rgba(0, 217, 165, 0.5), 0 0 50px rgba(0, 217, 165, 0.25);
-}
-
-/* Text glow */
-.text-glow {
-  text-shadow: 0 0 10px rgba(0, 217, 165, 0.5);
+  box-shadow: 0 0 32px rgba(0, 217, 165, 0.45), 0 0 64px rgba(0, 217, 165, 0.2), inset 0 0 16px rgba(0, 217, 165, 0.1);
 }
 
 /* Glass effect panels */
 .glass-panel {
-  background: rgba(10, 10, 10, 0.85);
-  backdrop-filter: blur(10px);
+  background: rgba(10, 10, 10, 0.87);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 217, 165, 0.05);
+}
+
+/* Premium layered shadows */
+.shadow-premium {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 1px rgba(0, 217, 165, 0.1);
 }

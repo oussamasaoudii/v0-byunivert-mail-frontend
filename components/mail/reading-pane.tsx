@@ -42,14 +42,14 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
 
   if (!messageId) {
     return (
-      <div className="hidden md:flex flex-1 items-center justify-center bg-[#0d4d45]">
+      <div className="hidden md:flex flex-1 items-center justify-center bg-[#0c4a42] p-4">
         <div className="text-center">
-          <div className="w-20 h-20 rounded-full bg-[#00d9a5]/10 flex items-center justify-center mx-auto mb-4">
-            <svg viewBox="0 0 24 24" fill="none" className="w-10 h-10 text-[#00d9a5]/50">
+          <div className="w-24 h-24 rounded-full bg-[#00d9a5]/8 flex items-center justify-center mx-auto mb-5 border border-[#00d9a5]/20">
+            <svg viewBox="0 0 24 24" fill="none" className="w-11 h-11 text-[#00d9a5]/40">
               <path d="M3 8L10.89 13.26C11.2187 13.4793 11.6049 13.5963 12 13.5963C12.3951 13.5963 12.7813 13.4793 13.11 13.26L21 8M5 19H19C19.5304 19 20.0391 18.7893 20.4142 18.4142C20.7893 18.0391 21 17.5304 21 17V7C21 6.46957 20.7893 5.96086 20.4142 5.58579C20.0391 5.21071 19.5304 5 19 5H5C4.46957 5 3.96086 5.21071 3.58579 5.58579C3.21071 5.96086 3 6.46957 3 7V17C3 17.5304 3.21071 18.0391 3.58579 18.4142C3.96086 18.7893 4.46957 19 5 19Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
-          <p className="text-gray-400 text-lg">Sélectionnez un email</p>
+          <p className="text-gray-500 text-base font-medium">Select an email</p>
         </div>
       </div>
     )
@@ -57,16 +57,16 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
 
   if (isLoading) {
     return (
-      <div className="hidden md:flex flex-1 bg-[#0d4d45] p-4">
-        <div className="flex-1 bg-[#0a0a0a] rounded-2xl p-6 space-y-4">
+      <div className="hidden md:flex flex-1 bg-[#0c4a42] p-4">
+        <div className="flex-1 bg-[#0a0a0a] rounded-2xl p-6 space-y-6 border border-white/5">
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-full bg-[#111111] animate-pulse" />
+            <div className="w-14 h-14 rounded-full bg-[#0f0f0f] animate-pulse border border-white/5" />
             <div className="space-y-2 flex-1">
-              <div className="h-5 bg-[#111111] rounded w-32 animate-pulse" />
-              <div className="h-4 bg-[#111111] rounded w-48 animate-pulse" />
+              <div className="h-5 bg-[#0f0f0f] rounded w-32 animate-pulse" />
+              <div className="h-4 bg-[#0f0f0f] rounded w-48 animate-pulse" />
             </div>
           </div>
-          <div className="h-40 bg-[#111111] rounded-xl animate-pulse" />
+          <div className="h-40 bg-[#0f0f0f] rounded-xl animate-pulse" />
         </div>
       </div>
     )
@@ -74,63 +74,70 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
 
   if (!message) {
     return (
-      <div className="hidden md:flex flex-1 items-center justify-center bg-[#0d4d45] text-gray-500">
-        <p className="text-sm">Email introuvable</p>
+      <div className="hidden md:flex flex-1 items-center justify-center bg-[#0c4a42] text-gray-500">
+        <p className="text-sm">Email not found</p>
       </div>
     )
   }
 
   return (
-    <div className="hidden md:flex flex-1 flex-col bg-[#0d4d45] p-3 overflow-hidden">
-      {/* Main reading panel - black rounded container */}
-      <div className="flex-1 bg-[#0a0a0a] rounded-2xl flex flex-col overflow-hidden">
+    <div className="hidden md:flex flex-1 flex-col bg-[#0c4a42] p-4 overflow-hidden">
+      {/* Main reading panel */}
+      <div className="flex-1 bg-[#0a0a0a] rounded-2xl flex flex-col overflow-hidden border border-white/5 shadow-xl shadow-black/40">
         {/* Sender header section */}
-        <div className="p-6 border-b border-white/10">
+        <div className="px-6 py-5 border-b border-white/5">
           <div className="flex items-start gap-4">
-            {/* Avatar - large, matching reference */}
-            <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#00d9a5] to-[#008866] flex items-center justify-center flex-shrink-0 shadow-lg shadow-[#00d9a5]/30">
-              <span className="text-lg font-bold text-black">
-                {message.from.name.charAt(0).toUpperCase()}
-              </span>
+            {/* Avatar */}
+            <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#00d9a5] to-[#00a080] flex items-center justify-center flex-shrink-0 shadow-lg shadow-[#00d9a5]/25 text-lg font-bold text-black">
+              {message.from.name.charAt(0).toUpperCase()}
             </div>
             
             {/* Sender info */}
             <div className="flex-1 min-w-0">
               <h2 className="text-lg font-bold text-white mb-0.5">{message.from.name}</h2>
-              <p className="text-sm text-[#00d9a5]">{message.from.email}</p>
+              <p className="text-sm text-[#00d9a5] font-medium">{message.from.email}</p>
             </div>
           </div>
         </div>
 
         {/* Email content */}
-        <div className="flex-1 overflow-y-auto p-6">
-          {/* Greeting and body */}
-          <div className="text-gray-300 leading-relaxed space-y-4">
-            <p className="text-white font-medium">Bonjour,</p>
+        <div className="flex-1 overflow-y-auto px-6 py-5">
+          <div className="text-gray-300 leading-relaxed space-y-4 text-sm">
+            <p className="text-white font-medium">Hi, Shiru</p>
             <p className="whitespace-pre-wrap">{message.body}</p>
-            <p>Cordialement,<br />{message.from.name}</p>
+            <p className="text-sm">Thank & Regards<br />{message.from.name}</p>
           </div>
 
-          {/* Attachments section - matching reference with image previews */}
+          {/* Attachments section */}
           {message.attachments.length > 0 && (
             <div className="mt-8">
-              <h3 className="text-sm font-bold text-white mb-4">Pièces jointes</h3>
+              <h3 className="text-sm font-bold text-white mb-4 text-base">Attachments</h3>
               <div className="grid grid-cols-2 gap-4">
                 {message.attachments.map((attachment, index) => (
                   <div
                     key={attachment.id}
-                    className="relative rounded-xl overflow-hidden bg-[#111111] border border-white/10 hover:border-[#00d9a5]/50 transition-all cursor-pointer group aspect-[4/3]"
+                    className="relative rounded-xl overflow-hidden bg-[#0f0f0f] border border-white/8 hover:border-[#00d9a5]/40 transition-all cursor-pointer group aspect-video"
                   >
-                    {/* Placeholder image styled like reference CRM images */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#00d9a5]/20 to-[#004d3d] flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="w-16 h-16 rounded-full bg-[#00d9a5]/20 flex items-center justify-center mx-auto mb-2">
-                          <svg viewBox="0 0 24 24" fill="none" className="w-8 h-8 text-[#00d9a5]">
-                            <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                            <path d="M14 2V8H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                          </svg>
+                    {/* CRM-themed attachment preview */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#0f4a42] via-[#0d3d35] to-[#0a3028] flex items-center justify-center p-4 overflow-hidden">
+                      <div className="text-center z-10">
+                        <div className="mb-2 flex justify-center">
+                          <div className="relative">
+                            <div className="w-12 h-12 rounded-full border border-[#00d9a5]/40 flex items-center justify-center">
+                              <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6 text-[#00d9a5]">
+                                <circle cx="12" cy="12" r="1" fill="currentColor"/>
+                                <circle cx="18" cy="8" r="1" fill="currentColor"/>
+                                <circle cx="6" cy="16" r="1" fill="currentColor"/>
+                                <path d="M12 7V17M7 12H17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                                <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.5"/>
+                              </svg>
+                            </div>
+                            <div className="absolute -top-1 -right-1 w-5 h-5 bg-[#00d9a5] rounded-full flex items-center justify-center text-xs font-bold text-black shadow-lg shadow-[#00d9a5]/30">
+                              CRM
+                            </div>
+                          </div>
                         </div>
-                        <p className="text-xs text-[#00d9a5] font-medium">{attachment.name}</p>
+                        <p className="text-xs text-[#00d9a5] font-semibold mt-3">{attachment.name}</p>
                         <p className="text-xs text-gray-500 mt-1">
                           {typeof attachment.size === 'number' 
                             ? (attachment.size / 1024 / 1024).toFixed(2) + ' MB'
@@ -138,9 +145,11 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
                           }
                         </p>
                       </div>
+                      {/* Subtle grid overlay */}
+                      <div className="absolute inset-0 opacity-10" style={{backgroundImage: 'linear-gradient(0deg, transparent 24%, rgba(0, 217, 165, 0.05) 25%, rgba(0, 217, 165, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 217, 165, 0.05) 75%, rgba(0, 217, 165, 0.05) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(0, 217, 165, 0.05) 25%, rgba(0, 217, 165, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 217, 165, 0.05) 75%, rgba(0, 217, 165, 0.05) 76%, transparent 77%, transparent)', backgroundSize: '40px 40px'}}/>
                     </div>
-                    {/* Hover overlay */}
-                    <div className="absolute inset-0 bg-[#00d9a5]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    {/* Hover glow */}
+                    <div className="absolute inset-0 bg-[#00d9a5]/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                 ))}
               </div>
@@ -148,65 +157,65 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
           )}
         </div>
 
-        {/* Reply composer - matching reference with formatting toolbar */}
-        <div className="border-t border-white/10 p-4">
-          <div className="bg-[#0c0c0c] rounded-xl border border-white/10 overflow-hidden">
+        {/* Reply composer */}
+        <div className="border-t border-white/5 px-4 py-4">
+          <div className="bg-[#0f0f0f] rounded-xl border border-white/8 overflow-hidden">
             {/* Text input area */}
-            <div className="p-4">
+            <div className="px-5 py-4">
               <textarea
-                placeholder="Écrivez votre message..."
+                placeholder="Write your message..."
                 value={replyText}
                 onChange={(e) => setReplyText(e.target.value)}
-                className="w-full bg-transparent text-white placeholder:text-gray-600 text-sm resize-none focus:outline-none min-h-[60px]"
+                className="w-full bg-transparent text-white placeholder:text-gray-600 text-sm resize-none focus:outline-none min-h-14"
               />
             </div>
             
-            {/* Formatting toolbar - matching reference exactly */}
-            <div className="px-4 py-3 border-t border-white/5 flex items-center justify-between">
-              <div className="flex items-center gap-1">
-                <button className="p-2 text-gray-500 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
+            {/* Formatting toolbar */}
+            <div className="px-4 py-3 border-t border-white/5 flex items-center justify-between gap-2">
+              <div className="flex items-center gap-0.5">
+                <button className="p-2 text-gray-600 hover:text-gray-400 hover:bg-white/5 rounded-md transition-colors">
                   <Bold className="w-4 h-4" />
                 </button>
-                <button className="p-2 text-gray-500 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
+                <button className="p-2 text-gray-600 hover:text-gray-400 hover:bg-white/5 rounded-md transition-colors">
                   <Italic className="w-4 h-4" />
                 </button>
-                <button className="p-2 text-gray-500 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
+                <button className="p-2 text-gray-600 hover:text-gray-400 hover:bg-white/5 rounded-md transition-colors">
                   <Underline className="w-4 h-4" />
                 </button>
                 <div className="w-px h-5 bg-white/10 mx-1" />
-                <button className="p-2 text-gray-500 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
+                <button className="p-2 text-gray-600 hover:text-gray-400 hover:bg-white/5 rounded-md transition-colors">
                   <List className="w-4 h-4" />
                 </button>
-                <button className="p-2 text-gray-500 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
+                <button className="p-2 text-gray-600 hover:text-gray-400 hover:bg-white/5 rounded-md transition-colors">
                   <ListOrdered className="w-4 h-4" />
                 </button>
                 <div className="w-px h-5 bg-white/10 mx-1" />
-                <button className="p-2 text-gray-500 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
+                <button className="p-2 text-gray-600 hover:text-gray-400 hover:bg-white/5 rounded-md transition-colors">
                   <AlignLeft className="w-4 h-4" />
                 </button>
-                <button className="p-2 text-gray-500 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
+                <button className="p-2 text-gray-600 hover:text-gray-400 hover:bg-white/5 rounded-md transition-colors">
                   <AlignCenter className="w-4 h-4" />
                 </button>
-                <button className="p-2 text-gray-500 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
+                <button className="p-2 text-gray-600 hover:text-gray-400 hover:bg-white/5 rounded-md transition-colors">
                   <AlignRight className="w-4 h-4" />
                 </button>
-                <button className="p-2 text-gray-500 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
+                <button className="p-2 text-gray-600 hover:text-gray-400 hover:bg-white/5 rounded-md transition-colors">
                   <AlignJustify className="w-4 h-4" />
                 </button>
                 <div className="w-px h-5 bg-white/10 mx-1" />
-                <button className="p-2 text-gray-500 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
+                <button className="p-2 text-gray-600 hover:text-gray-400 hover:bg-white/5 rounded-md transition-colors">
                   <Quote className="w-4 h-4" />
                 </button>
-                <button className="p-2 text-gray-500 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
+                <button className="p-2 text-gray-600 hover:text-gray-400 hover:bg-white/5 rounded-md transition-colors">
                   <Link2 className="w-4 h-4" />
                 </button>
-                <button className="p-2 text-gray-500 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
+                <button className="p-2 text-gray-600 hover:text-gray-400 hover:bg-white/5 rounded-md transition-colors">
                   <Mic className="w-4 h-4" />
                 </button>
               </div>
               
-              {/* Send button - matching reference */}
-              <button className="px-5 py-2 bg-transparent border border-[#00d9a5] text-[#00d9a5] rounded-full text-sm font-medium hover:bg-[#00d9a5]/10 transition-all flex items-center gap-2">
+              {/* Send button */}
+              <button className="px-5 py-1.5 bg-[#00d9a5] text-black rounded-full text-sm font-semibold hover:bg-[#00d9a5]/90 transition-all flex items-center gap-2 shadow-lg shadow-[#00d9a5]/25">
                 <Send className="w-4 h-4" />
                 Send
               </button>

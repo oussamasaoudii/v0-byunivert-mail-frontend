@@ -45,64 +45,64 @@ export default function MessageList({ selectedMessageId, onSelectMessage }: Mess
   }
 
   return (
-    <div className="flex flex-col bg-[#0d4d45] min-w-0 w-[380px] flex-shrink-0">
-      {/* Top header bar - matching reference with title and actions */}
-      <div className="px-5 py-4 flex items-center justify-between">
-        <h1 className="text-xl font-bold text-white">Inbox</h1>
+    <div className="flex flex-col bg-[#0c4a42] min-w-0 w-[380px] flex-shrink-0 border-r border-white/5">
+      {/* Top header bar */}
+      <div className="px-6 py-4 flex items-center justify-between border-b border-white/5">
+        <h1 className="text-xl font-bold text-white tracking-tight">Inbox</h1>
         <div className="flex items-center gap-2">
-          <button className="px-4 py-2 rounded-full border border-white/20 text-sm text-gray-300 hover:bg-white/5 transition-colors flex items-center gap-2">
+          <button className="px-4 py-1.5 rounded-full border border-white/15 text-xs text-gray-300 hover:bg-white/5 transition-colors flex items-center gap-1.5 font-medium">
             <span className="text-[#00d9a5]">+</span>
             Contact
           </button>
-          <button className="px-4 py-2 rounded-full border border-white/20 text-sm text-gray-300 hover:bg-white/5 transition-colors flex items-center gap-2">
-            <span className="text-[#00d9a5]">💬</span>
+          <button className="px-4 py-1.5 rounded-full border border-white/15 text-xs text-gray-300 hover:bg-white/5 transition-colors flex items-center gap-1.5 font-medium">
+            <span>💬</span>
             Chat
           </button>
-          <button className="ml-2 px-4 py-2 rounded-full border border-[#00d9a5] text-sm text-[#00d9a5] font-medium hover:bg-[#00d9a5]/10 transition-colors">
+          <button className="ml-1 px-3 py-1.5 rounded-full border border-[#00d9a5] text-xs text-[#00d9a5] font-semibold hover:bg-[#00d9a5]/8 transition-colors">
             0xa6a***3c7f
           </button>
         </div>
       </div>
 
       {/* Action bar */}
-      <div className="px-5 py-2 flex items-center gap-3">
-        <input type="checkbox" className="w-4 h-4 rounded border-2 border-gray-600 bg-transparent cursor-pointer accent-[#00d9a5]" />
-        <button className="p-1.5 text-gray-500 hover:text-gray-300 transition-colors">
+      <div className="px-6 py-2.5 flex items-center gap-2.5 border-b border-white/5">
+        <input type="checkbox" className="w-4 h-4 rounded border border-gray-600 bg-transparent cursor-pointer accent-[#00d9a5]" />
+        <button className="p-1 text-gray-500 hover:text-gray-300 transition-colors">
           <RotateCw className="w-4 h-4" />
         </button>
-        <button className="p-1.5 text-gray-500 hover:text-gray-300 transition-colors">
+        <button className="p-1 text-gray-500 hover:text-gray-300 transition-colors">
           <MoreVertical className="w-4 h-4" />
         </button>
         <div className="flex-1" />
-        <button className="p-1.5 text-gray-500 hover:text-gray-300 transition-colors">
+        <button className="p-1 text-gray-500 hover:text-gray-300 transition-colors">
           <Bell className="w-4 h-4" />
         </button>
-        <button className="p-1.5 text-gray-500 hover:text-gray-300 transition-colors">
+        <button className="p-1 text-gray-500 hover:text-gray-300 transition-colors">
           <Settings className="w-4 h-4" />
         </button>
-        <span className="text-xs text-gray-500 ml-2">1 / 1</span>
+        <span className="text-xs text-gray-500 ml-1">1 / 1</span>
       </div>
 
-      {/* Inner card panel - black rounded container */}
-      <div className="flex-1 mx-3 mb-3 bg-[#0a0a0a] rounded-2xl flex flex-col overflow-hidden">
+      {/* Inner card panel */}
+      <div className="flex-1 mx-4 mb-4 mt-3 bg-[#0a0a0a] rounded-2xl flex flex-col overflow-hidden border border-white/5 shadow-xl shadow-black/40">
         {/* Search bar */}
-        <div className="px-4 py-4">
+        <div className="px-5 py-4">
           <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600" />
             <input
               type="text"
               placeholder="Search"
-              className="w-full h-11 pl-11 pr-4 bg-[#111111] rounded-xl border border-white/10 text-sm text-white placeholder:text-gray-600 focus:outline-none focus:border-[#00d9a5]/50 transition-colors"
+              className="w-full h-10 pl-10 pr-4 bg-[#0f0f0f] rounded-xl border border-white/8 text-sm text-white placeholder:text-gray-600 focus:outline-none focus:border-[#00d9a5]/40 transition-all focus:shadow-lg focus:shadow-[#00d9a5]/10"
             />
           </div>
         </div>
 
-        {/* Tabs - Mail / Subscription */}
-        <div className="px-4 border-b border-white/10">
-          <div className="flex">
+        {/* Tabs */}
+        <div className="px-4 border-b border-white/5">
+          <div className="flex gap-1">
             <button
               onClick={() => setActiveTab('mail')}
-              className={`flex items-center gap-2 px-6 py-3 text-sm font-medium transition-all relative ${
+              className={`flex items-center gap-2 px-5 py-3 text-sm font-medium transition-all relative ${
                 activeTab === 'mail'
                   ? 'text-[#00d9a5]'
                   : 'text-gray-500 hover:text-gray-300'
@@ -116,7 +116,7 @@ export default function MessageList({ selectedMessageId, onSelectMessage }: Mess
             </button>
             <button
               onClick={() => setActiveTab('subscription')}
-              className={`flex items-center gap-2 px-6 py-3 text-sm font-medium transition-all relative ${
+              className={`flex items-center gap-2 px-5 py-3 text-sm font-medium transition-all relative ${
                 activeTab === 'subscription'
                   ? 'text-[#00d9a5]'
                   : 'text-gray-500 hover:text-gray-300'
@@ -136,12 +136,12 @@ export default function MessageList({ selectedMessageId, onSelectMessage }: Mess
           {isLoading ? (
             <>
               {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="h-24 bg-[#111111] rounded-xl animate-pulse" />
+                <div key={i} className="h-20 bg-[#0f0f0f] rounded-lg animate-pulse border border-white/5" />
               ))}
             </>
           ) : messages.length === 0 ? (
             <div className="flex items-center justify-center h-full text-gray-500 text-sm">
-              Aucun email
+              No emails
             </div>
           ) : (
             messages.map((message) => {
@@ -150,30 +150,30 @@ export default function MessageList({ selectedMessageId, onSelectMessage }: Mess
                 <div
                   key={message.id}
                   onClick={(e) => handleSelectMessage(e, message.id)}
-                  className={`p-4 cursor-pointer transition-all rounded-xl border-2 ${
+                  className={`p-3.5 cursor-pointer transition-all rounded-lg border-2 ${
                     isSelected
-                      ? 'bg-[#0c1f1c] border-[#00d9a5] shadow-lg shadow-[#00d9a5]/20'
-                      : 'bg-[#0c0c0c] border-transparent hover:border-[#00d9a5]/30 hover:bg-[#111111]'
+                      ? 'bg-[#0c1f1c] border-[#00d9a5] shadow-lg shadow-[#00d9a5]/15'
+                      : 'bg-[#0b0b0b] border-transparent hover:border-[#00d9a5]/30 hover:bg-[#0f0f0f]'
                   }`}
                 >
                   <div className="flex items-start gap-3">
-                    {/* Avatar - matching reference style with gradient */}
-                    <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#00d9a5] to-[#008866] flex items-center justify-center text-sm font-bold text-black flex-shrink-0 shadow-md shadow-[#00d9a5]/30">
+                    {/* Avatar */}
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#00d9a5] to-[#00a080] flex items-center justify-center text-xs font-bold text-black flex-shrink-0 shadow-md shadow-[#00d9a5]/25">
                       {message.from.name.charAt(0).toUpperCase()}
                     </div>
 
                     {/* Content */}
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between gap-2 mb-1">
+                      <div className="flex items-center justify-between gap-2 mb-0.5">
                         <p className="text-sm font-semibold text-white truncate">
                           {message.from.name}
                         </p>
                       </div>
-                      <p className={`text-sm line-clamp-1 mb-1 ${!message.read ? 'font-semibold text-white' : 'text-gray-400'}`}>
+                      <p className={`text-sm line-clamp-1 mb-0.5 ${!message.read ? 'font-semibold text-white' : 'text-gray-400'}`}>
                         {message.subject}
                       </p>
-                      <p className="text-sm text-gray-500 line-clamp-2 leading-relaxed">
-                        {message.body.substring(0, 100)}...
+                      <p className="text-xs text-gray-500 line-clamp-2 leading-snug">
+                        {message.body.substring(0, 90)}...
                       </p>
                     </div>
                   </div>
