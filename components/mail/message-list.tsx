@@ -43,20 +43,21 @@ export default function MessageList({ selectedMessageId, onSelectMessage }: Mess
   }
 
   return (
-    <div className="flex-1 flex flex-col border-r border-border bg-background min-w-0 md:min-w-80">
+    <div className="flex-1 flex flex-col border-r border-border bg-background min-w-0 md:min-w-96">
       {/* Toolbar */}
-      <div className="border-b border-border px-4 py-3">
-        <div className="flex items-center gap-2 mb-3">
-          <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+      <div className="border-b border-border px-5 py-4">
+        <div className="flex items-center gap-2 mb-4">
+          <input type="checkbox" className="w-4 h-4 rounded border-border cursor-pointer" />
+          <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-muted-foreground hover:text-foreground">
             <ChevronDown className="w-4 h-4" />
           </Button>
-          <span className="text-sm text-muted-foreground">Boîte de réception</span>
+          <span className="text-lg font-semibold">Inbox</span>
         </div>
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input
-            placeholder="Rechercher les emails..."
-            className="pl-9 h-9"
+            placeholder="Search"
+            className="pl-9 h-10 bg-sidebar rounded-lg border-0"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -78,27 +79,42 @@ export default function MessageList({ selectedMessageId, onSelectMessage }: Mess
             </div>
           </div>
         ) : (
-          <div className="divide-y divide-border">
+          <div className="space-y-2 p-3">
             {messages.map((message) => (
               <div
                 key={message.id}
                 onClick={(e) => handleSelectMessage(e, message.id)}
-                className={`px-3 py-3 cursor-pointer transition-colors border-l-2 ${
+                className={`px-4 py-4 cursor-pointer transition-all rounded-lg border-2 ${
                   selectedMessageId === message.id
-                    ? 'bg-accent/5 border-l-primary'
-                    : 'hover:bg-muted border-l-transparent'
+                    ? 'bg-sidebar border-primary'
+                    : 'bg-sidebar border-border hover:border-primary/50'
                 }`}
               >
                 <div className="flex items-start gap-3">
-                  {/* Checkbox */}
-                  <div className="mt-1 flex-shrink-0">
-                    <input
-                      type="checkbox"
-                      checked={selectedMessages.has(message.id)}
-                      onChange={() => handleToggleSelect(message.id)}
-                      className="w-4 h-4 rounded border-border cursor-pointer"
-                      onClick={(e) => e.stopPropagation()}
-                    />
+                  {/* Avatar */}
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-xs font-bold text-primary-foreground flex-shrink-0">
+                    {message.from.name.charAt(0).toUpperCase()}
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-start justify-between gap-2 mb-1">
+                      <p className={`text-sm font-semibold`}>
+                        {message.from.name}
+                      </p>
+                      <span className="text-xs text-muted-foreground flex-shrink-0">
+                        {message.date.toLocaleDateString('fr-FR', {
+                          month: 'short',
+                          day: 'numeric',
+                        })}
+                      </span>
+                    </div>
+                    <p className={`text-sm line-clamp-1 ${message.read ? 'text-muted-foreground' : 'font-semibold text-foreground'}`}>
+                      {message.subject}
+                    </p>
+                    <p className="text-xs text-muted-foreground line-clamp-2 mt-1">
+                      {message.body.substring(0, 80)}...
+                    </p>
                   </div>
 
                   {/* Star */}
@@ -106,38 +122,10 @@ export default function MessageList({ selectedMessageId, onSelectMessage }: Mess
                     onClick={(e) => {
                       e.stopPropagation()
                     }}
-                    className="mt-1 flex-shrink-0 text-muted-foreground hover:text-accent"
+                    className="flex-shrink-0 text-muted-foreground hover:text-accent transition-colors"
                   >
                     <Star className="w-4 h-4" fill={message.starred ? 'currentColor' : 'none'} />
                   </button>
-
-                  {/* Content */}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-baseline gap-2 mb-1">
-                      <p className={`text-sm ${message.read ? 'text-muted-foreground' : 'font-semibold'}`}>
-                        {message.from.name}
-                      </p>
-                      <span className="text-xs text-muted-foreground flex-shrink-0">
-                        {message.date.toLocaleDateString('fr-FR', {
-                          month: 'short',
-                          day: 'numeric',
-                          hour: '2-digit',
-                          minute: '2-digit',
-                        })}
-                      </span>
-                    </div>
-                    <p className={`text-sm truncate ${message.read ? 'text-muted-foreground' : 'font-medium'}`}>
-                      {message.subject}
-                    </p>
-                    <p className="text-xs text-muted-foreground truncate">
-                      {message.body.substring(0, 60)}...
-                    </p>
-                  </div>
-
-                  {/* Unread indicator */}
-                  {!message.read && (
-                    <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0 mt-2" />
-                  )}
                 </div>
               </div>
             ))}
