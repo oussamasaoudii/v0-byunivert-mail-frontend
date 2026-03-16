@@ -2,7 +2,8 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, Plus, Search, Send, Paperclip } from 'lucide-react'
+import { ArrowLeft, Plus, Send, Paperclip } from 'lucide-react'
+import SearchInput from '@/components/mail/search-input'
 
 interface Conversation {
   id: string
@@ -109,16 +110,11 @@ export default function MessagesPage() {
 
         {/* Search */}
         <div className="px-4 py-4">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-700" />
-            <input
-              type="text"
-              placeholder="Rechercher conversations..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full h-10 pl-10 pr-4 bg-white/[0.03] rounded-lg border border-white/[0.08] text-[13px] text-white placeholder:text-gray-700 focus:outline-none focus:border-[#00d9a5]/50 focus:bg-white/[0.05] transition-colors"
-            />
-          </div>
+          <SearchInput
+            placeholder="Rechercher conversations..."
+            value={searchQuery}
+            onChange={setSearchQuery}
+          />
         </div>
 
         {/* Conversations List */}

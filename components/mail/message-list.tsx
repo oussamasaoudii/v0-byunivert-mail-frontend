@@ -92,23 +92,23 @@ export default function MessageList({ selectedMessageId, onSelectMessage, active
         </div>
       </div>
 
-      {/* Action toolbar row */}
-      <div className="h-10 px-6 flex items-center gap-3 border-b border-white/[0.08]">
+      {/* Action toolbar row - Premium dark styling */}
+      <div className="h-10 px-6 flex items-center gap-3 border-b border-white/[0.08] bg-white/[0.01]">
         <input type="checkbox" className="w-4 h-4 rounded border-gray-600 bg-transparent accent-[#00d9a5] cursor-pointer" />
-        <button className="p-1.5 text-gray-600 hover:text-gray-400 transition-colors">
+        <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors">
           <RotateCw className="w-4 h-4" />
         </button>
-        <button className="p-1.5 text-gray-600 hover:text-gray-400 transition-colors">
+        <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors">
           <MoreVertical className="w-4 h-4" />
         </button>
         <div className="flex-1" />
-        <button className="p-1.5 text-gray-600 hover:text-gray-400 transition-colors">
+        <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors">
           <Bell className="w-4 h-4" />
         </button>
-        <button className="p-1.5 text-gray-600 hover:text-gray-400 transition-colors">
+        <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors">
           <Settings className="w-4 h-4" />
         </button>
-        <span className="text-[11px] text-gray-600 ml-1">1 / 1</span>
+        <span className="text-[11px] text-gray-700 ml-1">1 / 1</span>
       </div>
 
       {/* Inner black card container - key visual element */}
@@ -125,13 +125,13 @@ export default function MessageList({ selectedMessageId, onSelectMessage, active
           </div>
         </div>
 
-        {/* Mail / Subscription tabs */}
-        <div className="px-4 border-b border-white/[0.08]">
+        {/* Mail / Subscription tabs - Premium styling */}
+        <div className="px-4 border-b border-white/[0.08] bg-white/[0.01]">
           <div className="flex">
             <button
               onClick={() => setActiveTab('mail')}
-              className={`flex items-center gap-2 px-5 py-3 text-[12px] font-medium transition-colors relative ${
-                activeTab === 'mail' ? 'text-[#00d9a5]' : 'text-gray-600 hover:text-gray-400'
+              className={`flex items-center gap-2 px-5 py-3 text-[12px] font-semibold transition-all relative ${
+                activeTab === 'mail' ? 'text-[#00d9a5]' : 'text-gray-700 hover:text-gray-500'
               }`}
             >
               <MailTabIcon />
@@ -142,8 +142,8 @@ export default function MessageList({ selectedMessageId, onSelectMessage, active
             </button>
             <button
               onClick={() => setActiveTab('subscription')}
-              className={`flex items-center gap-2 px-5 py-3 text-[12px] font-medium transition-colors relative ${
-                activeTab === 'subscription' ? 'text-[#00d9a5]' : 'text-gray-600 hover:text-gray-400'
+              className={`flex items-center gap-2 px-5 py-3 text-[12px] font-semibold transition-all relative ${
+                activeTab === 'subscription' ? 'text-[#00d9a5]' : 'text-gray-700 hover:text-gray-500'
               }`}
             >
               <SubscriptionIcon />
