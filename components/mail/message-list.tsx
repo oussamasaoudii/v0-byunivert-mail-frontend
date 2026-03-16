@@ -54,6 +54,13 @@ export default function MessageList({ selectedMessageId, onSelectMessage, active
       setIsLoading(true)
       const allMessages = await getMessages()
       
+      // Ensure allMessages is an array
+      if (!Array.isArray(allMessages)) {
+        setMessages([])
+        setIsLoading(false)
+        return
+      }
+      
       // Filter messages based on currentFolder
       let filteredMessages = allMessages
       
@@ -238,8 +245,8 @@ export default function MessageList({ selectedMessageId, onSelectMessage, active
         <span className="text-[11px] text-gray-700 ml-1">{messages.length} / {messages.length}</span>
       </div>
 
-      {/* Inner black card container - key visual element */}
-      <div className="flex-1 m-3.5 mt-3 bg-[#0a0a0a] rounded-2xl flex flex-col overflow-hidden border border-white/[0.06]">
+      {/* Inner card container - with atmospheric gradient background */}
+      <div className="flex-1 m-3.5 mt-3 bg-gradient-to-b from-[#0a1210] to-[#0a0a0a] rounded-2xl flex flex-col overflow-hidden border border-[#00d9a5]/10 shadow-[0_0_30px_rgba(0,217,165,0.08)]">
         {/* Search bar */}
         <div className="px-5 pt-4 pb-3">
           <div className="relative">

@@ -63,8 +63,8 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
 
   if (isLoading) {
     return (
-      <div className="hidden md:flex flex-1 bg-[#0a0a0a] p-4 overflow-hidden">
-        <div className="flex-1 bg-[#0a0a0a] rounded-xl p-6 space-y-6 border border-white/[0.06]">
+      <div className="hidden md:flex flex-1 bg-surface-tertiary p-4 overflow-hidden">
+        <div className="flex-1 bg-gradient-to-b from-[#0a1210] to-[#0a0a0a] rounded-xl p-6 space-y-6 border border-[#00d9a5]/10 shadow-[0_0_30px_rgba(0,217,165,0.08)]">
           <div className="flex items-start gap-4">
             <div className="w-12 h-12 rounded-full bg-white/5 animate-pulse flex-shrink-0" />
             <div className="space-y-2 flex-1">
@@ -84,19 +84,19 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
 
   if (!message) {
     return (
-      <div className="hidden md:flex flex-1 items-center justify-center bg-[#0a0a0a] text-gray-600">
+      <div className="hidden md:flex flex-1 items-center justify-center bg-surface-tertiary text-gray-600">
         <p className="text-[13px]">Courrier introuvable</p>
       </div>
     )
   }
 
   return (
-    <div className="hidden md:flex flex-1 flex-col bg-[#0a0a0a] p-4 overflow-hidden">
-      {/* Reading panel card - premium dark glass */}
-      <div className="flex-1 bg-[#0a0a0a] rounded-xl flex flex-col overflow-hidden border border-white/[0.06]">
+    <div className="hidden md:flex flex-1 flex-col bg-surface-tertiary p-4 overflow-hidden">
+      {/* Reading panel card - premium dark glass with atmospheric gradient */}
+      <div className="flex-1 bg-gradient-to-b from-[#0a1210] to-[#0a0a0a] rounded-xl flex flex-col overflow-hidden border border-[#00d9a5]/10 shadow-[0_0_30px_rgba(0,217,165,0.08)]">
         
         {/* Sender header */}
-        <div className="px-6 py-5 border-b border-white/[0.08] bg-white/[0.02]">
+        <div className="px-6 py-5 border-b border-[#00d9a5]/10 bg-gradient-to-r from-[#0a1210] to-[#0a0a0a]">
           <div className="flex items-start justify-between gap-4">
             <div className="flex items-start gap-4">
               {/* Avatar with gradient */}
