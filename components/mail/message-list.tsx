@@ -54,6 +54,13 @@ export default function MessageList({ selectedMessageId, onSelectMessage, active
       setIsLoading(true)
       const allMessages = await getMessages()
       
+      // Ensure allMessages is an array
+      if (!Array.isArray(allMessages)) {
+        setMessages([])
+        setIsLoading(false)
+        return
+      }
+      
       // Filter messages based on currentFolder
       let filteredMessages = allMessages
       
