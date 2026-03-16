@@ -45,19 +45,22 @@ export default function MessageList({ selectedMessageId, onSelectMessage }: Mess
   return (
     <div className="flex-1 flex flex-col border-r border-border bg-background min-w-0 md:min-w-96">
       {/* Toolbar */}
-      <div className="border-b border-border px-5 py-4">
-        <div className="flex items-center gap-2 mb-4">
+      <div className="border-b border-border/50 px-6 py-5">
+        <div className="flex items-center gap-3 mb-5">
           <input type="checkbox" className="w-4 h-4 rounded border-border cursor-pointer" />
           <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-muted-foreground hover:text-foreground">
             <ChevronDown className="w-4 h-4" />
           </Button>
-          <span className="text-lg font-semibold">Inbox</span>
+          <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-muted-foreground hover:text-foreground">
+            <Check className="w-4 h-4" />
+          </Button>
+          <span className="text-xl font-bold">Inbox</span>
         </div>
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input
             placeholder="Search"
-            className="pl-9 h-10 bg-sidebar rounded-lg border-0"
+            className="pl-11 h-11 bg-sidebar/60 rounded-lg border-border/40 text-sm"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -75,7 +78,7 @@ export default function MessageList({ selectedMessageId, onSelectMessage }: Mess
         ) : messages.length === 0 ? (
           <div className="flex items-center justify-center h-full text-muted-foreground">
             <div className="text-center">
-              <p className="text-sm">Aucun email</p>
+              <p className="text-sm">No emails</p>
             </div>
           </div>
         ) : (
@@ -134,13 +137,13 @@ export default function MessageList({ selectedMessageId, onSelectMessage }: Mess
       </div>
 
       {/* Footer */}
-      <div className="border-t border-border px-4 py-2 flex items-center justify-between text-xs text-muted-foreground">
-        <span>Affichage 1 à {messages.length} sur {messages.length}</span>
+      <div className="border-t border-border/50 px-6 py-3 flex items-center justify-between text-xs text-muted-foreground">
+        <span>1 / {messages.length > 0 ? '1' : '0'}</span>
         <div className="flex gap-1">
-          <Button variant="ghost" size="sm" className="h-7 w-7 p-0">
+          <Button variant="ghost" size="sm" className="h-6 w-6 p-0 text-muted-foreground hover:text-foreground">
             ←
           </Button>
-          <Button variant="ghost" size="sm" className="h-7 w-7 p-0">
+          <Button variant="ghost" size="sm" className="h-6 w-6 p-0 text-muted-foreground hover:text-foreground">
             →
           </Button>
         </div>

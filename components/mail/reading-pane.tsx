@@ -45,7 +45,7 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
     return (
       <div className="hidden md:flex flex-1 items-center justify-center bg-background text-muted-foreground">
         <div className="text-center">
-          <p className="text-lg">Sélectionnez un email</p>
+          <p className="text-lg">Select an email to read</p>
         </div>
       </div>
     )
@@ -66,7 +66,7 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
   if (!message) {
     return (
       <div className="hidden md:flex flex-1 items-center justify-center bg-background text-muted-foreground">
-        <p className="text-sm">Email non trouvé</p>
+        <p className="text-sm">Email not found</p>
       </div>
     )
   }
