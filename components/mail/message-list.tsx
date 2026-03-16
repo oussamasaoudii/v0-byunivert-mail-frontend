@@ -34,6 +34,7 @@ export default function MessageList({ selectedMessageId, onSelectMessage, active
   const [activeTab, setActiveTab] = useState<'mail' | 'subscription'>('mail')
   const [menuOpen, setMenuOpen] = useState(false)
   const [notificationsOpen, setNotificationsOpen] = useState(false)
+  const [settingsOpen, setSettingsOpen] = useState(false)
   
   // Ensure folder is always defined for stable dependency
   const currentFolder = activeFolder || 'inbox'
@@ -95,77 +96,146 @@ export default function MessageList({ selectedMessageId, onSelectMessage, active
       </div>
 
       {/* Action toolbar row - Premium dark styling with interactive elements */}
-      <div className="h-10 px-6 flex items-center gap-3 border-b border-white/[0.08] bg-white/[0.01] relative">
+      <div className="h-10 px-6 flex items-center gap-3 border-b border-white/[0.08] bg-white/[0.01]">
         <input type="checkbox" className="w-4 h-4 rounded border-gray-600 bg-transparent accent-[#00d9a5] cursor-pointer" />
         <button 
-          onClick={() => console.log('[v0] Refresh clicked')}
+          onClick={() => window.location.reload()}
           className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors"
           title="Actualiser"
         >
           <RotateCw className="w-4 h-4" />
         </button>
-        <button 
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors relative"
-          title="Plus d'options"
-        >
-          <MoreVertical className="w-4 h-4" />
-          
-          {/* More menu dropdown */}
+        
+        {/* More options button with dropdown */}
+        <div className="relative">
+          <button 
+            onClick={() => {
+              setMenuOpen(!menuOpen)
+              setNotificationsOpen(false)
+              setSettingsOpen(false)
+            }}
+            className={`p-1.5 rounded transition-colors ${menuOpen ? 'text-[#00d9a5] bg-[#00d9a5]/10' : 'text-gray-700 hover:text-gray-500 hover:bg-white/5'}`}
+            title="Plus d'options"
+          >
+            <MoreVertical className="w-4 h-4" />
+          </button>
           {menuOpen && (
-            <div className="absolute left-0 top-full mt-1 bg-[#0d0d0d] rounded-lg border border-white/[0.08] shadow-xl overflow-hidden z-50 min-w-[160px]">
-              <button className="w-full px-4 py-2 text-[12px] text-gray-400 hover:text-white hover:bg-white/5 transition-colors text-left">
+            <div className="absolute left-0 top-full mt-2 bg-[#0d0d0d] rounded-lg border border-[#00d9a5]/20 shadow-[0_4px_20px_rgba(0,217,165,0.15)] overflow-hidden z-50 min-w-[180px]">
+              <button onClick={() => setMenuOpen(false)} className="w-full px-4 py-2.5 text-[12px] text-gray-400 hover:text-[#00d9a5] hover:bg-[#00d9a5]/5 transition-colors text-left flex items-center gap-2">
+                <span className="w-4 h-4 flex items-center justify-center">
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                </span>
                 Sélectionner tout
               </button>
-              <button className="w-full px-4 py-2 text-[12px] text-gray-400 hover:text-white hover:bg-white/5 transition-colors text-left">
+              <button onClick={() => setMenuOpen(false)} className="w-full px-4 py-2.5 text-[12px] text-gray-400 hover:text-[#00d9a5] hover:bg-[#00d9a5]/5 transition-colors text-left flex items-center gap-2">
+                <span className="w-4 h-4 flex items-center justify-center">
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                </span>
                 Désélectionner
               </button>
-              <button className="w-full px-4 py-2 text-[12px] text-gray-400 hover:text-white hover:bg-white/5 transition-colors text-left border-t border-white/[0.08]">
+              <button onClick={() => setMenuOpen(false)} className="w-full px-4 py-2.5 text-[12px] text-gray-400 hover:text-[#00d9a5] hover:bg-[#00d9a5]/5 transition-colors text-left flex items-center gap-2 border-t border-white/[0.08]">
+                <span className="w-4 h-4 flex items-center justify-center">
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" /></svg>
+                </span>
                 Archiver
               </button>
             </div>
           )}
-        </button>
+        </div>
+        
         <div className="flex-1" />
-        <button 
-          onClick={() => setNotificationsOpen(!notificationsOpen)}
-          className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors relative"
-          title="Notifications"
-        >
-          <Bell className="w-4 h-4" />
-          <span className="absolute top-1 right-1 w-1.5 h-1.5 bg-[#00d9a5] rounded-full"></span>
-          
-          {/* Notifications panel */}
+        
+        {/* Notifications button with dropdown */}
+        <div className="relative">
+          <button 
+            onClick={() => {
+              setNotificationsOpen(!notificationsOpen)
+              setMenuOpen(false)
+              setSettingsOpen(false)
+            }}
+            className={`p-1.5 rounded transition-colors relative ${notificationsOpen ? 'text-[#00d9a5] bg-[#00d9a5]/10' : 'text-gray-700 hover:text-gray-500 hover:bg-white/5'}`}
+            title="Notifications"
+          >
+            <Bell className="w-4 h-4" />
+            <span className="absolute top-0.5 right-0.5 w-2 h-2 bg-[#00d9a5] rounded-full border border-[#111]"></span>
+          </button>
           {notificationsOpen && (
-            <div className="absolute right-0 top-full mt-1 bg-[#0d0d0d] rounded-lg border border-white/[0.08] shadow-xl overflow-hidden z-50 w-64">
-              <div className="px-4 py-3 border-b border-white/[0.08]">
-                <h3 className="text-[12px] font-semibold text-white">Notifications</h3>
+            <div className="absolute right-0 top-full mt-2 bg-[#0d0d0d] rounded-lg border border-[#00d9a5]/20 shadow-[0_4px_20px_rgba(0,217,165,0.15)] overflow-hidden z-50 w-72">
+              <div className="px-4 py-3 border-b border-[#00d9a5]/10 flex items-center justify-between">
+                <h3 className="text-[13px] font-semibold text-[#00d9a5]">Notifications</h3>
+                <span className="text-[10px] text-gray-600">3 nouvelles</span>
               </div>
-              <div className="max-h-96 overflow-y-auto">
-                <div className="px-4 py-3 hover:bg-white/5 transition-colors border-b border-white/[0.08]">
-                  <p className="text-[12px] text-gray-300">Nouvel email de Rishak</p>
-                  <p className="text-[11px] text-gray-600 mt-1">Il y a 5 minutes</p>
+              <div className="max-h-80 overflow-y-auto">
+                <div className="px-4 py-3 hover:bg-[#00d9a5]/5 transition-colors border-b border-white/[0.05] cursor-pointer">
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full bg-[#00d9a5]/10 flex items-center justify-center flex-shrink-0">
+                      <span className="text-[11px] font-medium text-[#00d9a5]">R</span>
+                    </div>
+                    <div>
+                      <p className="text-[12px] text-gray-300">Nouvel email de <span className="text-white">Rishak</span></p>
+                      <p className="text-[11px] text-gray-600 mt-0.5">Il y a 5 minutes</p>
+                    </div>
+                  </div>
                 </div>
-                <div className="px-4 py-3 hover:bg-white/5 transition-colors border-b border-white/[0.08]">
-                  <p className="text-[12px] text-gray-300">Nouvel email de Market Insights</p>
-                  <p className="text-[11px] text-gray-600 mt-1">Il y a 2 heures</p>
+                <div className="px-4 py-3 hover:bg-[#00d9a5]/5 transition-colors border-b border-white/[0.05] cursor-pointer">
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full bg-[#00d9a5]/10 flex items-center justify-center flex-shrink-0">
+                      <span className="text-[11px] font-medium text-[#00d9a5]">M</span>
+                    </div>
+                    <div>
+                      <p className="text-[12px] text-gray-300">Nouvel email de <span className="text-white">Market Insights</span></p>
+                      <p className="text-[11px] text-gray-600 mt-0.5">Il y a 2 heures</p>
+                    </div>
+                  </div>
                 </div>
-                <div className="px-4 py-3 hover:bg-white/5 transition-colors">
-                  <p className="text-[12px] text-gray-300">Confirmation de sécurité requise</p>
-                  <p className="text-[11px] text-gray-600 mt-1">Il y a 1 jour</p>
+                <div className="px-4 py-3 hover:bg-[#00d9a5]/5 transition-colors cursor-pointer">
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full bg-orange-500/10 flex items-center justify-center flex-shrink-0">
+                      <span className="text-[11px] font-medium text-orange-400">!</span>
+                    </div>
+                    <div>
+                      <p className="text-[12px] text-gray-300">Confirmation de sécurité requise</p>
+                      <p className="text-[11px] text-gray-600 mt-0.5">Il y a 1 jour</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           )}
-        </button>
-        <button 
-          onClick={() => console.log('[v0] Settings clicked')}
-          className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors"
-          title="Paramètres"
-        >
-          <Settings className="w-4 h-4" />
-        </button>
-        <span className="text-[11px] text-gray-700 ml-1">1 / 1</span>
+        </div>
+        
+        {/* Settings button with dropdown */}
+        <div className="relative">
+          <button 
+            onClick={() => {
+              setSettingsOpen(!settingsOpen)
+              setMenuOpen(false)
+              setNotificationsOpen(false)
+            }}
+            className={`p-1.5 rounded transition-colors ${settingsOpen ? 'text-[#00d9a5] bg-[#00d9a5]/10' : 'text-gray-700 hover:text-gray-500 hover:bg-white/5'}`}
+            title="Paramètres"
+          >
+            <Settings className="w-4 h-4" />
+          </button>
+          {settingsOpen && (
+            <div className="absolute right-0 top-full mt-2 bg-[#0d0d0d] rounded-lg border border-[#00d9a5]/20 shadow-[0_4px_20px_rgba(0,217,165,0.15)] overflow-hidden z-50 min-w-[200px]">
+              <a href="/mail/settings" className="w-full px-4 py-2.5 text-[12px] text-gray-400 hover:text-[#00d9a5] hover:bg-[#00d9a5]/5 transition-colors text-left flex items-center gap-2 block">
+                <Settings className="w-3.5 h-3.5" />
+                Paramètres généraux
+              </a>
+              <a href="/mail/signatures" className="w-full px-4 py-2.5 text-[12px] text-gray-400 hover:text-[#00d9a5] hover:bg-[#00d9a5]/5 transition-colors text-left flex items-center gap-2 block">
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
+                Signatures
+              </a>
+              <a href="/mail/rules" className="w-full px-4 py-2.5 text-[12px] text-gray-400 hover:text-[#00d9a5] hover:bg-[#00d9a5]/5 transition-colors text-left flex items-center gap-2 block border-t border-white/[0.08]">
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg>
+                Règles de filtrage
+              </a>
+            </div>
+          )}
+        </div>
+        
+        <span className="text-[11px] text-gray-700 ml-1">{messages.length} / {messages.length}</span>
       </div>
 
       {/* Inner black card container - key visual element */}
