@@ -3,102 +3,101 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Byunivert Mail - Exact Visual Match to Reference */
-/* Premium Teal/Emerald Dark with Neon Cyan Accents */
+/* Byunivert Mail - Faithful to Reference DMail Design */
+/* Dark cinematic theme with emerald/teal neon accent */
 
 :root {
-  /* Primary background - deep teal/emerald */
-  --background: #0f5f54;
-  --foreground: #e0e0e0;
+  /* Main background - deep forest/teal */
+  --background: #0c4a42;
+  --foreground: #e4e8ec;
   
-  /* Card surfaces - pure black */
+  /* Card surfaces - near-black with slight warmth */
   --card: #0a0a0a;
-  --card-foreground: #e0e0e0;
+  --card-foreground: #e4e8ec;
   
   /* Popover */
-  --popover: #121212;
-  --popover-foreground: #e0e0e0;
+  --popover: #0c0c0c;
+  --popover-foreground: #e4e8ec;
   
-  /* Primary - neon cyan glow */
-  --primary: #00d4aa;
-  --primary-foreground: #0a0a0a;
+  /* Primary - bright emerald/cyan */
+  --primary: #00d9a5;
+  --primary-foreground: #000000;
   
   /* Secondary - dark panels */
-  --secondary: #0f0f0f;
-  --secondary-foreground: #e0e0e0;
+  --secondary: #0e0e0e;
+  --secondary-foreground: #e4e8ec;
   
   /* Muted */
-  --muted: #252525;
+  --muted: #191919;
   --muted-foreground: #8a8a8a;
   
-  /* Accent - cyan for highlights */
-  --accent: #00d4aa;
-  --accent-foreground: #0a0a0a;
+  /* Accent */
+  --accent: #00d9a5;
+  --accent-foreground: #000000;
   
   /* Destructive */
-  --destructive: #ef4444;
+  --destructive: #e74c3c;
   --destructive-foreground: #ffffff;
   
   /* Borders and inputs */
   --border: #1a1a1a;
-  --input: #0f0f0f;
-  --ring: #00d4aa;
+  --input: #0c0c0c;
+  --ring: #00d9a5;
   
   /* Sidebar */
   --sidebar: #0a0a0a;
-  --sidebar-foreground: #e0e0e0;
-  --sidebar-primary: #00d4aa;
-  --sidebar-primary-foreground: #0a0a0a;
-  --sidebar-accent: #121212;
-  --sidebar-accent-foreground: #00d4aa;
+  --sidebar-foreground: #e4e8ec;
+  --sidebar-primary: #00d9a5;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: #111111;
+  --sidebar-accent-foreground: #00d9a5;
   --sidebar-border: #1a1a1a;
-  --sidebar-ring: #00d4aa;
+  --sidebar-ring: #00d9a5;
   
   /* Radius */
-  --radius: 1rem;
+  --radius: 0.75rem;
   
   /* Charts */
-  --chart-1: #00d4aa;
-  --chart-2: #00c4a0;
-  --chart-3: #00b496;
-  --chart-4: #00a48c;
-  --chart-5: #009482;
+  --chart-1: #00d9a5;
+  --chart-2: #00c999;
+  --chart-3: #00b98d;
+  --chart-4: #00a981;
+  --chart-5: #009975;
 }
 
 .dark {
-  /* Same as root */
-  --background: #0f5f54;
-  --foreground: #e0e0e0;
+  --background: #0d4d45;
+  --foreground: #e8e8e8;
   --card: #0a0a0a;
-  --card-foreground: #e0e0e0;
-  --popover: #121212;
-  --popover-foreground: #e0e0e0;
-  --primary: #00d4aa;
-  --primary-foreground: #0a0a0a;
-  --secondary: #0f0f0f;
-  --secondary-foreground: #e0e0e0;
-  --muted: #252525;
-  --muted-foreground: #8a8a8a;
-  --accent: #00d4aa;
-  --accent-foreground: #0a0a0a;
-  --destructive: #ef4444;
+  --card-foreground: #e8e8e8;
+  --popover: #0c0c0c;
+  --popover-foreground: #e8e8e8;
+  --primary: #00d9a5;
+  --primary-foreground: #000000;
+  --secondary: #0e0e0e;
+  --secondary-foreground: #e8e8e8;
+  --muted: #1a1a1a;
+  --muted-foreground: #7a7a7a;
+  --accent: #00d9a5;
+  --accent-foreground: #000000;
+  --destructive: #e74c3c;
   --destructive-foreground: #ffffff;
-  --border: #1a1a1a;
-  --input: #0f0f0f;
-  --ring: #00d4aa;
+  --border: #1c1c1c;
+  --input: #0c0c0c;
+  --ring: #00d9a5;
   --sidebar: #0a0a0a;
-  --sidebar-foreground: #e0e0e0;
-  --sidebar-primary: #00d4aa;
-  --sidebar-primary-foreground: #0a0a0a;
-  --sidebar-accent: #121212;
-  --sidebar-accent-foreground: #00d4aa;
-  --sidebar-border: #1a1a1a;
-  --sidebar-ring: #00d4aa;
+  --sidebar-foreground: #e8e8e8;
+  --sidebar-primary: #00d9a5;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: #111111;
+  --sidebar-accent-foreground: #00d9a5;
+  --sidebar-border: #1c1c1c;
+  --sidebar-ring: #00d9a5;
 }
 
 @theme inline {
-  --font-sans: 'Geist', 'Geist Fallback';
-  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --font-sans: 'Inter', 'Geist', sans-serif;
+  --font-mono: 'Geist Mono', monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -142,6 +141,32 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    background-color: #0a0a0a;
   }
+}
+
+/* Custom glow effects - enhanced for premium feel */
+.glow-primary {
+  box-shadow: 0 0 24px rgba(0, 217, 165, 0.35), 0 0 48px rgba(0, 217, 165, 0.15), inset 0 0 12px rgba(0, 217, 165, 0.08);
+}
+
+.glow-primary-subtle {
+  box-shadow: 0 0 16px rgba(0, 217, 165, 0.25), inset 0 0 8px rgba(0, 217, 165, 0.05);
+}
+
+.glow-primary-intense {
+  box-shadow: 0 0 32px rgba(0, 217, 165, 0.45), 0 0 64px rgba(0, 217, 165, 0.2), inset 0 0 16px rgba(0, 217, 165, 0.1);
+}
+
+/* Glass effect panels */
+.glass-panel {
+  background: rgba(10, 10, 10, 0.87);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 217, 165, 0.05);
+}
+
+/* Premium layered shadows */
+.shadow-premium {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 1px rgba(0, 217, 165, 0.1);
 }
