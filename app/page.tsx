@@ -35,11 +35,28 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center px-4 py-8">
-      {/* Background accent - subtle glow effect */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#00d9a5]/5 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-[#00d9a5]/3 rounded-full blur-3xl" />
+    <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center px-4 py-8 relative overflow-hidden">
+      {/* Atmospheric background layer - primary emerald glow */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Main radial glow - centered behind form */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-gradient-to-r from-[#00d9a5]/8 via-[#00d9a5]/4 to-transparent rounded-full blur-[120px] opacity-40" />
+        
+        {/* Secondary accent glow - lower right corner */}
+        <div className="absolute -bottom-96 -right-96 w-[600px] h-[600px] bg-gradient-to-tl from-[#00d9a5]/6 via-transparent to-transparent rounded-full blur-[100px] opacity-30" />
+        
+        {/* Tertiary accent glow - upper left corner for balance */}
+        <div className="absolute -top-80 -left-80 w-[500px] h-[500px] bg-gradient-to-br from-[#00d9a5]/4 via-transparent to-transparent rounded-full blur-[80px] opacity-25" />
+        
+        {/* Subtle vignette - elegant depth from edges */}
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/20" />
+        
+        {/* Soft radial vignette - darker at edges */}
+        <div className="absolute inset-0 bg-radial-vignette opacity-40" style={{
+          backgroundImage: 'radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.3) 100%)'
+        }} />
+        
+        {/* Low-contrast gradient wash - subtle depth layers */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#00d9a5]/[0.02] via-transparent to-[#0a0a0a]/40 opacity-50" />
       </div>
 
       {/* Main container */}
