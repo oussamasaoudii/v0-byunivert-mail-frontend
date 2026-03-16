@@ -172,9 +172,17 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
           </div>
         </div>
 
-        {/* Email body content */}
-        <div className="flex-1 overflow-y-auto px-6 py-6 space-y-6">
-          <div className="max-w-3xl space-y-4">
+        {/* Email body content - with atmospheric background */}
+        <div className="flex-1 overflow-y-auto px-6 py-6 space-y-6 relative bg-gradient-to-b from-[#0a1a18] via-[#0a0a0a] to-[#0a0a0a]">
+          {/* Atmospheric neon glow background */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <div className="absolute top-0 left-1/3 w-96 h-96 bg-[#00d9a5]/5 rounded-full blur-3xl opacity-20" />
+            <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-[#00d9a5]/3 rounded-full blur-3xl opacity-15" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#00d9a5]/[0.02] via-transparent to-transparent" />
+          </div>
+
+          {/* Content - relative positioning to appear above background */}
+          <div className="max-w-3xl space-y-4 relative z-10">
             <p className="text-white font-medium text-[14px]">Hi, Shiru</p>
             <div className="text-gray-300 text-[13.5px] leading-relaxed space-y-3 whitespace-pre-wrap">
               {message.body}
@@ -188,7 +196,7 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
 
           {/* Attachments section - premium cards */}
           {message.attachments.length > 0 && (
-            <div className="mt-8 pt-6 border-t border-white/[0.08]">
+            <div className="mt-8 pt-6 border-t border-white/[0.08] relative z-10">
               <h3 className="text-[13px] font-semibold text-white mb-4">Pièces jointes ({message.attachments.length})</h3>
               <div className="grid grid-cols-2 gap-3">
                 {message.attachments.map((attachment) => (
