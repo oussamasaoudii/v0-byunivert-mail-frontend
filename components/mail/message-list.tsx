@@ -2,7 +2,9 @@
 
 import { useState, useEffect } from 'react'
 import { Message, getMessages } from '@/lib/adapters/mail-adapter'
-import { Search, RotateCw, MoreVertical, Bell, Settings, Users, MessageSquare } from 'lucide-react'
+import { Search, RotateCw, MoreVertical, Bell, Settings } from 'lucide-react'
+import ContactsButton from './contacts-button'
+import DiscuterButton from './discuter-button'
 
 interface MessageListProps {
   selectedMessageId: string | null
@@ -39,18 +41,12 @@ export default function MessageList({ selectedMessageId, onSelectMessage }: Mess
 
   return (
     <div className="flex flex-col bg-[#0a0a0a] min-w-0 w-[420px] flex-shrink-0">
-      {/* Top header bar - Inbox title + Contact/Chat/Wallet buttons */}
+      {/* Top header bar - Inbox title + Contact/Chat buttons */}
       <div className="h-[68px] px-6 flex items-center justify-between border-b border-white/[0.08]">
         <h1 className="text-[20px] font-bold text-white">Boîte de réception</h1>
         <div className="flex items-center gap-2">
-          <button className="h-8 px-3.5 rounded-full border border-white/15 text-[12px] text-gray-400 hover:bg-white/5 hover:text-gray-200 transition-colors flex items-center gap-2 font-medium">
-            <Users className="w-3.5 h-3.5 text-[#00d9a5]" />
-            Contacts
-          </button>
-          <button className="h-8 px-3.5 rounded-full border border-white/15 text-[12px] text-gray-400 hover:bg-white/5 hover:text-gray-200 transition-colors flex items-center gap-2 font-medium">
-            <MessageSquare className="w-3.5 h-3.5" />
-            Discuter
-          </button>
+          <ContactsButton />
+          <DiscuterButton />
         </div>
       </div>
 
