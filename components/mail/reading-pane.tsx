@@ -12,7 +12,7 @@ import {
   X,
   ChevronLeft,
   ChevronRight,
-  Print,
+  Printer,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
@@ -92,7 +92,7 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
             </Button>
             <div className="w-px h-6 bg-border" />
             <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
-              <Print className="w-4 h-4" />
+              <Printer className="w-4 h-4" />
             </Button>
             <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
               <MoreVertical className="w-4 h-4" />

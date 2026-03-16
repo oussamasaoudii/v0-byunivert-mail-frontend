@@ -108,6 +108,7 @@ export default function MailSidebar() {
           <span>Déconnexion</span>
         </button>
       </div>
-    </aside>
+      </aside>
+    </>
   )
 }
