@@ -193,13 +193,14 @@ export default function MailSidebar({ activeFolder = 'inbox', onFolderChange }: 
             {SECONDARY_NAV.map((item) => {
               const Icon = item.icon
               return (
-                <button
-                  key={item.id}
-                  className="w-full px-3 py-2 rounded-lg text-[12.5px] font-medium text-gray-600 hover:text-gray-400 hover:bg-white/5 transition-all flex items-center gap-3"
-                >
-                  <Icon />
-                  <span>{item.label}</span>
-                </button>
+                <Link key={item.id} href={`/mail/${item.id}`}>
+                  <button
+                    className="w-full px-3 py-2 rounded-lg text-[12.5px] font-medium text-gray-600 hover:text-gray-400 hover:bg-white/5 transition-all flex items-center gap-3"
+                  >
+                    <Icon />
+                    <span>{item.label}</span>
+                  </button>
+                </Link>
               )
             })}
           </div>
