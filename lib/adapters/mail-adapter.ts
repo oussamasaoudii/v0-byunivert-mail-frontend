@@ -22,6 +22,7 @@ export interface Message {
   starred: boolean
   attachments: Attachment[]
   tags: string[]
+  folder?: 'inbox' | 'sent' | 'drafts' | 'spam' | 'trash'
 }
 
 export interface Attachment {
@@ -77,6 +78,7 @@ const mockMessages: Message[] = [
     starred: false,
     attachments: [],
     tags: [],
+    folder: 'inbox',
   },
   {
     id: 'msg-2',
@@ -92,6 +94,7 @@ const mockMessages: Message[] = [
       { id: 'att-2', name: 'Integration-Plan.pdf', size: 1234500, mimeType: 'application/pdf' },
     ],
     tags: ['work', 'crm'],
+    folder: 'inbox',
   },
   {
     id: 'msg-3',
@@ -104,6 +107,7 @@ const mockMessages: Message[] = [
     starred: false,
     attachments: [],
     tags: ['newsletter'],
+    folder: 'inbox',
   },
   {
     id: 'msg-4',
@@ -116,6 +120,7 @@ const mockMessages: Message[] = [
     starred: false,
     attachments: [],
     tags: ['security'],
+    folder: 'inbox',
   },
   {
     id: 'msg-5',
@@ -128,6 +133,7 @@ const mockMessages: Message[] = [
     starred: false,
     attachments: [],
     tags: [],
+    folder: 'inbox',
   },
 ]
 

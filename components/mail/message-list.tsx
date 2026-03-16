@@ -9,6 +9,7 @@ import DiscuterButton from './discuter-button'
 interface MessageListProps {
   selectedMessageId: string | null
   onSelectMessage: (messageId: string) => void
+  activeFolder?: string
 }
 
 /* Tab icons matching reference */
@@ -27,17 +28,41 @@ const SubscriptionIcon = () => (
   </svg>
 )
 
-export default function MessageList({ selectedMessageId, onSelectMessage }: MessageListProps) {
+export default function MessageList({ selectedMessageId, onSelectMessage, activeFolder = 'inbox' }: MessageListProps) {
   const [messages, setMessages] = useState<Message[]>([])
   const [isLoading, setIsLoading] = useState(true)
-  const [activeTab, setActiveTab] = useState('mail')
+  const [activeTab, setActiveTab] = useState<'mail' | 'subscription'>('mail')
 
   useEffect(() => {
-    getMessages().then((data) => {
-      setMessages(data)
-      setIsLoading(false)
-    })
-  }, [])
+    setIsLoading(true)
+    const allMessages = getMessages()
+    
+    // Filter messages based on activeFolder
+    let filteredMessages = allMessages
+    
+    switch (activeFolder) {
+      case 'starred':
+        filteredMessages = allMessages.filter(msg => msg.starred)
+        break
+      case 'sent':
+        filteredMessages = allMessages.filter(msg => msg.folder === 'sent')
+        break
+      case 'drafts':
+        filteredMessages = allMessages.filter(msg => msg.folder === 'drafts')
+        break
+      case 'spam':
+        filteredMessages = allMessages.filter(msg => msg.folder === 'spam')
+        break
+      case 'trash':
+        filteredMessages = allMessages.filter(msg => msg.folder === 'trash')
+        break
+      default: // inbox
+        filteredMessages = allMessages.filter(msg => msg.folder !== 'sent' && msg.folder !== 'drafts' && msg.folder !== 'spam' && msg.folder !== 'trash')
+    }
+    
+    setMessages(filteredMessages)
+    setIsLoading(false)
+  }, [activeFolder])
 
   return (
     <div className="flex flex-col bg-[#0a0a0a] min-w-0 w-[420px] flex-shrink-0">

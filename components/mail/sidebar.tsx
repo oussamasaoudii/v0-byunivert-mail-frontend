@@ -111,9 +111,13 @@ const SECONDARY_NAV = [
   { id: 'settings', label: 'Paramètres', icon: SwapIcon },
 ]
 
-export default function MailSidebar() {
-  const [activeFolder, setActiveFolder] = useState('inbox')
+export default function MailSidebar({ activeFolder = 'inbox', onFolderChange }: { activeFolder?: string; onFolderChange?: (folder: string) => void }) {
   const [mobileOpen, setMobileOpen] = useState(false)
+
+  const handleFolderChange = (folder: string) => {
+    onFolderChange?.(folder)
+    setMobileOpen(false)
+  }
 
   return (
     <>
@@ -160,10 +164,7 @@ export default function MailSidebar() {
               return (
                 <button
                   key={item.id}
-                  onClick={() => {
-                    setActiveFolder(item.id)
-                    setMobileOpen(false)
-                  }}
+                  onClick={() => handleFolderChange(item.id)}
                   className={`w-full px-3 py-2 rounded-lg text-[12.5px] font-medium transition-all flex items-center gap-3 ${
                     isActive
                       ? 'bg-[#00d9a5] text-black shadow-[0_0_20px_rgba(0,217,165,0.35)]'
