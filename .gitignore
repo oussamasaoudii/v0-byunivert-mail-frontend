@@ -2,13 +2,17 @@
 
 # dependencies
 /node_modules
+/.pnp
+.pnp.js
 
 # next.js
 /.next/
 /out/
+*.swc
 
 # production
 /build
+/dist
 
 # debug
 npm-debug.log*
@@ -17,7 +21,11 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files
-.env*
+.env
+.env.local
+.env.*.local
+.env.production.local
+.env.development.local
 
 # vercel
 .vercel
@@ -25,3 +33,24 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.swo
+*~
+.project
+.classpath
+
+# OS
+Thumbs.db
+
+# Testing
+coverage/
+.nyc_output/
+
+# Temporary
+*.tmp
+*.bak
