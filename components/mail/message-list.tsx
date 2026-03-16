@@ -161,8 +161,6 @@ export default function MessageList({ selectedMessageId, onSelectMessage, active
             </div>
           )}
         </div>
-          )}
-        </div>
         
         <div className="flex-1" />
         
