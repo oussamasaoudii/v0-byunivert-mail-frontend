@@ -17,13 +17,13 @@ export default function SearchInput({
 }: SearchInputProps) {
   return (
     <div className={`relative w-full ${className}`}>
-      <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-700 pointer-events-none" />
+      <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#00d9a5] pointer-events-none" />
       <input
         type="text"
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange?.(e.target.value)}
-        className="w-full h-12 pl-12 pr-6 bg-white/[0.03] rounded-xl border border-white/[0.08] text-[13px] text-white placeholder:text-gray-700 focus:outline-none focus:border-[#00d9a5]/50 focus:bg-white/[0.06] focus:shadow-[0_0_20px_rgba(0,217,165,0.1)] transition-all"
+        className="w-full h-12 pl-12 pr-6 bg-[#0a0a0a] rounded-xl border border-[#00d9a5]/30 text-[13px] text-white placeholder:text-gray-700 focus:outline-none focus:border-[#00d9a5] focus:bg-[#0a0a0a] focus:shadow-[0_0_20px_rgba(0,217,165,0.3),inset_0_0_20px_rgba(0,217,165,0.05)] transition-all duration-300"
       />
     </div>
   )
