@@ -32,6 +32,8 @@ export default function MessageList({ selectedMessageId, onSelectMessage, active
   const [messages, setMessages] = useState<Message[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [activeTab, setActiveTab] = useState<'mail' | 'subscription'>('mail')
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [notificationsOpen, setNotificationsOpen] = useState(false)
   
   // Ensure folder is always defined for stable dependency
   const currentFolder = activeFolder || 'inbox'
@@ -92,20 +94,75 @@ export default function MessageList({ selectedMessageId, onSelectMessage, active
         </div>
       </div>
 
-      {/* Action toolbar row - Premium dark styling */}
-      <div className="h-10 px-6 flex items-center gap-3 border-b border-white/[0.08] bg-white/[0.01]">
+      {/* Action toolbar row - Premium dark styling with interactive elements */}
+      <div className="h-10 px-6 flex items-center gap-3 border-b border-white/[0.08] bg-white/[0.01] relative">
         <input type="checkbox" className="w-4 h-4 rounded border-gray-600 bg-transparent accent-[#00d9a5] cursor-pointer" />
-        <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors">
+        <button 
+          onClick={() => console.log('[v0] Refresh clicked')}
+          className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors"
+          title="Actualiser"
+        >
           <RotateCw className="w-4 h-4" />
         </button>
-        <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors">
+        <button 
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors relative"
+          title="Plus d'options"
+        >
           <MoreVertical className="w-4 h-4" />
+          
+          {/* More menu dropdown */}
+          {menuOpen && (
+            <div className="absolute left-0 top-full mt-1 bg-[#0d0d0d] rounded-lg border border-white/[0.08] shadow-xl overflow-hidden z-50 min-w-[160px]">
+              <button className="w-full px-4 py-2 text-[12px] text-gray-400 hover:text-white hover:bg-white/5 transition-colors text-left">
+                Sélectionner tout
+              </button>
+              <button className="w-full px-4 py-2 text-[12px] text-gray-400 hover:text-white hover:bg-white/5 transition-colors text-left">
+                Désélectionner
+              </button>
+              <button className="w-full px-4 py-2 text-[12px] text-gray-400 hover:text-white hover:bg-white/5 transition-colors text-left border-t border-white/[0.08]">
+                Archiver
+              </button>
+            </div>
+          )}
         </button>
         <div className="flex-1" />
-        <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors">
+        <button 
+          onClick={() => setNotificationsOpen(!notificationsOpen)}
+          className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors relative"
+          title="Notifications"
+        >
           <Bell className="w-4 h-4" />
+          <span className="absolute top-1 right-1 w-1.5 h-1.5 bg-[#00d9a5] rounded-full"></span>
+          
+          {/* Notifications panel */}
+          {notificationsOpen && (
+            <div className="absolute right-0 top-full mt-1 bg-[#0d0d0d] rounded-lg border border-white/[0.08] shadow-xl overflow-hidden z-50 w-64">
+              <div className="px-4 py-3 border-b border-white/[0.08]">
+                <h3 className="text-[12px] font-semibold text-white">Notifications</h3>
+              </div>
+              <div className="max-h-96 overflow-y-auto">
+                <div className="px-4 py-3 hover:bg-white/5 transition-colors border-b border-white/[0.08]">
+                  <p className="text-[12px] text-gray-300">Nouvel email de Rishak</p>
+                  <p className="text-[11px] text-gray-600 mt-1">Il y a 5 minutes</p>
+                </div>
+                <div className="px-4 py-3 hover:bg-white/5 transition-colors border-b border-white/[0.08]">
+                  <p className="text-[12px] text-gray-300">Nouvel email de Market Insights</p>
+                  <p className="text-[11px] text-gray-600 mt-1">Il y a 2 heures</p>
+                </div>
+                <div className="px-4 py-3 hover:bg-white/5 transition-colors">
+                  <p className="text-[12px] text-gray-300">Confirmation de sécurité requise</p>
+                  <p className="text-[11px] text-gray-600 mt-1">Il y a 1 jour</p>
+                </div>
+              </div>
+            </div>
+          )}
         </button>
-        <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors">
+        <button 
+          onClick={() => console.log('[v0] Settings clicked')}
+          className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors"
+          title="Paramètres"
+        >
           <Settings className="w-4 h-4" />
         </button>
         <span className="text-[11px] text-gray-700 ml-1">1 / 1</span>
