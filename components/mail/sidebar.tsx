@@ -4,84 +4,93 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 
-/* Custom Icons */
-const MailIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-    <path d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4M20 6L12 11L4 6H20M20 18H4V8L12 13L20 8V18Z"/>
+/* DMail Logo - house/home icon matching reference */
+const DMailLogo = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-black">
+    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
   </svg>
 )
 
+/* Navigation Icons - matching reference exactly */
 const InboxIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-    <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3M19 5V7H5V5H19M5 19V9H19V19H5Z"/>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-[18px] h-[18px]">
+    <rect x="3" y="3" width="18" height="18" rx="2"/>
+    <path d="M3 12h6l2 3h2l2-3h6"/>
   </svg>
 )
 
 const StarIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-[18px] h-[18px]">
+    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
   </svg>
 )
 
 const SendIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-    <path d="M16.6915026,12.4744748 L3.50612381,13.2599618 C3.19218622,13.2599618 3.03521743,13.4170592 3.03521743,13.5741566 L1.15159189,20.0151496 C0.8376543,20.8006365 0.99,21.89 1.77946707,22.52 C2.41,22.99 3.50612381,23.1 4.13399899,22.8429026 L21.714504,14.0454487 C22.6563168,13.5741566 23.1272231,12.6315722 22.9702544,11.6889879 L4.13399899,1.16346272 C3.34915502,0.9 2.40734225,1.00636533 1.77946707,1.4776575 C0.994623095,2.10604706 0.837654326,3.0486314 1.15159189,3.99021575 L3.03521743,10.4312088 C3.03521743,10.5883061 3.34915502,10.7454035 3.50612381,10.7454035 L16.6915026,11.5308905 C16.6915026,11.5308905 17.1624089,11.5308905 17.1624089,12.0021827 C17.1624089,12.4744748 16.6915026,12.4744748 16.6915026,12.4744748 Z"/>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-[18px] h-[18px]">
+    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
   </svg>
 )
 
 const DraftIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-    <path d="M17 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V7L17 3M17 5V7H19V19H5V5H17Z"/>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-[18px] h-[18px]">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+    <polyline points="14 2 14 8 20 8"/>
   </svg>
 )
 
 const SpamIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-    <path d="M12 2C6.48 2 2 6.48 2 12S6.48 22 12 22 22 17.52 22 12 17.52 2 12 2M12 20C7.59 20 4 16.41 4 12S7.59 4 12 4 20 7.59 20 12 16.41 20 12 20M12.5 7H11V13H12.5V7M12.5 15H11V17H12.5V15Z"/>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-[18px] h-[18px]">
+    <circle cx="12" cy="12" r="10"/>
+    <line x1="12" y1="8" x2="12" y2="12"/>
+    <line x1="12" y1="16" x2="12.01" y2="16"/>
   </svg>
 )
 
 const TrashIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-    <path d="M6 19C6 20.1 6.9 21 8 21H16C17.1 21 18 20.1 18 19V7H6V19M19 4H15.5L14.5 3H9.5L8.5 4H5V6H19V4Z"/>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-[18px] h-[18px]">
+    <polyline points="3 6 5 6 21 6"/>
+    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
   </svg>
 )
 
 const CoinIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" fill="none"/>
-    <path d="M12 6V18M15 9.5C15 8.12 13.66 7 12 7C10.34 7 9 8.12 9 9.5C9 10.88 10.34 12 12 12C13.66 12 15 13.12 15 14.5C15 15.88 13.66 17 12 17C10.34 17 9 15.88 9 14.5" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-[18px] h-[18px]">
+    <circle cx="12" cy="12" r="10"/>
+    <path d="M12 6v12M9 9a3 3 0 1 0 6 0"/>
   </svg>
 )
 
 const ChartIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-    <path d="M5 9.2H3V21H5V9.2M11 5H9V21H11V5M17 13H15V21H17V13Z"/>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-[18px] h-[18px]">
+    <path d="M18 20V10M12 20V4M6 20v-6"/>
   </svg>
 )
 
 const CrownIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-    <path d="M12 2L2 7L4 14H20L22 7L12 2M12 6L15 10L9 10L12 6Z"/>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-[18px] h-[18px]">
+    <rect x="3" y="8" width="18" height="12" rx="2"/>
+    <path d="M7 8V6a5 5 0 0 1 10 0v2"/>
   </svg>
 )
 
 const DiamondIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-    <path d="M12 2L2 10V14L12 22L22 14V10L12 2M12 6L18 10L14 18L10 18L6 10L12 6Z"/>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-[18px] h-[18px]">
+    <path d="M12 2L2 7l10 15 10-15z"/>
   </svg>
 )
 
 const GlobeIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" fill="none"/>
-    <path d="M2 12H22M12 2C14.5 4.5 15.5 8 15.5 12C15.5 16 14.5 19.5 12 22C9.5 19.5 8.5 16 8.5 12C8.5 8 9.5 4.5 12 2Z" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-[18px] h-[18px]">
+    <circle cx="12" cy="12" r="10"/>
+    <line x1="2" y1="12" x2="22" y2="12"/>
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
   </svg>
 )
 
 const SwapIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-    <path d="M7 16L11 12L7 8M17 8L13 12L17 16M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4Z" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-[18px] h-[18px]">
+    <rect x="3" y="3" width="18" height="18" rx="2"/>
+    <path d="M7 8l3-3 3 3M17 16l-3 3-3-3M10 5v14M14 5v14"/>
   </svg>
 )
 
@@ -109,44 +118,43 @@ export default function MailSidebar() {
 
   return (
     <>
-      {/* Mobile menu button */}
+      {/* Mobile toggle */}
       <button
         onClick={() => setMobileOpen(!mobileOpen)}
-        className="md:hidden fixed bottom-6 left-6 z-50 w-12 h-12 rounded-lg bg-[#00d9a5] text-black flex items-center justify-center shadow-lg shadow-[#00d9a5]/30 hover:bg-[#00d9a5]/90 transition-colors"
+        className="md:hidden fixed bottom-6 left-6 z-50 w-12 h-12 rounded-xl bg-[#00d9a5] text-black flex items-center justify-center shadow-lg shadow-[#00d9a5]/30"
       >
         {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
       </button>
 
-      {/* Mobile backdrop */}
       {mobileOpen && (
-        <div className="md:hidden fixed inset-0 bg-black/50 z-30 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
+        <div className="md:hidden fixed inset-0 bg-black/60 z-30" onClick={() => setMobileOpen(false)} />
       )}
 
-      {/* Sidebar */}
-      <aside className={`fixed md:relative w-[220px] h-full bg-[#0a0a0a] flex flex-col z-40 transform transition-transform md:translate-x-0 border-r border-white/5 ${
+      {/* Sidebar - exact 220px width like reference */}
+      <aside className={`fixed md:relative w-[220px] h-full bg-[#0a0a0a] flex flex-col z-40 transition-transform md:translate-x-0 ${
         mobileOpen ? 'translate-x-0' : '-translate-x-full'
       }`}>
         
-        {/* Logo section */}
-        <div className="px-5 pt-6 pb-4 border-b border-white/5">
+        {/* Logo - matches reference: teal rounded box with house icon */}
+        <div className="px-5 py-6">
           <Link href="/mail" className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded-lg bg-[#00d9a5] flex items-center justify-center flex-shrink-0 shadow-md shadow-[#00d9a5]/30">
-              <MailIcon />
+            <div className="w-8 h-8 rounded-lg bg-[#00d9a5] flex items-center justify-center flex-shrink-0 shadow-md shadow-[#00d9a5]/40">
+              <DMailLogo />
             </div>
-            <span className="text-sm font-bold tracking-wider text-white">DMAIL</span>
+            <span className="text-[15px] font-bold tracking-wide text-white">DMAIL</span>
           </Link>
         </div>
 
-        {/* Compose button */}
-        <div className="px-4 py-4 border-b border-white/5">
-          <button className="w-full h-10 bg-white text-black font-semibold rounded-full text-sm transition-all hover:bg-gray-100 shadow-md hover:shadow-lg">
+        {/* Compose button - white pill, full width with padding */}
+        <div className="px-4 pb-5">
+          <button className="w-full h-11 bg-white text-black font-semibold rounded-full text-[14px] hover:bg-gray-100 transition-colors">
             Compose
           </button>
         </div>
 
-        {/* Main navigation */}
-        <nav className="flex-1 overflow-y-auto px-3 py-3">
-          <div className="space-y-1">
+        {/* Main nav - primary folders */}
+        <nav className="flex-1 overflow-y-auto px-3">
+          <div className="space-y-0.5">
             {MAIN_NAV.map((item) => {
               const isActive = activeFolder === item.id
               const Icon = item.icon
@@ -157,16 +165,16 @@ export default function MailSidebar() {
                     setActiveFolder(item.id)
                     setMobileOpen(false)
                   }}
-                  className={`w-full px-3.5 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center gap-3 relative ${
+                  className={`w-full px-3 py-2.5 rounded-lg text-[13px] font-medium transition-all flex items-center gap-3 ${
                     isActive
-                      ? 'bg-[#00d9a5] text-black glow-primary-subtle'
-                      : 'text-gray-400 hover:text-white hover:bg-white/8'
+                      ? 'bg-[#00d9a5] text-black shadow-[0_0_20px_rgba(0,217,165,0.4)]'
+                      : 'text-[#888] hover:text-white hover:bg-white/5'
                   }`}
                 >
                   <Icon />
                   <span className="flex-1 text-left">{item.label}</span>
                   {item.badge && (
-                    <span className={`text-xs font-bold min-w-[20px] h-5 px-1.5 rounded-full flex items-center justify-center ${
+                    <span className={`text-[11px] font-bold min-w-[20px] h-5 px-1.5 rounded-full flex items-center justify-center ${
                       isActive ? 'bg-black/20 text-black' : 'bg-[#e74c3c] text-white'
                     }`}>
                       {item.badge}
@@ -178,16 +186,16 @@ export default function MailSidebar() {
           </div>
 
           {/* Divider */}
-          <div className="my-4 border-t border-white/8" />
+          <div className="my-4 border-t border-white/[0.06]" />
 
-          {/* Secondary navigation */}
-          <div className="space-y-1">
+          {/* Secondary nav - Web3 features */}
+          <div className="space-y-0.5">
             {SECONDARY_NAV.map((item) => {
               const Icon = item.icon
               return (
                 <button
                   key={item.id}
-                  className="w-full px-3.5 py-2.5 rounded-lg text-sm font-medium text-gray-500 hover:text-gray-300 hover:bg-white/8 transition-all flex items-center gap-3"
+                  className="w-full px-3 py-2.5 rounded-lg text-[13px] font-medium text-[#555] hover:text-[#888] hover:bg-white/5 transition-all flex items-center gap-3"
                 >
                   <Icon />
                   <span>{item.label}</span>
