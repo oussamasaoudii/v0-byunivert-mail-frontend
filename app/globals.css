@@ -67,31 +67,31 @@
 
 /* Light Mode - Premium, Refined, Elegant */
 .light {
-  /* Main background - warm ivory/off-white with subtle depth */
-  --background: #faf9f8;
+  /* Main background - soft warm ivory with subtle depth */
+  --background: #f5f3f0;
   --foreground: #1a1a1a;
   
-  /* Card surfaces - clean, luminous white with subtle warmth */
-  --card: #ffffff;
+  /* Card surfaces - soft warm white with subtle undertone, NOT stark white */
+  --card: #fdfcfb;
   --card-foreground: #1a1a1a;
   
-  /* Popover - elevated white cards */
-  --popover: #ffffff;
+  /* Popover - soft elevated surfaces */
+  --popover: #fdfcfb;
   --popover-foreground: #1a1a1a;
   
   /* Primary - refined, controlled emerald accent */
   --primary: #00956a;
   --primary-foreground: #ffffff;
   
-  /* Secondary - soft neutral panels with slight undertone */
-  --secondary: #f5f4f3;
+  /* Secondary - warm soft neutral panels with mint undertone */
+  --secondary: #f3f1ee;
   --secondary-foreground: #1a1a1a;
   
-  /* Muted - subtle neutrals for secondary content */
-  --muted: #ebe8e6;
-  --muted-foreground: #6b7370;
+  /* Muted - subtle warm neutrals for secondary content */
+  --muted: #e8e5e0;
+  --muted-foreground: #7a7a77;
   
-  /* Accent - elegant emerald, less intense than dark mode */
+  /* Accent - elegant emerald, restrained */
   --accent: #00956a;
   --accent-foreground: #ffffff;
   
@@ -99,19 +99,19 @@
   --destructive: #d63e38;
   --destructive-foreground: #ffffff;
   
-  /* Borders - soft, intentional outlines */
-  --border: #e5e3e0;
-  --input: #f8f7f6;
+  /* Borders - soft warm outlines with subtle emerald tint */
+  --border: #e0dbd6;
+  --input: #f9f7f4;
   --ring: #00956a;
   
-  /* Sidebar */
-  --sidebar: #ffffff;
+  /* Sidebar - warm white base */
+  --sidebar: #fdfcfb;
   --sidebar-foreground: #1a1a1a;
   --sidebar-primary: #00956a;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f5f4f3;
+  --sidebar-accent: #f3f1ee;
   --sidebar-accent-foreground: #00956a;
-  --sidebar-border: #e5e3e0;
+  --sidebar-border: #e0dbd6;
   --sidebar-ring: #00956a;
   
   /* Charts */
@@ -285,15 +285,15 @@
   background: linear-gradient(180deg, #0a1210 0%, #0a0a0a 100%);
 }
 
-/* Light Mode Surface Backgrounds - Premium, Refined */
+/* Light Mode Surface Backgrounds - Premium, Refined, Layered */
 .light .bg-surface-primary {
-  background: linear-gradient(135deg, #ffffff 0%, #faf8f5 100%);
+  background: linear-gradient(135deg, #fdfcfb 0%, #f9f7f4 100%);
 }
 
 .light .bg-surface-secondary {
-  background: linear-gradient(135deg, #ffffff 0%, #f8f6f3 100%);
+  background: linear-gradient(135deg, #fdfcfb 0%, #f7f5f1 100%);
 }
 
 .light .bg-surface-tertiary {
-  background: linear-gradient(180deg, #f8f6f3 0%, #ffffff 100%);
+  background: linear-gradient(180deg, #faf8f5 0%, #fdfcfb 100%);
 }

@@ -92,11 +92,11 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
 
   return (
     <div className="hidden md:flex flex-1 flex-col bg-surface-tertiary p-4 overflow-hidden">
-      {/* Reading panel card - premium dark glass with atmospheric gradient */}
-      <div className="flex-1 dark:bg-gradient-to-b dark:from-[#0a1210] dark:to-[#0a0a0a] light:bg-gradient-to-b light:from-[#ffffff] light:to-[#faf8f5] rounded-xl flex flex-col overflow-hidden dark:border dark:border-[#00d9a5]/10 light:border light:border-[#00956a]/10 dark:shadow-[0_0_30px_rgba(0,217,165,0.08)] light:shadow-[0_10px_30px_rgba(0,0,0,0.06)]">
+      {/* Reading panel card - premium with soft warm tones instead of stark white */}
+      <div className="flex-1 dark:bg-gradient-to-b dark:from-[#0a1210] dark:to-[#0a0a0a] light:bg-gradient-to-b light:from-[#fdfcfb] light:to-[#faf8f5] rounded-xl flex flex-col overflow-hidden dark:border dark:border-[#00d9a5]/10 light:border light:border-[#00956a]/8 dark:shadow-[0_0_30px_rgba(0,217,165,0.08)] light:shadow-[0_10px_30px_rgba(0,0,0,0.04)]">
         
         {/* Sender header */}
-        <div className="px-6 py-5 dark:border-b dark:border-[#00d9a5]/10 dark:bg-gradient-to-r dark:from-[#0a1210] dark:to-[#0a0a0a] light:border-b light:border-[#00956a]/10 light:bg-gradient-to-r light:from-[#ffffff] light:to-[#faf8f5]">
+        <div className="px-6 py-5 dark:border-b dark:border-[#00d9a5]/10 dark:bg-gradient-to-r dark:from-[#0a1210] dark:to-[#0a0a0a] light:border-b light:border-[#00956a]/8 light:bg-gradient-to-r light:from-[#fdfcfb] light:to-[#faf8f5]">
           <div className="flex items-start justify-between gap-4">
             <div className="flex items-start gap-4">
               {/* Avatar with gradient */}
@@ -172,17 +172,21 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
           </div>
         </div>
 
-        {/* Email body content - with atmospheric background */}
-        <div className="flex-1 overflow-y-auto px-6 py-6 space-y-6 relative dark:bg-gradient-to-b dark:from-[#0a1a18] dark:via-[#0a0a0a] dark:to-[#0a0a0a] light:bg-gradient-to-b light:from-white light:via-[#faf8f5] light:to-[#faf8f5]">
-          {/* Atmospheric neon glow background */}
+        {/* Email body content - with warm layered atmospheric background */}
+        <div className="flex-1 overflow-y-auto px-6 py-6 space-y-6 relative dark:bg-gradient-to-b dark:from-[#0a1a18] dark:via-[#0a0a0a] dark:to-[#0a0a0a] light:bg-gradient-to-b light:from-[#fdfcfb] light:via-[#faf8f5] light:to-[#f9f7f4]">
+          {/* Atmospheric depth layers - warm and subtle for light mode */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
             <div className="dark:block light:hidden absolute top-0 left-1/3 w-96 h-96 bg-[#00d9a5]/5 rounded-full blur-3xl opacity-20" />
             <div className="dark:block light:hidden absolute bottom-1/4 right-1/4 w-72 h-72 bg-[#00d9a5]/3 rounded-full blur-3xl opacity-15" />
             <div className="dark:block light:hidden absolute inset-0 bg-gradient-to-b from-[#00d9a5]/[0.02] via-transparent to-transparent" />
             
-            <div className="light:block dark:hidden absolute top-0 left-1/3 w-96 h-96 bg-[#00956a]/4 rounded-full blur-3xl opacity-15" />
-            <div className="light:block dark:hidden absolute bottom-1/4 right-1/4 w-72 h-72 bg-[#00956a]/2 rounded-full blur-3xl opacity-10" />
-            <div className="light:block dark:hidden absolute inset-0 bg-gradient-to-b from-[#00956a]/[0.01] via-transparent to-transparent" />
+            {/* Light mode: soft mint undertones, very subtle and premium */}
+            <div className="light:block dark:hidden absolute top-0 left-1/3 w-96 h-96 bg-[#00956a]/3 rounded-full blur-3xl opacity-8" />
+            <div className="light:block dark:hidden absolute bottom-1/4 right-1/4 w-72 h-72 bg-[#00956a]/2 rounded-full blur-3xl opacity-6" />
+            <div className="light:block dark:hidden absolute inset-0 bg-gradient-to-b from-[#00956a]/[0.005] via-transparent to-transparent" />
+            
+            {/* Warm layered depth for light mode */}
+            <div className="light:block dark:hidden absolute inset-0 bg-gradient-to-b from-[#fdfcfb]/50 via-transparent to-[#f7f5f1]/30" />
           </div>
 
           {/* Content - relative positioning to appear above background */}
@@ -252,9 +256,9 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
           )}
         </div>
 
-        {/* Quick reply composer */}
-        <div className="dark:border-t dark:border-white/[0.08] light:border-t light:border-[#00956a]/10 p-4 dark:bg-white/[0.01] light:bg-[#f8f7f6]/50">
-          <div className="dark:bg-[#0c0c0c] light:bg-white rounded-lg dark:border dark:border-white/[0.08] light:border light:border-[#00956a]/15 overflow-hidden dark:shadow-sm light:shadow-sm">
+        {/* Quick reply composer - soft warm surfaces */}
+        <div className="dark:border-t dark:border-white/[0.08] light:border-t light:border-[#00956a]/8 p-4 dark:bg-white/[0.01] light:bg-[#faf8f5]/60">
+          <div className="dark:bg-[#0c0c0c] light:bg-[#fdfcfb] rounded-lg dark:border dark:border-white/[0.08] light:border light:border-[#00956a]/10 overflow-hidden dark:shadow-sm light:shadow-sm">
             {/* Text input */}
             <div className="px-5 py-4">
               <textarea
@@ -266,7 +270,7 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
             </div>
             
             {/* Formatting toolbar */}
-            <div className="px-4 py-3 dark:border-t dark:border-white/[0.08] light:border-t light:border-[#00956a]/10 flex items-center justify-between dark:bg-white/[0.01] light:bg-[#f8f7f6]/30">
+            <div className="px-4 py-3 dark:border-t dark:border-white/[0.08] light:border-t light:border-[#00956a]/8 flex items-center justify-between dark:bg-white/[0.01] light:bg-[#f9f7f4]/50">
               <div className="flex items-center gap-0.5">
                 <button className="p-1.5 dark:text-gray-700 dark:hover:text-gray-500 dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 rounded transition-colors" title="Bold">
                   <Bold className="w-4 h-4" />

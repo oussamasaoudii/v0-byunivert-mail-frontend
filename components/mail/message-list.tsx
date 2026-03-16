@@ -245,8 +245,8 @@ export default function MessageList({ selectedMessageId, onSelectMessage, active
         <span className="text-[11px] text-gray-700 ml-1">{messages.length} / {messages.length}</span>
       </div>
 
-      {/* Inner card container - with atmospheric gradient background */}
-      <div className="flex-1 m-3.5 mt-3 dark:bg-gradient-to-b dark:from-[#0a1210] dark:to-[#0a0a0a] light:bg-gradient-to-b light:from-[#ffffff] light:to-[#faf8f5] rounded-2xl flex flex-col overflow-hidden dark:border dark:border-[#00d9a5]/10 light:border light:border-[#00956a]/10 dark:shadow-[0_0_30px_rgba(0,217,165,0.08)] light:shadow-[0_10px_30px_rgba(0,0,0,0.06)]">
+      {/* Inner card container - soft warm surfaces in light mode */}
+      <div className="flex-1 m-3.5 mt-3 dark:bg-gradient-to-b dark:from-[#0a1210] dark:to-[#0a0a0a] light:bg-gradient-to-b light:from-[#fdfcfb] light:to-[#faf8f5] rounded-2xl flex flex-col overflow-hidden dark:border dark:border-[#00d9a5]/10 light:border light:border-[#00956a]/8 dark:shadow-[0_0_30px_rgba(0,217,165,0.08)] light:shadow-[0_10px_30px_rgba(0,0,0,0.04)]">
         {/* Search bar */}
         <div className="px-5 pt-4 pb-3">
           <div className="relative">
@@ -260,7 +260,7 @@ export default function MessageList({ selectedMessageId, onSelectMessage, active
         </div>
 
         {/* Mail / Subscription tabs - Premium styling */}
-        <div className="px-4 dark:border-b dark:border-white/[0.08] dark:bg-white/[0.01] light:border-b light:border-[#00956a]/10 light:bg-[#faf8f5]/50">
+        <div className="px-4 dark:border-b dark:border-white/[0.08] dark:bg-white/[0.01] light:border-b light:border-[#00956a]/8 light:bg-[#faf8f5]/40">
           <div className="flex">
             <button
               onClick={() => setActiveTab('mail')}
@@ -294,7 +294,7 @@ export default function MessageList({ selectedMessageId, onSelectMessage, active
           {isLoading ? (
             <>
               {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="h-[92px] dark:bg-[#0f0f0f] light:bg-white rounded-xl animate-pulse dark:border dark:border-white/[0.05] light:border light:border-[#00956a]/10" />
+                <div key={i} className="h-[92px] dark:bg-[#0f0f0f] light:bg-[#fdfcfb] rounded-xl animate-pulse dark:border dark:border-white/[0.05] light:border light:border-[#00956a]/8" />
               ))}
             </>
           ) : messages.length === 0 ? (
@@ -310,8 +310,8 @@ export default function MessageList({ selectedMessageId, onSelectMessage, active
                   onClick={() => onSelectMessage(message.id)}
                   className={`p-3.5 cursor-pointer transition-all rounded-xl ${
                     isSelected
-                      ? 'dark:bg-[#0d1f1c] dark:border-2 dark:border-[#00d9a5] dark:shadow-[0_0_20px_rgba(0,217,165,0.15)] light:bg-[#f8f7f6] light:border-2 light:border-[#00956a] light:shadow-[0_0_16px_rgba(0,149,106,0.2)]'
-                      : 'dark:bg-[#0a0a0a] dark:border-2 dark:border-transparent dark:hover:border-[#00d9a5]/20 dark:hover:bg-[#0f0f0f] light:bg-white light:border-2 light:border-transparent light:hover:border-[#00956a]/20 light:hover:bg-[#faf8f5]'
+                      ? 'dark:bg-[#0d1f1c] dark:border-2 dark:border-[#00d9a5] dark:shadow-[0_0_20px_rgba(0,217,165,0.15)] light:bg-[#f9f7f4] light:border-2 light:border-[#00956a] light:shadow-[0_0_16px_rgba(0,149,106,0.15)]'
+                      : 'dark:bg-[#0a0a0a] dark:border-2 dark:border-transparent dark:hover:border-[#00d9a5]/20 dark:hover:bg-[#0f0f0f] light:bg-[#fdfcfb] light:border-2 light:border-transparent light:hover:border-[#00956a]/15 light:hover:bg-[#f9f7f4]'
                   }`}
                 >
                   <div className="flex items-start gap-3.5">
