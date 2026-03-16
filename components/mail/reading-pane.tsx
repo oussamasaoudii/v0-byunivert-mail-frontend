@@ -26,6 +26,8 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
   const [message, setMessage] = useState<Message | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [replyText, setReplyText] = useState('')
+  const [isStarred, setIsStarred] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     if (!messageId) {
@@ -34,8 +36,11 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
     }
 
     setIsLoading(true)
+    setIsStarred(false)
+    setMenuOpen(false)
     getMessage(messageId).then((data) => {
       setMessage(data)
+      setIsStarred(data?.starred || false)
       setIsLoading(false)
     })
   }, [messageId])
@@ -114,17 +119,55 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
               </div>
             </div>
             
-            <div className="flex items-center gap-1.5 mt-0.5">
-              <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded-lg transition-colors">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="flex items-center gap-1.5 mt-0.5 relative">
+              {/* Star button - interactive */}
+              <button 
+                onClick={() => setIsStarred(!isStarred)}
+                className={`p-2 rounded-lg transition-all ${
+                  isStarred 
+                    ? 'text-[#00d9a5] bg-[#00d9a5]/10 hover:bg-[#00d9a5]/15' 
+                    : 'text-gray-700 hover:text-gray-500 hover:bg-white/5'
+                }`}
+                title={isStarred ? 'Retirer des favoris' : 'Ajouter aux favoris'}
+              >
+                <svg 
+                  className="w-4 h-4" 
+                  fill={isStarred ? 'currentColor' : 'none'} 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.518 4.674h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888 1.518 4.674c.3.921-.755 1.688-1.54 1.118l-3.976-2.888-3.976 2.888c-.784.57-1.838-.197-1.539-1.118l1.518-4.674-3.976-2.888c-.784-.57-.381-1.81.588-1.81h4.914l1.518-4.674z" />
                 </svg>
               </button>
-              <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded-lg transition-colors">
+
+              {/* Dropdown menu button */}
+              <button 
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="p-2 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded-lg transition-colors relative"
+                title="Plus d'actions"
+              >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 13l-7 7-7-7m14-8l-7 7-7-7" />
                 </svg>
               </button>
+
+              {/* Dropdown menu - actions */}
+              {menuOpen && (
+                <div className="absolute right-0 top-full mt-2 bg-[#0d0d0d] rounded-lg border border-white/[0.08] shadow-xl overflow-hidden z-50 min-w-[180px]">
+                  <button className="w-full px-4 py-2.5 text-[12px] text-gray-400 hover:text-white hover:bg-white/5 transition-colors text-left">
+                    Marquer comme lu
+                  </button>
+                  <button className="w-full px-4 py-2.5 text-[12px] text-gray-400 hover:text-white hover:bg-white/5 transition-colors text-left">
+                    Archiver
+                  </button>
+                  <button className="w-full px-4 py-2.5 text-[12px] text-gray-400 hover:text-white hover:bg-white/5 transition-colors text-left">
+                    Mettre en spam
+                  </button>
+                  <button className="w-full px-4 py-2.5 text-[12px] text-gray-400 hover:text-white hover:bg-white/5 transition-colors text-left border-t border-white/[0.08]">
+                    Supprimer
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>
