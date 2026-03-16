@@ -7,14 +7,19 @@ import { useState } from 'react'
 
 export default function MailPage() {
   const [selectedMessageId, setSelectedMessageId] = useState<string | null>(null)
+  const [activeFolder, setActiveFolder] = useState('inbox')
 
   return (
     <div className="flex h-screen w-full bg-[#0a0a0a] overflow-hidden">
-      {/* Sidebar - 240px fixed */}
-      <MailSidebar />
+      {/* Sidebar - 220px fixed */}
+      <MailSidebar activeFolder={activeFolder} onFolderChange={setActiveFolder} />
       
       {/* Message List - 420px fixed */}
-      <MessageList onSelectMessage={setSelectedMessageId} selectedMessageId={selectedMessageId} />
+      <MessageList 
+        onSelectMessage={setSelectedMessageId} 
+        selectedMessageId={selectedMessageId}
+        activeFolder={activeFolder}
+      />
       
       {/* Reading Pane - fills remaining space */}
       <ReadingPane messageId={selectedMessageId} />
