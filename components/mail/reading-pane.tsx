@@ -43,14 +43,14 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
   if (!messageId) {
     return (
       <div className="hidden md:flex flex-1 items-center justify-center bg-[#0a0a0a]">
-          <div className="text-center">
-          <div className="w-20 h-20 rounded-full bg-[#00d9a5]/10 flex items-center justify-center mx-auto mb-4 border border-[#00d9a5]/20">
-            <svg viewBox="0 0 24 24" fill="none" className="w-10 h-10 text-[#00d9a5]/50">
+        <div className="text-center">
+          <div className="w-16 h-16 rounded-full bg-[#00d9a5]/8 flex items-center justify-center mx-auto mb-4 border border-[#00d9a5]/20">
+            <svg viewBox="0 0 24 24" fill="none" className="w-8 h-8 text-[#00d9a5]/60">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" strokeWidth="2"/>
               <polyline points="22,6 12,13 2,6" stroke="currentColor" strokeWidth="2"/>
             </svg>
           </div>
-          <p className="text-gray-500 text-[14px]">Sélectionner un courrier</p>
+          <p className="text-gray-600 text-[13px] font-medium">Sélectionner un courrier</p>
         </div>
       </div>
     )
@@ -58,16 +58,20 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
 
   if (isLoading) {
     return (
-      <div className="hidden md:flex flex-1 bg-[#0a0a0a] p-4">
-        <div className="flex-1 bg-[#0a0a0a] rounded-2xl p-6 space-y-5">
-          <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-full bg-[#111] animate-pulse" />
+      <div className="hidden md:flex flex-1 bg-[#0a0a0a] p-4 overflow-hidden">
+        <div className="flex-1 bg-[#0a0a0a] rounded-xl p-6 space-y-6 border border-white/[0.06]">
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 rounded-full bg-white/5 animate-pulse flex-shrink-0" />
             <div className="space-y-2 flex-1">
-              <div className="h-5 bg-[#111] rounded w-32 animate-pulse" />
-              <div className="h-4 bg-[#111] rounded w-48 animate-pulse" />
+              <div className="h-4 bg-white/5 rounded w-40 animate-pulse" />
+              <div className="h-3 bg-white/5 rounded w-56 animate-pulse" />
             </div>
           </div>
-          <div className="h-48 bg-[#111] rounded-xl animate-pulse" />
+          <div className="space-y-3">
+            <div className="h-3 bg-white/5 rounded w-full animate-pulse" />
+            <div className="h-3 bg-white/5 rounded w-5/6 animate-pulse" />
+            <div className="h-3 bg-white/5 rounded w-4/5 animate-pulse" />
+          </div>
         </div>
       </div>
     )
@@ -75,62 +79,86 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
 
   if (!message) {
     return (
-      <div className="hidden md:flex flex-1 items-center justify-center bg-[#0a0a0a] text-gray-500">
-        <p className="text-sm">Courrier introuvable</p>
+      <div className="hidden md:flex flex-1 items-center justify-center bg-[#0a0a0a] text-gray-600">
+        <p className="text-[13px]">Courrier introuvable</p>
       </div>
     )
   }
 
   return (
-    <div className="hidden md:flex flex-1 flex-col bg-[#0a0a0a] p-4 pl-0 overflow-hidden">
-      {/* Reading panel card - matches reference */}
-      <div className="flex-1 bg-[#0a0a0a] rounded-2xl flex flex-col overflow-hidden">
+    <div className="hidden md:flex flex-1 flex-col bg-[#0a0a0a] p-4 overflow-hidden">
+      {/* Reading panel card - premium dark glass */}
+      <div className="flex-1 bg-[#0a0a0a] rounded-xl flex flex-col overflow-hidden border border-white/[0.06]">
         
         {/* Sender header */}
-        <div className="px-6 py-5 border-b border-white/[0.06]">
-          <div className="flex items-center gap-4">
-            {/* Avatar with gradient */}
-            <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#00d9a5] to-[#008f70] flex items-center justify-center flex-shrink-0 shadow-lg shadow-[#00d9a5]/25 text-[18px] font-bold text-black">
-              {message.from.name.charAt(0).toUpperCase()}
+        <div className="px-6 py-5 border-b border-white/[0.08] bg-white/[0.02]">
+          <div className="flex items-start justify-between gap-4">
+            <div className="flex items-start gap-4">
+              {/* Avatar with gradient */}
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#00d9a5] to-[#008f70] flex items-center justify-center flex-shrink-0 shadow-lg shadow-[#00d9a5]/20 text-[16px] font-bold text-black mt-0.5">
+                {message.from.name.charAt(0).toUpperCase()}
+              </div>
+              
+              <div className="flex-1 min-w-0 pt-0.5">
+                <h2 className="text-[14px] font-semibold text-white leading-snug">{message.from.name}</h2>
+                <p className="text-[12px] text-[#00d9a5] mt-0.5 font-medium">{message.from.email}</p>
+                <p className="text-[11px] text-gray-600 mt-1.5">
+                  {new Date(message.date).toLocaleString('fr-FR', { 
+                    year: 'numeric',
+                    month: 'short', 
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                  })}
+                </p>
+              </div>
             </div>
             
-            <div className="flex-1 min-w-0">
-              <h2 className="text-[16px] font-bold text-white mb-0.5">{message.from.name}</h2>
-              <p className="text-[13px] text-[#00d9a5]">{message.from.email}</p>
+            <div className="flex items-center gap-1.5 mt-0.5">
+              <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded-lg transition-colors">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.518 4.674h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888 1.518 4.674c.3.921-.755 1.688-1.54 1.118l-3.976-2.888-3.976 2.888c-.784.57-1.838-.197-1.539-1.118l1.518-4.674-3.976-2.888c-.784-.57-.381-1.81.588-1.81h4.914l1.518-4.674z" />
+                </svg>
+              </button>
+              <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded-lg transition-colors">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 13l-7 7-7-7m14-8l-7 7-7-7" />
+                </svg>
+              </button>
             </div>
           </div>
         </div>
 
         {/* Email body content */}
-        <div className="flex-1 overflow-y-auto px-6 py-5">
-          <div className="text-gray-300 text-[14px] leading-relaxed space-y-4">
-            <p className="text-white">Hi, Shiru</p>
-            <p className="whitespace-pre-wrap">{message.body}</p>
-            <div className="pt-2">
-              <p>Thank & Regards</p>
-              <p>{message.from.name}</p>
+        <div className="flex-1 overflow-y-auto px-6 py-6 space-y-6">
+          <div className="max-w-3xl space-y-4">
+            <p className="text-white font-medium text-[14px]">Hi, Shiru</p>
+            <div className="text-gray-300 text-[13.5px] leading-relaxed space-y-3 whitespace-pre-wrap">
+              {message.body}
+            </div>
+            
+            <div className="pt-3 mt-6 border-t border-white/[0.08] space-y-1.5">
+              <p className="text-gray-500 text-[13px]">Meilleures salutations,</p>
+              <p className="text-white font-medium text-[13px]">{message.from.name}</p>
             </div>
           </div>
 
-          {/* Attachments section - CRM themed cards matching reference */}
+          {/* Attachments section - premium cards */}
           {message.attachments.length > 0 && (
-            <div className="mt-8">
-              <h3 className="text-[15px] font-bold text-white mb-4">Pièces jointes</h3>
-              <div className="grid grid-cols-2 gap-4">
-                {message.attachments.map((attachment, index) => (
+            <div className="mt-8 pt-6 border-t border-white/[0.08]">
+              <h3 className="text-[13px] font-semibold text-white mb-4">Pièces jointes ({message.attachments.length})</h3>
+              <div className="grid grid-cols-2 gap-3">
+                {message.attachments.map((attachment) => (
                   <div
                     key={attachment.id}
-                    className="relative rounded-xl overflow-hidden bg-gradient-to-br from-[#0a3d35] via-[#0c3b33] to-[#082b25] border border-white/[0.06] hover:border-[#00d9a5]/40 transition-all cursor-pointer group h-[140px]"
+                    className="relative rounded-lg overflow-hidden bg-gradient-to-br from-[#0a3d35] via-[#0c3b33] to-[#082b25] border border-white/[0.08] hover:border-[#00d9a5]/40 transition-all cursor-pointer group h-[130px] shadow-sm"
                   >
-                    {/* CRM-style visualization matching reference */}
+                    {/* CRM-style visualization */}
                     <div className="absolute inset-0 flex items-center justify-center">
-                      {/* Circular network graphic */}
                       <div className="relative">
-                        {/* Outer ring */}
-                        <div className="w-20 h-20 rounded-full border border-[#00d9a5]/30 flex items-center justify-center">
-                          {/* Inner content */}
-                          <div className="w-12 h-12 rounded-full border border-[#00d9a5]/40 flex items-center justify-center bg-[#00d9a5]/5">
-                            <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6 text-[#00d9a5]">
+                        <div className="w-16 h-16 rounded-full border border-[#00d9a5]/30 flex items-center justify-center">
+                          <div className="w-10 h-10 rounded-full border border-[#00d9a5]/40 flex items-center justify-center bg-[#00d9a5]/5">
+                            <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5 text-[#00d9a5]">
                               <circle cx="12" cy="12" r="3" fill="currentColor"/>
                               <circle cx="12" cy="4" r="2" fill="currentColor" opacity="0.6"/>
                               <circle cx="19" cy="8" r="2" fill="currentColor" opacity="0.6"/>
@@ -142,29 +170,25 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
                             </svg>
                           </div>
                         </div>
-                        {/* CRM badge */}
-                        <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 bg-[#00d9a5] text-black text-[10px] font-bold px-2 py-0.5 rounded shadow-lg shadow-[#00d9a5]/30">
+                        <div className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 bg-[#00d9a5] text-black text-[8px] font-bold px-1.5 py-0.5 rounded shadow-md shadow-[#00d9a5]/30">
                           CRM
                         </div>
                       </div>
                       
-                      {/* Connection dots around the edge */}
-                      <div className="absolute top-4 right-6 w-2 h-2 rounded-full bg-[#00d9a5]/40" />
-                      <div className="absolute top-8 left-4 w-1.5 h-1.5 rounded-full bg-[#00d9a5]/30" />
-                      <div className="absolute bottom-6 right-4 w-1.5 h-1.5 rounded-full bg-[#00d9a5]/30" />
-                      <div className="absolute bottom-8 left-6 w-2 h-2 rounded-full bg-[#00d9a5]/20" />
+                      <div className="absolute top-3 right-5 w-1.5 h-1.5 rounded-full bg-[#00d9a5]/40" />
+                      <div className="absolute top-6 left-3 w-1 h-1 rounded-full bg-[#00d9a5]/30" />
+                      <div className="absolute bottom-5 right-3 w-1 h-1 rounded-full bg-[#00d9a5]/30" />
+                      <div className="absolute bottom-7 left-5 w-1.5 h-1.5 rounded-full bg-[#00d9a5]/20" />
                     </div>
                     
-                    {/* Subtle grid pattern */}
                     <div 
-                      className="absolute inset-0 opacity-[0.03]" 
+                      className="absolute inset-0 opacity-[0.02]" 
                       style={{
                         backgroundImage: 'linear-gradient(rgba(0,217,165,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,217,165,1) 1px, transparent 1px)',
                         backgroundSize: '20px 20px'
                       }}
                     />
                     
-                    {/* Hover overlay */}
                     <div className="absolute inset-0 bg-[#00d9a5]/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                 ))}
@@ -173,66 +197,66 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
           )}
         </div>
 
-        {/* Quick reply composer - matching reference */}
-        <div className="border-t border-white/[0.06] p-4">
-          <div className="bg-[#0c0c0c] rounded-xl border border-white/[0.06] overflow-hidden">
+        {/* Quick reply composer */}
+        <div className="border-t border-white/[0.08] p-4 bg-white/[0.01]">
+          <div className="bg-[#0c0c0c] rounded-lg border border-white/[0.08] overflow-hidden shadow-sm">
             {/* Text input */}
             <div className="px-5 py-4">
               <textarea
                 placeholder="Rédiger votre message..."
                 value={replyText}
                 onChange={(e) => setReplyText(e.target.value)}
-                className="w-full bg-transparent text-white placeholder:text-gray-600 text-[14px] resize-none focus:outline-none min-h-[56px]"
+                className="w-full bg-transparent text-white placeholder:text-gray-700 text-[13px] resize-none focus:outline-none min-h-[56px] font-normal leading-relaxed"
               />
             </div>
             
             {/* Formatting toolbar */}
-            <div className="px-4 py-3 border-t border-white/[0.06] flex items-center justify-between">
+            <div className="px-4 py-3 border-t border-white/[0.08] flex items-center justify-between bg-white/[0.01]">
               <div className="flex items-center gap-0.5">
-                <button className="p-2 text-gray-600 hover:text-gray-400 hover:bg-white/5 rounded transition-colors">
+                <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors" title="Bold">
                   <Bold className="w-4 h-4" />
                 </button>
-                <button className="p-2 text-gray-600 hover:text-gray-400 hover:bg-white/5 rounded transition-colors">
+                <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors" title="Italic">
                   <Italic className="w-4 h-4" />
                 </button>
-                <button className="p-2 text-gray-600 hover:text-gray-400 hover:bg-white/5 rounded transition-colors">
+                <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors" title="Underline">
                   <Underline className="w-4 h-4" />
                 </button>
-                <div className="w-px h-4 bg-white/10 mx-1.5" />
-                <button className="p-2 text-gray-600 hover:text-gray-400 hover:bg-white/5 rounded transition-colors">
+                <div className="w-px h-4 bg-white/5 mx-1" />
+                <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors" title="List">
                   <List className="w-4 h-4" />
                 </button>
-                <button className="p-2 text-gray-600 hover:text-gray-400 hover:bg-white/5 rounded transition-colors">
+                <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors" title="Ordered list">
                   <ListOrdered className="w-4 h-4" />
                 </button>
-                <div className="w-px h-4 bg-white/10 mx-1.5" />
-                <button className="p-2 text-gray-600 hover:text-gray-400 hover:bg-white/5 rounded transition-colors">
+                <div className="w-px h-4 bg-white/5 mx-1" />
+                <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors" title="Align left">
                   <AlignLeft className="w-4 h-4" />
                 </button>
-                <button className="p-2 text-gray-600 hover:text-gray-400 hover:bg-white/5 rounded transition-colors">
+                <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors" title="Align center">
                   <AlignCenter className="w-4 h-4" />
                 </button>
-                <button className="p-2 text-gray-600 hover:text-gray-400 hover:bg-white/5 rounded transition-colors">
+                <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors" title="Align right">
                   <AlignRight className="w-4 h-4" />
                 </button>
-                <button className="p-2 text-gray-600 hover:text-gray-400 hover:bg-white/5 rounded transition-colors">
+                <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors" title="Justify">
                   <AlignJustify className="w-4 h-4" />
                 </button>
-                <div className="w-px h-4 bg-white/10 mx-1.5" />
-                <button className="p-2 text-gray-600 hover:text-gray-400 hover:bg-white/5 rounded transition-colors">
+                <div className="w-px h-4 bg-white/5 mx-1" />
+                <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors" title="Quote">
                   <Quote className="w-4 h-4" />
                 </button>
-                <button className="p-2 text-gray-600 hover:text-gray-400 hover:bg-white/5 rounded transition-colors">
+                <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors" title="Link">
                   <Link2 className="w-4 h-4" />
                 </button>
-                <button className="p-2 text-gray-600 hover:text-gray-400 hover:bg-white/5 rounded transition-colors">
+                <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors" title="Voice">
                   <Mic className="w-4 h-4" />
                 </button>
               </div>
               
-              {/* Send button - teal pill */}
-              <button className="h-9 px-5 bg-[#00d9a5] text-black rounded-full text-[13px] font-semibold hover:bg-[#00d9a5]/90 transition-colors flex items-center gap-2 shadow-lg shadow-[#00d9a5]/25">
-                <Send className="w-4 h-4" />
+              {/* Send button */}
+              <button className="h-8 px-4 bg-[#00d9a5] text-black rounded-full text-[12px] font-semibold hover:bg-[#00d9a5]/90 active:bg-[#00d9a5]/80 transition-colors flex items-center gap-2 shadow-md shadow-[#00d9a5]/20">
+                <Send className="w-3.5 h-3.5" />
                 Envoyer
               </button>
             </div>

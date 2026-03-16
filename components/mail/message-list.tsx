@@ -40,89 +40,89 @@ export default function MessageList({ selectedMessageId, onSelectMessage }: Mess
   return (
     <div className="flex flex-col bg-[#0a0a0a] min-w-0 w-[420px] flex-shrink-0">
       {/* Top header bar - Inbox title + Contact/Chat/Wallet buttons */}
-      <div className="h-[72px] px-6 flex items-center justify-between">
-        <h1 className="text-[22px] font-bold text-white">Boîte de réception</h1>
-        <div className="flex items-center gap-2.5">
-          <button className="h-9 px-4 rounded-full border border-white/15 text-[13px] text-gray-300 hover:bg-white/5 transition-colors flex items-center gap-2 font-medium">
-            <Users className="w-4 h-4 text-[#00d9a5]" />
+      <div className="h-[68px] px-6 flex items-center justify-between border-b border-white/[0.08]">
+        <h1 className="text-[20px] font-bold text-white">Boîte de réception</h1>
+        <div className="flex items-center gap-2">
+          <button className="h-8 px-3.5 rounded-full border border-white/15 text-[12px] text-gray-400 hover:bg-white/5 hover:text-gray-200 transition-colors flex items-center gap-2 font-medium">
+            <Users className="w-3.5 h-3.5 text-[#00d9a5]" />
             Contacts
           </button>
-          <button className="h-9 px-4 rounded-full border border-white/15 text-[13px] text-gray-300 hover:bg-white/5 transition-colors flex items-center gap-2 font-medium">
-            <MessageSquare className="w-4 h-4" />
+          <button className="h-8 px-3.5 rounded-full border border-white/15 text-[12px] text-gray-400 hover:bg-white/5 hover:text-gray-200 transition-colors flex items-center gap-2 font-medium">
+            <MessageSquare className="w-3.5 h-3.5" />
             Discuter
           </button>
         </div>
       </div>
 
       {/* Action toolbar row */}
-      <div className="h-11 px-6 flex items-center gap-3 border-b border-white/[0.06]">
-        <input type="checkbox" className="w-4 h-4 rounded border-gray-600 bg-transparent accent-[#00d9a5]" />
-        <button className="p-1.5 text-gray-500 hover:text-gray-300 transition-colors">
+      <div className="h-10 px-6 flex items-center gap-3 border-b border-white/[0.08]">
+        <input type="checkbox" className="w-4 h-4 rounded border-gray-600 bg-transparent accent-[#00d9a5] cursor-pointer" />
+        <button className="p-1.5 text-gray-600 hover:text-gray-400 transition-colors">
           <RotateCw className="w-4 h-4" />
         </button>
-        <button className="p-1.5 text-gray-500 hover:text-gray-300 transition-colors">
+        <button className="p-1.5 text-gray-600 hover:text-gray-400 transition-colors">
           <MoreVertical className="w-4 h-4" />
         </button>
         <div className="flex-1" />
-        <button className="p-1.5 text-gray-500 hover:text-gray-300 transition-colors">
+        <button className="p-1.5 text-gray-600 hover:text-gray-400 transition-colors">
           <Bell className="w-4 h-4" />
         </button>
-        <button className="p-1.5 text-gray-500 hover:text-gray-300 transition-colors">
+        <button className="p-1.5 text-gray-600 hover:text-gray-400 transition-colors">
           <Settings className="w-4 h-4" />
         </button>
-        <span className="text-[12px] text-gray-500 ml-1">1 / 1</span>
+        <span className="text-[11px] text-gray-600 ml-1">1 / 1</span>
       </div>
 
       {/* Inner black card container - key visual element */}
-      <div className="flex-1 m-4 mt-3 bg-[#0a0a0a] rounded-2xl flex flex-col overflow-hidden">
+      <div className="flex-1 m-3.5 mt-3 bg-[#0a0a0a] rounded-2xl flex flex-col overflow-hidden border border-white/[0.06]">
         {/* Search bar */}
-        <div className="px-5 pt-5 pb-3">
+        <div className="px-5 pt-4 pb-3">
           <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-700" />
             <input
               type="text"
               placeholder="Rechercher"
-              className="w-full h-11 pl-11 pr-4 bg-transparent rounded-xl border border-white/[0.08] text-[14px] text-white placeholder:text-gray-600 focus:outline-none focus:border-[#00d9a5]/40 transition-colors"
+              className="w-full h-10 pl-11 pr-4 bg-white/[0.03] rounded-lg border border-white/[0.08] text-[13px] text-white placeholder:text-gray-700 focus:outline-none focus:border-[#00d9a5]/50 focus:bg-white/[0.05] transition-colors"
             />
           </div>
         </div>
 
         {/* Mail / Subscription tabs */}
-        <div className="px-5 border-b border-white/[0.06]">
+        <div className="px-4 border-b border-white/[0.08]">
           <div className="flex">
             <button
               onClick={() => setActiveTab('mail')}
-              className={`flex items-center gap-2 px-5 py-3.5 text-[13px] font-medium transition-colors relative ${
-                activeTab === 'mail' ? 'text-[#00d9a5]' : 'text-gray-500 hover:text-gray-300'
+              className={`flex items-center gap-2 px-5 py-3 text-[12px] font-medium transition-colors relative ${
+                activeTab === 'mail' ? 'text-[#00d9a5]' : 'text-gray-600 hover:text-gray-400'
               }`}
             >
               <MailTabIcon />
               Courrier
               {activeTab === 'mail' && (
-                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#00d9a5]" />
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#00d9a5]" />
               )}
             </button>
             <button
               onClick={() => setActiveTab('subscription')}
-              className={`flex items-center gap-2 px-5 py-3.5 text-[13px] font-medium transition-colors relative ${
-                activeTab === 'subscription' ? 'text-[#00d9a5]' : 'text-gray-500 hover:text-gray-300'
+              className={`flex items-center gap-2 px-5 py-3 text-[12px] font-medium transition-colors relative ${
+                activeTab === 'subscription' ? 'text-[#00d9a5]' : 'text-gray-600 hover:text-gray-400'
               }`}
             >
               <SubscriptionIcon />
               Abonnements
               {activeTab === 'subscription' && (
-                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#00d9a5]" />
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#00d9a5]" />
               )}
             </button>
           </div>
         </div>
 
         {/* Message list with scroll */}
-        <div className="flex-1 overflow-y-auto p-3 space-y-2">
+        <div className="flex-1 overflow-y-auto p-4 space-y-2">
           {isLoading ? (
             <>
               {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="h-[88px] bg-[#111] rounded-xl animate-pulse" />
+                <div key={i} className="h-[92px] bg-[#0f0f0f] rounded-xl animate-pulse" />
               ))}
             </>
           ) : messages.length === 0 ? (
@@ -136,27 +136,35 @@ export default function MessageList({ selectedMessageId, onSelectMessage }: Mess
                 <div
                   key={message.id}
                   onClick={() => onSelectMessage(message.id)}
-                  className={`p-4 cursor-pointer transition-all rounded-xl ${
+                  className={`p-3.5 cursor-pointer transition-all rounded-xl ${
                     isSelected
-                      ? 'bg-[#0d1f1c] border-2 border-[#00d9a5] shadow-[0_0_16px_rgba(0,217,165,0.2)]'
-                      : 'bg-[#0c0c0c] border-2 border-transparent hover:border-[#00d9a5]/30 hover:bg-[#0f0f0f]'
+                      ? 'bg-[#0d1f1c] border-2 border-[#00d9a5] shadow-[0_0_20px_rgba(0,217,165,0.15)]'
+                      : 'bg-[#0a0a0a] border-2 border-transparent hover:border-[#00d9a5]/20 hover:bg-[#0f0f0f]'
                   }`}
                 >
-              <div className="flex items-start gap-3">
+                  <div className="flex items-start gap-3.5">
                     {/* Avatar - gradient teal circle with initial */}
-                    <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#00d9a5] to-[#008f70] flex items-center justify-center text-[14px] font-bold text-black flex-shrink-0 shadow-md shadow-[#00d9a5]/20">
+                    <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#00d9a5] to-[#008f70] flex items-center justify-center text-[13px] font-bold text-black flex-shrink-0 shadow-md shadow-[#00d9a5]/20 mt-0.5">
                       {message.from.name.charAt(0).toUpperCase()}
                     </div>
 
                     <div className="flex-1 min-w-0">
-                      <p className="text-[14px] font-semibold text-white truncate mb-0.5">
-                        {message.from.name}
-                      </p>
-                      <p className={`text-[13px] line-clamp-1 mb-1 ${!message.read ? 'font-semibold text-white' : 'text-gray-400'}`}>
+                      <div className="flex items-baseline justify-between gap-2 mb-0.5">
+                        <p className="text-[13.5px] font-semibold text-white truncate">
+                          {message.from.name}
+                        </p>
+                        <span className="text-[11px] text-gray-600 flex-shrink-0 whitespace-nowrap">
+                          {new Date(message.date).toLocaleString('fr-FR', { 
+                            hour: '2-digit',
+                            minute: '2-digit'
+                          })}
+                        </span>
+                      </div>
+                      <p className={`text-[12.5px] line-clamp-1 mb-1.5 ${!message.read ? 'font-semibold text-white' : 'text-gray-500 font-medium'}`}>
                         {message.subject}
                       </p>
-                      <p className="text-[12px] text-gray-500 line-clamp-2 leading-relaxed">
-                        {message.body.substring(0, 100)}...
+                      <p className="text-[12px] text-gray-600 line-clamp-2 leading-[1.4]">
+                        {message.body.substring(0, 95)}...
                       </p>
                     </div>
                   </div>

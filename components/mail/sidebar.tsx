@@ -135,24 +135,24 @@ export default function MailSidebar() {
       }`}>
         
         {/* Logo - matches reference: teal rounded box with house icon */}
-        <div className="px-5 py-6">
+        <div className="px-4 py-5">
           <Link href="/mail" className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-[#00d9a5] flex items-center justify-center flex-shrink-0 shadow-md shadow-[#00d9a5]/40">
+            <div className="w-8 h-8 rounded-lg bg-[#00d9a5] flex items-center justify-center flex-shrink-0 shadow-md shadow-[#00d9a5]/30">
               <DMailLogo />
             </div>
-            <span className="text-[15px] font-bold tracking-wide text-white">Byunivert Mail</span>
+            <span className="text-[14px] font-bold tracking-wide text-white">Byunivert Mail</span>
           </Link>
         </div>
 
         {/* Compose button - white pill, full width with padding */}
-        <div className="px-4 pb-5">
-          <button className="w-full h-11 bg-white text-black font-semibold rounded-full text-[14px] hover:bg-gray-100 transition-colors">
+        <div className="px-3 pb-5">
+          <button className="w-full h-10 bg-white text-black font-semibold rounded-full text-[13px] hover:bg-gray-100 transition-colors shadow-sm">
             Composer
           </button>
         </div>
 
         {/* Main nav - primary folders */}
-        <nav className="flex-1 overflow-y-auto px-3">
+        <nav className="flex-1 overflow-y-auto px-2.5">
           <div className="space-y-0.5">
             {MAIN_NAV.map((item) => {
               const isActive = activeFolder === item.id
@@ -164,16 +164,16 @@ export default function MailSidebar() {
                     setActiveFolder(item.id)
                     setMobileOpen(false)
                   }}
-                  className={`w-full px-3 py-2.5 rounded-lg text-[13px] font-medium transition-all flex items-center gap-3 ${
+                  className={`w-full px-3 py-2 rounded-lg text-[12.5px] font-medium transition-all flex items-center gap-3 ${
                     isActive
-                      ? 'bg-[#00d9a5] text-black shadow-[0_0_20px_rgba(0,217,165,0.4)]'
-                      : 'text-[#888] hover:text-white hover:bg-white/5'
+                      ? 'bg-[#00d9a5] text-black shadow-[0_0_20px_rgba(0,217,165,0.35)]'
+                      : 'text-gray-500 hover:text-gray-300 hover:bg-white/5'
                   }`}
                 >
                   <Icon />
                   <span className="flex-1 text-left">{item.label}</span>
                   {item.badge && (
-                    <span className={`text-[11px] font-bold min-w-[20px] h-5 px-1.5 rounded-full flex items-center justify-center ${
+                    <span className={`text-[10px] font-bold min-w-[18px] h-5 px-1.5 rounded-full flex items-center justify-center ${
                       isActive ? 'bg-black/20 text-black' : 'bg-[#e74c3c] text-white'
                     }`}>
                       {item.badge}
@@ -185,16 +185,16 @@ export default function MailSidebar() {
           </div>
 
           {/* Divider */}
-          <div className="my-4 border-t border-white/[0.06]" />
+          <div className="my-5 border-t border-white/[0.08]" />
 
-          {/* Secondary nav - Web3 features */}
+          {/* Secondary nav - email features */}
           <div className="space-y-0.5">
             {SECONDARY_NAV.map((item) => {
               const Icon = item.icon
               return (
                 <button
                   key={item.id}
-                  className="w-full px-3 py-2.5 rounded-lg text-[13px] font-medium text-[#555] hover:text-[#888] hover:bg-white/5 transition-all flex items-center gap-3"
+                  className="w-full px-3 py-2 rounded-lg text-[12.5px] font-medium text-gray-600 hover:text-gray-400 hover:bg-white/5 transition-all flex items-center gap-3"
                 >
                   <Icon />
                   <span>{item.label}</span>
