@@ -291,26 +291,26 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
                 <button className="p-1.5 dark:text-gray-700 dark:hover:text-gray-500 dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 rounded transition-colors" title="Align center">
                   <AlignCenter className="w-4 h-4" />
                 </button>
-                <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors" title="Align right">
+                <button className="p-1.5 dark:text-gray-700 dark:hover:text-gray-500 dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 rounded transition-colors" title="Align right">
                   <AlignRight className="w-4 h-4" />
                 </button>
-                <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors" title="Justify">
+                <button className="p-1.5 dark:text-gray-700 dark:hover:text-gray-500 dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 rounded transition-colors" title="Justify">
                   <AlignJustify className="w-4 h-4" />
                 </button>
-                <div className="w-px h-4 bg-white/5 mx-1" />
-                <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors" title="Quote">
+                <div className="w-px h-4 dark:bg-white/5 light:bg-[#00956a]/10 mx-1" />
+                <button className="p-1.5 dark:text-gray-700 dark:hover:text-gray-500 dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 rounded transition-colors" title="Quote">
                   <Quote className="w-4 h-4" />
                 </button>
-                <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors" title="Link">
+                <button className="p-1.5 dark:text-gray-700 dark:hover:text-gray-500 dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 rounded transition-colors" title="Link">
                   <Link2 className="w-4 h-4" />
                 </button>
-                <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors" title="Voice">
+                <button className="p-1.5 dark:text-gray-700 dark:hover:text-gray-500 dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 rounded transition-colors" title="Voice">
                   <Mic className="w-4 h-4" />
                 </button>
               </div>
               
               {/* Send button */}
-              <button className="h-8 px-4 bg-[#00d9a5] text-black rounded-full text-[12px] font-semibold hover:bg-[#00d9a5]/90 active:bg-[#00d9a5]/80 transition-colors flex items-center gap-2 shadow-md shadow-[#00d9a5]/20">
+              <button className="h-8 px-4 dark:bg-[#00d9a5] dark:text-black light:bg-[#00956a] light:text-white rounded-full text-[12px] font-semibold dark:hover:bg-[#00d9a5]/90 dark:active:bg-[#00d9a5]/80 light:hover:bg-[#007d54] light:active:bg-[#006a46] transition-colors flex items-center gap-2 dark:shadow-md dark:shadow-[#00d9a5]/20 light:shadow-md light:shadow-[#00956a]/20">
                 <Send className="w-3.5 h-3.5" />
                 Envoyer
               </button>
