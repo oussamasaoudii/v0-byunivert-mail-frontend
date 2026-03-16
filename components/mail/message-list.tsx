@@ -134,7 +134,7 @@ export default function MessageList({ selectedMessageId, onSelectMessage, active
                 </span>
                 Sélectionner tout
               </button>
-              <button onClick={() => setMenuOpen(false)} className="w-full px-4 py-2.5 text-[12px] text-gray-400 hover:text-[#00d9a5] hover:bg-[#00d9a5]/5 transition-colors text-left flex items-center gap-2">
+              <button onClick={() => setMenuOpen(false)} className="w-full px-4 py-2.5 text-[12px] dark:text-gray-400 dark:hover:text-[#00d9a5] dark:hover:bg-[#00d9a5]/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 transition-colors text-left flex items-center gap-2">
                 <span className="w-4 h-4 flex items-center justify-center">
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
                 </span>
