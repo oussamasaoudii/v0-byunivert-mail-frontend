@@ -34,34 +34,38 @@ export default function MessageList({ selectedMessageId, onSelectMessage, active
   const [activeTab, setActiveTab] = useState<'mail' | 'subscription'>('mail')
 
   useEffect(() => {
-    setIsLoading(true)
-    const allMessages = getMessages()
-    
-    // Filter messages based on activeFolder
-    let filteredMessages = allMessages
-    
-    switch (activeFolder) {
-      case 'starred':
-        filteredMessages = allMessages.filter(msg => msg.starred)
-        break
-      case 'sent':
-        filteredMessages = allMessages.filter(msg => msg.folder === 'sent')
-        break
-      case 'drafts':
-        filteredMessages = allMessages.filter(msg => msg.folder === 'drafts')
-        break
-      case 'spam':
-        filteredMessages = allMessages.filter(msg => msg.folder === 'spam')
-        break
-      case 'trash':
-        filteredMessages = allMessages.filter(msg => msg.folder === 'trash')
-        break
-      default: // inbox
-        filteredMessages = allMessages.filter(msg => msg.folder !== 'sent' && msg.folder !== 'drafts' && msg.folder !== 'spam' && msg.folder !== 'trash')
+    const fetchMessages = async () => {
+      setIsLoading(true)
+      const allMessages = await getMessages()
+      
+      // Filter messages based on activeFolder
+      let filteredMessages = allMessages
+      
+      switch (activeFolder) {
+        case 'starred':
+          filteredMessages = allMessages.filter(msg => msg.starred)
+          break
+        case 'sent':
+          filteredMessages = allMessages.filter(msg => msg.folder === 'sent')
+          break
+        case 'drafts':
+          filteredMessages = allMessages.filter(msg => msg.folder === 'drafts')
+          break
+        case 'spam':
+          filteredMessages = allMessages.filter(msg => msg.folder === 'spam')
+          break
+        case 'trash':
+          filteredMessages = allMessages.filter(msg => msg.folder === 'trash')
+          break
+        default: // inbox
+          filteredMessages = allMessages.filter(msg => msg.folder !== 'sent' && msg.folder !== 'drafts' && msg.folder !== 'spam' && msg.folder !== 'trash')
+      }
+      
+      setMessages(filteredMessages)
+      setIsLoading(false)
     }
     
-    setMessages(filteredMessages)
-    setIsLoading(false)
+    fetchMessages()
   }, [activeFolder])
 
   return (
