@@ -18,76 +18,64 @@ export default function MailSidebar() {
   const [activeFolder, setActiveFolder] = useState('inbox')
   const [mobileOpen, setMobileOpen] = useState(false)
 
-  const handleFolderClick = (folderId: string) => {
-    setActiveFolder(folderId)
-    setMobileOpen(false)
-  }
-
   return (
     <>
       {/* Mobile menu button */}
       <button
         onClick={() => setMobileOpen(!mobileOpen)}
-        className="md:hidden fixed bottom-6 left-6 z-50 w-12 h-12 rounded-lg bg-primary text-primary-foreground shadow-lg hover:bg-primary/90 flex items-center justify-center transition-all"
+        className="md:hidden fixed bottom-6 left-6 z-50 w-12 h-12 rounded-lg bg-primary text-primary-foreground flex items-center justify-center"
       >
         {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
       </button>
 
       {/* Mobile backdrop */}
       {mobileOpen && (
-        <div
-          className="md:hidden fixed inset-0 bg-black/60 z-30 backdrop-blur-sm"
-          onClick={() => setMobileOpen(false)}
-        />
+        <div className="md:hidden fixed inset-0 bg-black/70 z-30" onClick={() => setMobileOpen(false)} />
       )}
 
-      {/* Sidebar */}
-      <aside
-        className={`fixed md:relative w-80 h-screen bg-sidebar text-sidebar-foreground flex flex-col z-40 transform transition-transform duration-200 md:translate-x-0 md:border-r md:border-border ${
-          mobileOpen ? 'translate-x-0' : '-translate-x-full'
-        }`}
-      >
-        {/* Logo & Compose */}
-        <div className="px-6 py-6 border-b border-border/50">
-          <Link href="/mail" className="flex items-center gap-3 mb-6">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary via-primary to-primary/80 flex items-center justify-center flex-shrink-0">
-              <Mail className="w-5 h-5 text-primary-foreground font-bold" />
+      {/* Sidebar - 280px fixed width */}
+      <aside className={`fixed md:relative w-72 h-screen bg-card flex flex-col border-r border-border/30 z-40 transform transition-transform md:translate-x-0 ${
+        mobileOpen ? 'translate-x-0' : '-translate-x-full'
+      }`}>
+        
+        {/* Header: Logo and Compose */}
+        <div className="px-5 pt-5 pb-4 border-b border-border/20">
+          <Link href="/mail" className="flex items-center gap-2.5 mb-4">
+            <div className="w-7 h-7 rounded-md bg-primary flex items-center justify-center flex-shrink-0">
+              <Mail className="w-4 h-4 text-primary-foreground" />
             </div>
-            <span className="text-lg font-bold tracking-tight">Byunivert</span>
+            <span className="text-sm font-bold tracking-tight">DMAIL</span>
           </Link>
-          <Button
-            className="w-full h-10 bg-white hover:bg-gray-50 text-black font-semibold rounded-full shadow-sm hover:shadow-md transition-all duration-150"
-          >
+          <Button className="w-full h-9 bg-white/95 hover:bg-white text-black/90 font-semibold rounded-full text-sm shadow-sm">
             Compose
           </Button>
         </div>
 
-        {/* Folders Navigation */}
-        <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-1">
+        {/* Folders - tight spacing */}
+        <nav className="flex-1 overflow-y-auto px-2 py-3 space-y-0.5">
           {FOLDERS.map((folder) => {
             const isActive = activeFolder === folder.id
             return (
               <button
                 key={folder.id}
-                onClick={() => handleFolderClick(folder.id)}
-                className={`w-full px-4 py-3 rounded-lg text-sm font-medium transition-all duration-150 flex items-center justify-between group ${
+                onClick={() => {
+                  setActiveFolder(folder.id)
+                  setMobileOpen(false)
+                }}
+                className={`w-full px-3.5 py-2.5 rounded text-sm font-medium transition-all flex items-center justify-between ${
                   isActive
-                    ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/40'
-                    : 'text-sidebar-foreground hover:bg-sidebar-accent/80'
+                    ? 'bg-primary text-primary-foreground shadow-md shadow-primary/50'
+                    : 'text-foreground/70 hover:text-foreground'
                 }`}
               >
-                <div className="flex items-center gap-3 flex-1">
-                  <span className="text-base">{folder.emoji}</span>
-                  <span className="truncate">{folder.label}</span>
+                <div className="flex items-center gap-2.5 flex-1 min-w-0">
+                  <span className="text-base flex-shrink-0">{folder.emoji}</span>
+                  <span className="text-sm truncate">{folder.label}</span>
                 </div>
                 {folder.unread > 0 && (
-                  <span
-                    className={`text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ml-2 ${
-                      isActive
-                        ? 'bg-primary-foreground/25 text-primary-foreground'
-                        : 'bg-destructive/90 text-white'
-                    }`}
-                  >
+                  <span className={`text-xs font-bold w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 ml-1.5 ${
+                    isActive ? 'bg-primary-foreground/20' : 'bg-destructive/80 text-white'
+                  }`}>
                     {folder.unread}
                   </span>
                 )}

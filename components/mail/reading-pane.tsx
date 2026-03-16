@@ -73,82 +73,86 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
 
   return (
     <div className="hidden md:flex flex-1 flex-col bg-background overflow-hidden">
-      {/* Top toolbar */}
-      <div className="border-b border-border px-6 py-4 flex items-center justify-between bg-background/50">
-        <div className="flex items-center gap-2">
-          <Button variant="ghost" size="sm" className="h-9 w-9 p-0 text-muted-foreground hover:text-foreground">
-            <ChevronLeft className="w-5 h-5" />
+      {/* Top toolbar - compact */}
+      <div className="border-b border-border/20 px-5 py-3 flex items-center justify-between">
+        <div className="flex items-center gap-1.5">
+          <Button variant="ghost" size="sm" className="h-7 w-7 p-0 text-muted-foreground hover:text-foreground">
+            <ChevronLeft className="w-4 h-4" />
           </Button>
-          <Button variant="ghost" size="sm" className="h-9 w-9 p-0 text-muted-foreground hover:text-foreground">
-            <ChevronRight className="w-5 h-5" />
+          <Button variant="ghost" size="sm" className="h-7 w-7 p-0 text-muted-foreground hover:text-foreground">
+            <ChevronRight className="w-4 h-4" />
           </Button>
-          <div className="w-px h-6 bg-border mx-1" />
-          <Button variant="ghost" size="sm" className="h-9 w-9 p-0 text-muted-foreground hover:text-foreground">
-            <Check className="w-5 h-5" />
+          <div className="w-px h-4 bg-border/30 mx-1" />
+          <Button variant="ghost" size="sm" className="h-7 w-7 p-0 text-muted-foreground hover:text-foreground">
+            <Archive className="w-4 h-4" />
           </Button>
-          <Button variant="ghost" size="sm" className="h-9 w-9 p-0 text-muted-foreground hover:text-foreground">
-            <Trash2 className="w-5 h-5" />
+          <Button variant="ghost" size="sm" className="h-7 w-7 p-0 text-muted-foreground hover:text-foreground">
+            <Trash2 className="w-4 h-4" />
           </Button>
-          <Button variant="ghost" size="sm" className="h-9 w-9 p-0 text-muted-foreground hover:text-foreground">
-            <Star className="w-5 h-5" fill={message.starred ? 'currentColor' : 'none'} />
+          <Button variant="ghost" size="sm" className="h-7 w-7 p-0 text-muted-foreground hover:text-foreground">
+            <Star className="w-4 h-4" fill={message.starred ? 'currentColor' : 'none'} />
           </Button>
         </div>
-        <Button variant="ghost" size="sm" className="h-9 w-9 p-0 text-muted-foreground hover:text-foreground">
-          <MoreVertical className="w-5 h-5" />
-        </Button>
+        <div className="flex items-center gap-2">
+          <span className="text-xs text-muted-foreground">Contact</span>
+          <span className="text-xs text-muted-foreground">Chat</span>
+          <Button variant="ghost" size="sm" className="h-7 w-7 p-0 text-muted-foreground hover:text-foreground ml-2">
+            <MoreVertical className="w-4 h-4" />
+          </Button>
+        </div>
       </div>
 
       {/* Message content */}
       <div className="flex-1 overflow-y-auto">
-        {/* Sender info header */}
-        <div className="border-b border-border px-6 py-6 bg-background/70">
-          <div className="flex items-start gap-4 mb-4">
-            <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center flex-shrink-0">
-              <span className="text-lg font-bold text-primary-foreground">
+        {/* Sender info header - elegant block */}
+        <div className="border-b border-border/20 px-6 py-5">
+          <div className="flex items-center gap-3 mb-5">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center flex-shrink-0">
+              <span className="text-sm font-bold text-primary-foreground">
                 {message.from.name.charAt(0).toUpperCase()}
               </span>
             </div>
             <div className="flex-1 min-w-0">
-              <h2 className="text-lg font-bold text-foreground">{message.from.name}</h2>
-              <p className="text-sm text-muted-foreground">{message.from.email}</p>
-              <p className="text-xs text-muted-foreground mt-1">
-                {message.date.toLocaleDateString('fr-FR', {
-                  month: 'short',
-                  day: 'numeric',
-                  hour: '2-digit',
-                  minute: '2-digit',
-                })}
-              </p>
+              <h2 className="text-sm font-bold text-foreground">{message.from.name}</h2>
+              <p className="text-xs text-muted-foreground">{message.from.email}</p>
             </div>
+            <span className="text-xs text-muted-foreground flex-shrink-0">
+              {message.date.toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+              })}
+            </span>
           </div>
-          <h1 className="text-2xl font-bold text-foreground leading-tight">{message.subject}</h1>
+          <h1 className="text-lg font-bold text-foreground leading-snug">{message.subject}</h1>
         </div>
 
         {/* Message body */}
-        <div className="px-6 py-6">
-          <p className="text-base leading-relaxed text-foreground/90 whitespace-pre-wrap mb-6">
+        <div className="px-6 py-5">
+          <p className="text-sm leading-relaxed text-foreground/85 whitespace-pre-wrap">
             {message.body}
           </p>
 
           {/* Attachments */}
           {message.attachments.length > 0 && (
-            <div className="mt-8 pt-6 border-t border-border">
-              <h3 className="text-base font-semibold mb-4">Attachments</h3>
-              <div className="grid grid-cols-2 gap-4">
+            <div className="mt-6 pt-6 border-t border-border/20">
+              <h3 className="text-xs font-semibold text-foreground/80 uppercase tracking-wide mb-3">Attachments</h3>
+              <div className="grid grid-cols-2 gap-3">
                 {message.attachments.map((attachment) => (
                   <div
                     key={attachment.id}
-                    className="p-4 rounded-lg border border-border hover:border-primary/50 hover:bg-sidebar transition-all cursor-pointer group"
+                    className="p-3 rounded border border-primary/50 bg-card/40 hover:bg-card/70 transition-all cursor-pointer group"
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                        <Download className="w-5 h-5 text-primary" />
+                    <div className="flex items-start gap-2.5">
+                      <div className="w-9 h-9 rounded bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+                        <Download className="w-4 h-4 text-primary" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium truncate text-foreground">
+                        <p className="text-xs font-medium truncate text-foreground/80">
                           {attachment.name}
                         </p>
-                        <p className="text-xs text-muted-foreground">
+                        <p className="text-xs text-muted-foreground mt-0.5">
                           {typeof attachment.size === 'number' 
                             ? (attachment.size / 1024 / 1024).toFixed(2) + ' MB'
                             : attachment.size
@@ -165,47 +169,39 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
       </div>
 
       {/* Reply section */}
-      <div className="border-t border-border px-6 py-4 bg-background/50 space-y-4">
-        <div className="flex gap-2">
-          <Button 
-            onClick={() => setShowReply(!showReply)}
-            className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-lg h-10 px-6"
-          >
-            <Reply className="w-4 h-4 mr-2" />
-            Reply
-          </Button>
-          <Button 
-            variant="outline" 
-            className="border-border hover:bg-sidebar rounded-lg h-10 px-4"
-          >
-            <Reply className="w-4 h-4 mr-2 transform scale-x-[-1]" />
-            Reply All
-          </Button>
-        </div>
-
-        {showReply && (
-          <div className="space-y-3 pt-3 border-t border-border">
+      <div className="border-t border-border/20 px-6 py-4 bg-background/40 space-y-3">
+        {!showReply ? (
+          <div className="text-sm text-muted-foreground">
+            Write your message...
+          </div>
+        ) : (
+          <div className="space-y-3">
             <Textarea
               placeholder="Write your message..."
-              className="min-h-24 bg-sidebar border-border rounded-lg"
+              className="min-h-20 bg-card/50 border-border/40 rounded text-sm resize-none"
               value={replyText}
               onChange={(e) => setReplyText(e.target.value)}
             />
-            <div className="flex gap-2 justify-end">
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setShowReply(false)
-                  setReplyText('')
-                }}
-                className="border-border hover:bg-sidebar rounded-lg"
-              >
-                Cancel
-              </Button>
-              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-lg px-6">
-                <Send className="w-4 h-4 mr-2" />
-                Send
-              </Button>
+            <div className="flex gap-2 justify-between items-center">
+              <div className="flex gap-2 text-xs text-muted-foreground">
+                {/* Formatting toolbar placeholder */}
+              </div>
+              <div className="flex gap-2">
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setShowReply(false)
+                    setReplyText('')
+                  }}
+                  className="border-border/40 hover:bg-card/60 h-9 px-4 rounded text-xs"
+                >
+                  Cancel
+                </Button>
+                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold h-9 px-6 rounded text-xs">
+                  <Send className="w-3.5 h-3.5 mr-1.5" />
+                  Send
+                </Button>
+              </div>
             </div>
           </div>
         )}

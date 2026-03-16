@@ -9,10 +9,15 @@ export default function MailPage() {
   const [selectedMessageId, setSelectedMessageId] = useState<string | null>(null)
 
   return (
-    <>
+    <div className="flex h-screen w-full bg-background overflow-hidden">
+      {/* Sidebar */}
       <MailSidebar />
+      
+      {/* Message List */}
       <MessageList onSelectMessage={setSelectedMessageId} selectedMessageId={selectedMessageId} />
+      
+      {/* Reading Pane */}
       <ReadingPane messageId={selectedMessageId} />
-    </>
+    </div>
   )
 }
