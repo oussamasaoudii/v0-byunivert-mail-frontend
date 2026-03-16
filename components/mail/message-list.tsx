@@ -28,20 +28,23 @@ const SubscriptionIcon = () => (
   </svg>
 )
 
-export default function MessageList({ selectedMessageId, onSelectMessage, activeFolder = 'inbox' }: MessageListProps) {
+export default function MessageList({ selectedMessageId, onSelectMessage, activeFolder }: MessageListProps) {
   const [messages, setMessages] = useState<Message[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [activeTab, setActiveTab] = useState<'mail' | 'subscription'>('mail')
+  
+  // Ensure folder is always defined for stable dependency
+  const currentFolder = activeFolder || 'inbox'
 
   useEffect(() => {
     const fetchMessages = async () => {
       setIsLoading(true)
       const allMessages = await getMessages()
       
-      // Filter messages based on activeFolder
+      // Filter messages based on currentFolder
       let filteredMessages = allMessages
       
-      switch (activeFolder) {
+      switch (currentFolder) {
         case 'starred':
           filteredMessages = allMessages.filter(msg => msg.starred)
           break
@@ -66,7 +69,7 @@ export default function MessageList({ selectedMessageId, onSelectMessage, active
     }
     
     fetchMessages()
-  }, [activeFolder])
+  }, [currentFolder])
 
   return (
     <div className="flex flex-col bg-[#0a0a0a] min-w-0 w-[420px] flex-shrink-0">
