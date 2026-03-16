@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Mail, Eye, EyeOff } from 'lucide-react'
+import { ThemeToggle } from '@/components/theme-toggle'
 
 export default function LoginPage() {
   const router = useRouter()
@@ -35,45 +36,70 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center px-4 py-8 relative overflow-hidden">
+    <div className="min-h-screen bg-[#0a0a0a] dark:bg-[#0a0a0a] light:bg-white flex items-center justify-center px-4 py-8 relative overflow-hidden">
+      {/* Theme Toggle - top right */}
+      <div className="absolute top-6 right-6 z-20">
+        <ThemeToggle />
+      </div>
+
       {/* Atmospheric background layer - primary emerald glow */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Main radial glow - centered behind form */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-gradient-to-r from-[#00d9a5]/8 via-[#00d9a5]/4 to-transparent rounded-full blur-[120px] opacity-40" />
+        {/* Main radial glow - centered behind form (dark mode) */}
+        <div className="dark:block hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-gradient-to-r from-[#00d9a5]/8 via-[#00d9a5]/4 to-transparent rounded-full blur-[120px] opacity-40" />
         
-        {/* Secondary accent glow - lower right corner */}
-        <div className="absolute -bottom-96 -right-96 w-[600px] h-[600px] bg-gradient-to-tl from-[#00d9a5]/6 via-transparent to-transparent rounded-full blur-[100px] opacity-30" />
+        {/* Main radial glow - centered behind form (light mode) */}
+        <div className="light:block hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-gradient-to-r from-[#00a876]/6 via-[#00a876]/3 to-transparent rounded-full blur-[120px] opacity-25" />
         
-        {/* Tertiary accent glow - upper left corner for balance */}
-        <div className="absolute -top-80 -left-80 w-[500px] h-[500px] bg-gradient-to-br from-[#00d9a5]/4 via-transparent to-transparent rounded-full blur-[80px] opacity-25" />
+        {/* Secondary accent glow - lower right corner (dark mode) */}
+        <div className="dark:block hidden absolute -bottom-96 -right-96 w-[600px] h-[600px] bg-gradient-to-tl from-[#00d9a5]/6 via-transparent to-transparent rounded-full blur-[100px] opacity-30" />
         
-        {/* Subtle vignette - elegant depth from edges */}
-        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/20" />
+        {/* Secondary accent glow - lower right corner (light mode) */}
+        <div className="light:block hidden absolute -bottom-96 -right-96 w-[600px] h-[600px] bg-gradient-to-tl from-[#00a876]/4 via-transparent to-transparent rounded-full blur-[100px] opacity-15" />
         
-        {/* Soft radial vignette - darker at edges */}
-        <div className="absolute inset-0 bg-radial-vignette opacity-40" style={{
+        {/* Tertiary accent glow - upper left corner for balance (dark mode) */}
+        <div className="dark:block hidden absolute -top-80 -left-80 w-[500px] h-[500px] bg-gradient-to-br from-[#00d9a5]/4 via-transparent to-transparent rounded-full blur-[80px] opacity-25" />
+        
+        {/* Tertiary accent glow - upper left corner for balance (light mode) */}
+        <div className="light:block hidden absolute -top-80 -left-80 w-[500px] h-[500px] bg-gradient-to-br from-[#00a876]/3 via-transparent to-transparent rounded-full blur-[80px] opacity-12" />
+        
+        {/* Subtle vignette - elegant depth from edges (dark mode) */}
+        <div className="dark:block hidden absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/20" />
+        
+        {/* Subtle vignette - elegant depth from edges (light mode) */}
+        <div className="light:block hidden absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/5" />
+        
+        {/* Soft radial vignette - darker at edges (dark mode) */}
+        <div className="dark:block hidden absolute inset-0 bg-radial-vignette opacity-40" style={{
           backgroundImage: 'radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.3) 100%)'
         }} />
         
-        {/* Low-contrast gradient wash - subtle depth layers */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#00d9a5]/[0.02] via-transparent to-[#0a0a0a]/40 opacity-50" />
+        {/* Soft radial vignette - lighter at edges (light mode) */}
+        <div className="light:block hidden absolute inset-0 bg-radial-vignette opacity-15" style={{
+          backgroundImage: 'radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.08) 100%)'
+        }} />
+        
+        {/* Low-contrast gradient wash - subtle depth layers (dark mode) */}
+        <div className="dark:block hidden absolute inset-0 bg-gradient-to-b from-[#00d9a5]/[0.02] via-transparent to-[#0a0a0a]/40 opacity-50" />
+        
+        {/* Low-contrast gradient wash - subtle depth layers (light mode) */}
+        <div className="light:block hidden absolute inset-0 bg-gradient-to-b from-[#00a876]/[0.01] via-transparent to-white/20 opacity-30" />
       </div>
 
       {/* Main container */}
       <div className="w-full max-w-md relative z-10">
         {/* Header - Logo and Branding */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-[#00d9a5]/10 mb-6 shadow-lg shadow-[#00d9a5]/20 border border-[#00d9a5]/20">
-            <svg className="w-6 h-6 text-[#00d9a5]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-[#00d9a5]/10 dark:bg-[#00d9a5]/10 light:bg-[#00a876]/12 mb-6 shadow-lg shadow-[#00d9a5]/20 dark:shadow-[#00d9a5]/20 light:shadow-[#00a876]/10 border border-[#00d9a5]/20 dark:border-[#00d9a5]/20 light:border-[#00a876]/20">
+            <svg className="w-6 h-6 text-[#00d9a5] dark:text-[#00d9a5] light:text-[#00a876]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
           </div>
-          <h1 className="text-[28px] font-bold text-white mb-2 tracking-tight">Byunivert Mail</h1>
-          <p className="text-[14px] text-gray-500 font-medium">Une interface de messagerie moderne et sécurisée</p>
+          <h1 className="text-[28px] font-bold text-white dark:text-white light:text-[#1a1a1a] mb-2 tracking-tight">Byunivert Mail</h1>
+          <p className="text-[14px] text-gray-500 dark:text-gray-500 light:text-gray-600 font-medium">Une interface de messagerie moderne et sécurisée</p>
         </div>
 
         {/* Login card container */}
-        <div className="bg-[#0f0f0f] rounded-2xl border border-white/[0.08] p-8 shadow-2xl shadow-black/50">
+        <div className="bg-[#0f0f0f] dark:bg-[#0f0f0f] light:bg-white rounded-2xl border border-white/[0.08] dark:border-white/[0.08] light:border-[#00a876]/15 p-8 shadow-2xl shadow-black/50 dark:shadow-black/50 light:shadow-[#00a876]/8">
           <form onSubmit={handleLogin} className="space-y-6">
             {/* Error message */}
             {error && (

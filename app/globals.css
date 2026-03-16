@@ -65,6 +65,63 @@
   --chart-5: #009975;
 }
 
+/* Light Mode */
+.light {
+  /* Main background - warm off-white with subtle emerald undertone */
+  --background: #f8faf9;
+  --foreground: #1a1a1a;
+  
+  /* Card surfaces - clean white with very subtle tint */
+  --card: #ffffff;
+  --card-foreground: #1a1a1a;
+  
+  /* Popover */
+  --popover: #ffffff;
+  --popover-foreground: #1a1a1a;
+  
+  /* Primary - refined emerald accent */
+  --primary: #00a876;
+  --primary-foreground: #ffffff;
+  
+  /* Secondary - light neutral panels */
+  --secondary: #f3f5f4;
+  --secondary-foreground: #1a1a1a;
+  
+  /* Muted */
+  --muted: #e8ebe9;
+  --muted-foreground: #6b7370;
+  
+  /* Accent */
+  --accent: #00a876;
+  --accent-foreground: #ffffff;
+  
+  /* Destructive */
+  --destructive: #e74c3c;
+  --destructive-foreground: #ffffff;
+  
+  /* Borders and inputs */
+  --border: #e0e5e3;
+  --input: #f3f5f4;
+  --ring: #00a876;
+  
+  /* Sidebar */
+  --sidebar: #ffffff;
+  --sidebar-foreground: #1a1a1a;
+  --sidebar-primary: #00a876;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f3f5f4;
+  --sidebar-accent-foreground: #00a876;
+  --sidebar-border: #e0e5e3;
+  --sidebar-ring: #00a876;
+  
+  /* Charts */
+  --chart-1: #00a876;
+  --chart-2: #00925f;
+  --chart-3: #007d48;
+  --chart-4: #006831;
+  --chart-5: #00531a;
+}
+
 .dark {
   --background: #0d4d45;
   --foreground: #e8e8e8;
@@ -144,6 +201,10 @@
     @apply text-foreground;
     background: linear-gradient(135deg, #0a0a0a 0%, #0a1210 50%, #0a0a0a 100%);
   }
+  
+  .light body {
+    background: linear-gradient(135deg, #f8faf9 0%, #f3f8f6 50%, #f8faf9 100%);
+  }
 }
 
 /* Custom glow effects - enhanced for premium feel */
@@ -195,4 +256,37 @@
 
 .bg-surface-tertiary {
   background: linear-gradient(180deg, #0a1210 0%, #0a0a0a 100%);
+}
+
+/* Light Mode Surface Backgrounds */
+.light .bg-surface-primary {
+  background: linear-gradient(135deg, #f8faf9 0%, #f3f8f6 100%);
+}
+
+.light .bg-surface-secondary {
+  background: linear-gradient(135deg, #f8faf9 0%, #f3f6f4 100%);
+}
+
+.light .bg-surface-tertiary {
+  background: linear-gradient(180deg, #f3f8f6 0%, #f8faf9 100%);
+}
+
+/* Light mode glow effects */
+.light .glow-primary {
+  box-shadow: 0 0 24px rgba(0, 168, 118, 0.15), 0 0 48px rgba(0, 168, 118, 0.08), inset 0 0 12px rgba(0, 168, 118, 0.04);
+}
+
+.light .glow-primary-subtle {
+  box-shadow: 0 0 16px rgba(0, 168, 118, 0.12), inset 0 0 8px rgba(0, 168, 118, 0.02);
+}
+
+.light .glow-primary-intense {
+  box-shadow: 0 0 32px rgba(0, 168, 118, 0.2), 0 0 64px rgba(0, 168, 118, 0.1), inset 0 0 16px rgba(0, 168, 118, 0.05);
+}
+
+/* Light mode glass panel */
+.light .glass-panel {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 168, 118, 0.08);
 }
