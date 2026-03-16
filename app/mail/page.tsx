@@ -33,7 +33,7 @@ export default function MailPage() {
       </div>
       
       {/* Message List - 420px fixed with subtle atmospheric treatment */}
-      <div className="relative z-10 bg-surface-secondary border-l border-white/[0.05] dark:border-white/[0.05] light:border-[#00a876]/10">
+      <div className="relative z-10 bg-surface-secondary border-l border-white/[0.05] dark:border-white/[0.05] light:border-[#00956a]/10">
         <MessageList 
           onSelectMessage={setSelectedMessageId} 
           selectedMessageId={selectedMessageId}

@@ -246,44 +246,44 @@ export default function MessageList({ selectedMessageId, onSelectMessage, active
       </div>
 
       {/* Inner card container - with atmospheric gradient background */}
-      <div className="flex-1 m-3.5 mt-3 bg-gradient-to-b from-[#0a1210] to-[#0a0a0a] rounded-2xl flex flex-col overflow-hidden border border-[#00d9a5]/10 shadow-[0_0_30px_rgba(0,217,165,0.08)]">
+      <div className="flex-1 m-3.5 mt-3 dark:bg-gradient-to-b dark:from-[#0a1210] dark:to-[#0a0a0a] light:bg-gradient-to-b light:from-[#ffffff] light:to-[#faf8f5] rounded-2xl flex flex-col overflow-hidden dark:border dark:border-[#00d9a5]/10 light:border light:border-[#00956a]/10 dark:shadow-[0_0_30px_rgba(0,217,165,0.08)] light:shadow-[0_10px_30px_rgba(0,0,0,0.06)]">
         {/* Search bar */}
         <div className="px-5 pt-4 pb-3">
           <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-700" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 dark:text-gray-700 light:text-[#00956a]/50" />
             <input
               type="text"
               placeholder="Rechercher"
-              className="w-full h-10 pl-11 pr-4 bg-white/[0.03] rounded-lg border border-white/[0.08] text-[13px] text-white placeholder:text-gray-700 focus:outline-none focus:border-[#00d9a5]/50 focus:bg-white/[0.05] transition-colors"
+              className="w-full h-10 pl-11 pr-4 dark:bg-white/[0.03] dark:border dark:border-white/[0.08] light:bg-[#f8f7f6] light:border light:border-[#00956a]/15 rounded-lg text-[13px] dark:text-white light:text-[#1a1a1a] dark:placeholder:text-gray-700 light:placeholder:text-[#00956a]/50 focus:outline-none dark:focus:border-[#00d9a5]/50 light:focus:border-[#00956a]/50 dark:focus:bg-white/[0.05] light:focus:bg-white transition-colors"
             />
           </div>
         </div>
 
         {/* Mail / Subscription tabs - Premium styling */}
-        <div className="px-4 border-b border-white/[0.08] bg-white/[0.01]">
+        <div className="px-4 dark:border-b dark:border-white/[0.08] dark:bg-white/[0.01] light:border-b light:border-[#00956a]/10 light:bg-[#faf8f5]/50">
           <div className="flex">
             <button
               onClick={() => setActiveTab('mail')}
               className={`flex items-center gap-2 px-5 py-3 text-[12px] font-semibold transition-all relative ${
-                activeTab === 'mail' ? 'text-[#00d9a5]' : 'text-gray-700 hover:text-gray-500'
+                activeTab === 'mail' ? 'dark:text-[#00d9a5] light:text-[#00956a]' : 'dark:text-gray-700 dark:hover:text-gray-500 light:text-[#6b7370] light:hover:text-[#00956a]'
               }`}
             >
               <MailTabIcon />
               Courrier
               {activeTab === 'mail' && (
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#00d9a5]" />
+                <div className={`absolute bottom-0 left-0 right-0 h-0.5 dark:bg-[#00d9a5] light:bg-[#00956a]`} />
               )}
             </button>
             <button
               onClick={() => setActiveTab('subscription')}
               className={`flex items-center gap-2 px-5 py-3 text-[12px] font-semibold transition-all relative ${
-                activeTab === 'subscription' ? 'text-[#00d9a5]' : 'text-gray-700 hover:text-gray-500'
+                activeTab === 'subscription' ? 'dark:text-[#00d9a5] light:text-[#00956a]' : 'dark:text-gray-700 dark:hover:text-gray-500 light:text-[#6b7370] light:hover:text-[#00956a]'
               }`}
             >
               <SubscriptionIcon />
               Abonnements
               {activeTab === 'subscription' && (
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#00d9a5]" />
+                <div className={`absolute bottom-0 left-0 right-0 h-0.5 dark:bg-[#00d9a5] light:bg-[#00956a]`} />
               )}
             </button>
           </div>
@@ -294,11 +294,11 @@ export default function MessageList({ selectedMessageId, onSelectMessage, active
           {isLoading ? (
             <>
               {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="h-[92px] bg-[#0f0f0f] rounded-xl animate-pulse" />
+                <div key={i} className="h-[92px] dark:bg-[#0f0f0f] light:bg-white rounded-xl animate-pulse dark:border dark:border-white/[0.05] light:border light:border-[#00956a]/10" />
               ))}
             </>
           ) : messages.length === 0 ? (
-            <div className="flex items-center justify-center h-full text-gray-500 text-sm">
+            <div className="flex items-center justify-center h-full dark:text-gray-500 light:text-[#6b7370] text-sm">
               Pas de courrier
             </div>
           ) : (
@@ -310,32 +310,32 @@ export default function MessageList({ selectedMessageId, onSelectMessage, active
                   onClick={() => onSelectMessage(message.id)}
                   className={`p-3.5 cursor-pointer transition-all rounded-xl ${
                     isSelected
-                      ? 'bg-[#0d1f1c] border-2 border-[#00d9a5] shadow-[0_0_20px_rgba(0,217,165,0.15)]'
-                      : 'bg-[#0a0a0a] border-2 border-transparent hover:border-[#00d9a5]/20 hover:bg-[#0f0f0f]'
+                      ? 'dark:bg-[#0d1f1c] dark:border-2 dark:border-[#00d9a5] dark:shadow-[0_0_20px_rgba(0,217,165,0.15)] light:bg-[#f8f7f6] light:border-2 light:border-[#00956a] light:shadow-[0_0_16px_rgba(0,149,106,0.2)]'
+                      : 'dark:bg-[#0a0a0a] dark:border-2 dark:border-transparent dark:hover:border-[#00d9a5]/20 dark:hover:bg-[#0f0f0f] light:bg-white light:border-2 light:border-transparent light:hover:border-[#00956a]/20 light:hover:bg-[#faf8f5]'
                   }`}
                 >
                   <div className="flex items-start gap-3.5">
                     {/* Avatar - gradient teal circle with initial */}
-                    <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#00d9a5] to-[#008f70] flex items-center justify-center text-[13px] font-bold text-black flex-shrink-0 shadow-md shadow-[#00d9a5]/20 mt-0.5">
+                    <div className="w-11 h-11 rounded-full dark:bg-gradient-to-br dark:from-[#00d9a5] dark:to-[#008f70] light:bg-gradient-to-br light:from-[#00956a] light:to-[#007d54] flex items-center justify-center text-[13px] font-bold dark:text-black light:text-white flex-shrink-0 dark:shadow-md dark:shadow-[#00d9a5]/20 light:shadow-md light:shadow-[#00956a]/15 mt-0.5">
                       {message.from.name.charAt(0).toUpperCase()}
                     </div>
 
                     <div className="flex-1 min-w-0">
                       <div className="flex items-baseline justify-between gap-2 mb-0.5">
-                        <p className="text-[13.5px] font-semibold text-white truncate">
+                        <p className="text-[13.5px] font-semibold dark:text-white light:text-[#1a1a1a] truncate">
                           {message.from.name}
                         </p>
-                        <span className="text-[11px] text-gray-600 flex-shrink-0 whitespace-nowrap">
+                        <span className="text-[11px] dark:text-gray-600 light:text-[#6b7370] flex-shrink-0 whitespace-nowrap">
                           {new Date(message.date).toLocaleString('fr-FR', { 
                             hour: '2-digit',
                             minute: '2-digit'
                           })}
                         </span>
                       </div>
-                      <p className={`text-[12.5px] line-clamp-1 mb-1.5 ${!message.read ? 'font-semibold text-white' : 'text-gray-500 font-medium'}`}>
+                      <p className={`text-[12.5px] line-clamp-1 mb-1.5 ${!message.read ? 'font-semibold dark:text-white light:text-[#1a1a1a]' : 'dark:text-gray-500 light:text-[#6b7370] font-medium'}`}>
                         {message.subject}
                       </p>
-                      <p className="text-[12px] text-gray-600 line-clamp-2 leading-[1.4]">
+                      <p className="text-[12px] dark:text-gray-600 light:text-[#8b9295] line-clamp-2 leading-[1.4]">
                         {message.body.substring(0, 95)}...
                       </p>
                     </div>

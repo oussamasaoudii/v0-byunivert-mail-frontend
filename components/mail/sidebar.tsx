@@ -134,23 +134,23 @@ export default function MailSidebar({ activeFolder = 'inbox', onFolderChange }: 
       )}
 
       {/* Sidebar - exact 220px width like reference */}
-      <aside className={`fixed md:relative w-[220px] h-full bg-transparent flex flex-col z-40 transition-transform md:translate-x-0 border-r border-white/[0.05] ${
+      <aside className={`fixed md:relative w-[220px] h-full bg-transparent flex flex-col z-40 transition-transform md:translate-x-0 dark:border-r dark:border-white/[0.05] light:border-r light:border-[#00956a]/10 ${
         mobileOpen ? 'translate-x-0' : '-translate-x-full'
       }`}>
         
         {/* Logo - matches reference: teal rounded box with house icon */}
         <div className="px-4 py-5">
           <Link href="/mail" className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-[#00d9a5] flex items-center justify-center flex-shrink-0 shadow-md shadow-[#00d9a5]/30">
+            <div className="w-8 h-8 rounded-lg dark:bg-[#00d9a5] light:bg-[#00956a] flex items-center justify-center flex-shrink-0 dark:shadow-md dark:shadow-[#00d9a5]/30 light:shadow-sm light:shadow-[#00956a]/20">
               <DMailLogo />
             </div>
-            <span className="text-[14px] font-bold tracking-wide text-white">Byunivert Mail</span>
+            <span className="text-[14px] font-bold tracking-wide dark:text-white light:text-[#1a1a1a]">Byunivert Mail</span>
           </Link>
         </div>
 
         {/* Compose button - white pill, full width with padding */}
         <div className="px-3 pb-5">
-          <button className="w-full h-10 bg-white text-black font-semibold rounded-full text-[13px] hover:bg-gray-100 transition-colors shadow-sm">
+          <button className="w-full h-10 dark:bg-white dark:text-black light:bg-[#00956a] light:text-white font-semibold rounded-full text-[13px] dark:hover:bg-gray-100 light:hover:bg-[#007d54] transition-colors shadow-sm">
             Composer
           </button>
         </div>
@@ -167,15 +167,15 @@ export default function MailSidebar({ activeFolder = 'inbox', onFolderChange }: 
                   onClick={() => handleFolderChange(item.id)}
                   className={`w-full px-3 py-2 rounded-lg text-[12.5px] font-medium transition-all flex items-center gap-3 ${
                     isActive
-                      ? 'bg-[#00d9a5] text-black shadow-[0_0_20px_rgba(0,217,165,0.35)]'
-                      : 'text-gray-500 hover:text-gray-300 hover:bg-white/5'
+                      ? 'dark:bg-[#00d9a5] dark:text-black dark:shadow-[0_0_20px_rgba(0,217,165,0.35)] light:bg-[#00956a] light:text-white light:shadow-[0_0_16px_rgba(0,149,106,0.2)]'
+                      : 'dark:text-gray-500 dark:hover:text-gray-300 dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8'
                   }`}
                 >
                   <Icon />
                   <span className="flex-1 text-left">{item.label}</span>
                   {item.badge && (
                     <span className={`text-[10px] font-bold min-w-[18px] h-5 px-1.5 rounded-full flex items-center justify-center ${
-                      isActive ? 'bg-black/20 text-black' : 'bg-[#e74c3c] text-white'
+                      isActive ? 'dark:bg-black/20 dark:text-black light:bg-white/20 light:text-white' : 'dark:bg-[#e74c3c] dark:text-white light:bg-[#d63e38] light:text-white'
                     }`}>
                       {item.badge}
                     </span>
@@ -186,7 +186,7 @@ export default function MailSidebar({ activeFolder = 'inbox', onFolderChange }: 
           </div>
 
           {/* Divider */}
-          <div className="my-5 border-t border-white/[0.08]" />
+          <div className="my-5 dark:border-t dark:border-white/[0.08] light:border-t light:border-[#00956a]/10" />
 
           {/* Secondary nav - email features */}
           <div className="space-y-0.5">
@@ -195,7 +195,7 @@ export default function MailSidebar({ activeFolder = 'inbox', onFolderChange }: 
               return (
                 <Link key={item.id} href={`/mail/${item.id}`}>
                   <button
-                    className="w-full px-3 py-2 rounded-lg text-[12.5px] font-medium text-gray-600 hover:text-gray-400 hover:bg-white/5 transition-all flex items-center gap-3"
+                    className="w-full px-3 py-2 rounded-lg text-[12.5px] font-medium dark:text-gray-600 dark:hover:text-gray-400 dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 transition-all flex items-center gap-3"
                   >
                     <Icon />
                     <span>{item.label}</span>
