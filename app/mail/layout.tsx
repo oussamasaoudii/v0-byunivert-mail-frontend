@@ -8,7 +8,7 @@ export default function MailLayout({
   children: ReactNode
 }) {
   return (
-    <div className="flex h-screen bg-background overflow-hidden">
+    <div className="flex h-screen bg-[#0d4d45] overflow-hidden">
       {children}
     </div>
   )
