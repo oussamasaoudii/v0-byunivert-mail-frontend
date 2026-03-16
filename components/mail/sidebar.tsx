@@ -95,21 +95,20 @@ const SwapIcon = () => (
 )
 
 const MAIN_NAV = [
-  { id: 'inbox', label: 'Inbox', icon: InboxIcon, badge: null },
-  { id: 'starred', label: 'Starred', icon: StarIcon, badge: null },
-  { id: 'sent', label: 'Sent', icon: SendIcon, badge: null },
-  { id: 'drafts', label: 'Drafts', icon: DraftIcon, badge: null },
-  { id: 'spam', label: 'Spam', icon: SpamIcon, badge: 4 },
-  { id: 'trash', label: 'Trash', icon: TrashIcon, badge: null },
+  { id: 'inbox', label: 'Boîte de réception', icon: InboxIcon, badge: null },
+  { id: 'starred', label: 'Favoris', icon: StarIcon, badge: null },
+  { id: 'sent', label: 'Envoyés', icon: SendIcon, badge: null },
+  { id: 'drafts', label: 'Brouillons', icon: DraftIcon, badge: null },
+  { id: 'spam', label: 'Spam', icon: SpamIcon, badge: 2 },
+  { id: 'trash', label: 'Corbeille', icon: TrashIcon, badge: null },
 ]
 
 const SECONDARY_NAV = [
-  { id: 'earning', label: 'Earning', icon: CoinIcon },
-  { id: 'dex', label: 'DEX Tool', icon: ChartIcon },
-  { id: 'subscription', label: 'Subscription', icon: CrownIcon },
-  { id: 'nft', label: 'NFT Market', icon: DiamondIcon },
-  { id: 'domain', label: 'Domain', icon: GlobeIcon },
-  { id: 'swap', label: 'Swap DMAIL', icon: SwapIcon },
+  { id: 'contacts', label: 'Contacts', icon: DiamondIcon },
+  { id: 'labels', label: 'Étiquettes', icon: CrownIcon },
+  { id: 'rules', label: 'Règles', icon: ChartIcon },
+  { id: 'signatures', label: 'Signatures', icon: GlobeIcon },
+  { id: 'settings', label: 'Paramètres', icon: SwapIcon },
 ]
 
 export default function MailSidebar() {
@@ -141,14 +140,14 @@ export default function MailSidebar() {
             <div className="w-8 h-8 rounded-lg bg-[#00d9a5] flex items-center justify-center flex-shrink-0 shadow-md shadow-[#00d9a5]/40">
               <DMailLogo />
             </div>
-            <span className="text-[15px] font-bold tracking-wide text-white">DMAIL</span>
+            <span className="text-[15px] font-bold tracking-wide text-white">Byunivert Mail</span>
           </Link>
         </div>
 
         {/* Compose button - white pill, full width with padding */}
         <div className="px-4 pb-5">
           <button className="w-full h-11 bg-white text-black font-semibold rounded-full text-[14px] hover:bg-gray-100 transition-colors">
-            Compose
+            Composer
           </button>
         </div>
 

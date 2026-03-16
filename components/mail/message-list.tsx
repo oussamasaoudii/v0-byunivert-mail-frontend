@@ -38,21 +38,18 @@ export default function MessageList({ selectedMessageId, onSelectMessage }: Mess
   }, [])
 
   return (
-    <div className="flex flex-col bg-[#0c4a42] min-w-0 w-[420px] flex-shrink-0">
+    <div className="flex flex-col bg-[#0a0a0a] min-w-0 w-[420px] flex-shrink-0">
       {/* Top header bar - Inbox title + Contact/Chat/Wallet buttons */}
       <div className="h-[72px] px-6 flex items-center justify-between">
-        <h1 className="text-[22px] font-bold text-white">Inbox</h1>
+        <h1 className="text-[22px] font-bold text-white">Boîte de réception</h1>
         <div className="flex items-center gap-2.5">
           <button className="h-9 px-4 rounded-full border border-white/15 text-[13px] text-gray-300 hover:bg-white/5 transition-colors flex items-center gap-2 font-medium">
             <Users className="w-4 h-4 text-[#00d9a5]" />
-            Contact
+            Contacts
           </button>
           <button className="h-9 px-4 rounded-full border border-white/15 text-[13px] text-gray-300 hover:bg-white/5 transition-colors flex items-center gap-2 font-medium">
             <MessageSquare className="w-4 h-4" />
-            Chat
-          </button>
-          <button className="h-9 px-4 rounded-full border border-[#00d9a5] text-[13px] text-[#00d9a5] font-semibold hover:bg-[#00d9a5]/10 transition-colors">
-            0xa6a***3c7f
+            Discuter
           </button>
         </div>
       </div>
@@ -84,7 +81,7 @@ export default function MessageList({ selectedMessageId, onSelectMessage }: Mess
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600" />
             <input
               type="text"
-              placeholder="Search"
+              placeholder="Rechercher"
               className="w-full h-11 pl-11 pr-4 bg-transparent rounded-xl border border-white/[0.08] text-[14px] text-white placeholder:text-gray-600 focus:outline-none focus:border-[#00d9a5]/40 transition-colors"
             />
           </div>
@@ -100,7 +97,7 @@ export default function MessageList({ selectedMessageId, onSelectMessage }: Mess
               }`}
             >
               <MailTabIcon />
-              Mail
+              Courrier
               {activeTab === 'mail' && (
                 <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#00d9a5]" />
               )}
@@ -112,7 +109,7 @@ export default function MessageList({ selectedMessageId, onSelectMessage }: Mess
               }`}
             >
               <SubscriptionIcon />
-              Subscription
+              Abonnements
               {activeTab === 'subscription' && (
                 <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#00d9a5]" />
               )}
@@ -130,7 +127,7 @@ export default function MessageList({ selectedMessageId, onSelectMessage }: Mess
             </>
           ) : messages.length === 0 ? (
             <div className="flex items-center justify-center h-full text-gray-500 text-sm">
-              No emails
+              Pas de courrier
             </div>
           ) : (
             messages.map((message) => {
@@ -145,7 +142,7 @@ export default function MessageList({ selectedMessageId, onSelectMessage }: Mess
                       : 'bg-[#0c0c0c] border-2 border-transparent hover:border-[#00d9a5]/30 hover:bg-[#0f0f0f]'
                   }`}
                 >
-                  <div className="flex items-start gap-3">
+              <div className="flex items-start gap-3">
                     {/* Avatar - gradient teal circle with initial */}
                     <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#00d9a5] to-[#008f70] flex items-center justify-center text-[14px] font-bold text-black flex-shrink-0 shadow-md shadow-[#00d9a5]/20">
                       {message.from.name.charAt(0).toUpperCase()}

@@ -42,15 +42,15 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
 
   if (!messageId) {
     return (
-      <div className="hidden md:flex flex-1 items-center justify-center bg-[#0c4a42]">
-        <div className="text-center">
+      <div className="hidden md:flex flex-1 items-center justify-center bg-[#0a0a0a]">
+          <div className="text-center">
           <div className="w-20 h-20 rounded-full bg-[#00d9a5]/10 flex items-center justify-center mx-auto mb-4 border border-[#00d9a5]/20">
             <svg viewBox="0 0 24 24" fill="none" className="w-10 h-10 text-[#00d9a5]/50">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" strokeWidth="2"/>
               <polyline points="22,6 12,13 2,6" stroke="currentColor" strokeWidth="2"/>
             </svg>
           </div>
-          <p className="text-gray-500 text-[14px]">Select an email</p>
+          <p className="text-gray-500 text-[14px]">Sélectionner un courrier</p>
         </div>
       </div>
     )
@@ -58,7 +58,7 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
 
   if (isLoading) {
     return (
-      <div className="hidden md:flex flex-1 bg-[#0c4a42] p-4">
+      <div className="hidden md:flex flex-1 bg-[#0a0a0a] p-4">
         <div className="flex-1 bg-[#0a0a0a] rounded-2xl p-6 space-y-5">
           <div className="flex items-center gap-4">
             <div className="w-14 h-14 rounded-full bg-[#111] animate-pulse" />
@@ -75,14 +75,14 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
 
   if (!message) {
     return (
-      <div className="hidden md:flex flex-1 items-center justify-center bg-[#0c4a42] text-gray-500">
-        <p className="text-sm">Email not found</p>
+      <div className="hidden md:flex flex-1 items-center justify-center bg-[#0a0a0a] text-gray-500">
+        <p className="text-sm">Courrier introuvable</p>
       </div>
     )
   }
 
   return (
-    <div className="hidden md:flex flex-1 flex-col bg-[#0c4a42] p-4 pl-0 overflow-hidden">
+    <div className="hidden md:flex flex-1 flex-col bg-[#0a0a0a] p-4 pl-0 overflow-hidden">
       {/* Reading panel card - matches reference */}
       <div className="flex-1 bg-[#0a0a0a] rounded-2xl flex flex-col overflow-hidden">
         
@@ -115,7 +115,7 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
           {/* Attachments section - CRM themed cards matching reference */}
           {message.attachments.length > 0 && (
             <div className="mt-8">
-              <h3 className="text-[15px] font-bold text-white mb-4">Attachments</h3>
+              <h3 className="text-[15px] font-bold text-white mb-4">Pièces jointes</h3>
               <div className="grid grid-cols-2 gap-4">
                 {message.attachments.map((attachment, index) => (
                   <div
@@ -179,7 +179,7 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
             {/* Text input */}
             <div className="px-5 py-4">
               <textarea
-                placeholder="Write your message..."
+                placeholder="Rédiger votre message..."
                 value={replyText}
                 onChange={(e) => setReplyText(e.target.value)}
                 className="w-full bg-transparent text-white placeholder:text-gray-600 text-[14px] resize-none focus:outline-none min-h-[56px]"
@@ -233,7 +233,7 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
               {/* Send button - teal pill */}
               <button className="h-9 px-5 bg-[#00d9a5] text-black rounded-full text-[13px] font-semibold hover:bg-[#00d9a5]/90 transition-colors flex items-center gap-2 shadow-lg shadow-[#00d9a5]/25">
                 <Send className="w-4 h-4" />
-                Send
+                Envoyer
               </button>
             </div>
           </div>
