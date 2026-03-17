@@ -23,26 +23,29 @@ export default function MailPageClient({
   useEffect(() => {
     let active = true
 
-    getSession()
-      .then((session) => {
-        if (!active) {
-          return
-        }
-
-        if (!session.authenticated) {
+    const checkSession = async () => {
+      try {
+        const session = await getSession()
+        
+        if (!active) return
+        
+        if (!session || !session.authenticated) {
           setSessionState('anonymous')
           router.replace('/')
           return
         }
-
+        
         setSessionState('authenticated')
-      })
-      .catch(() => {
+      } catch (error) {
+        console.log('[v0] Session check failed:', error instanceof Error ? error.message : 'Unknown error')
         if (active) {
           setSessionState('anonymous')
           router.replace('/')
         }
-      })
+      }
+    }
+
+    checkSession()
 
     return () => {
       active = false
