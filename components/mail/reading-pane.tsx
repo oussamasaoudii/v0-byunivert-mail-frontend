@@ -47,9 +47,9 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
 
   if (!messageId) {
     return (
-      <div className="hidden md:flex flex-1 items-center justify-center bg-[#0a0a0a]">
-        <div className="text-center">
-          <div className="w-16 h-16 rounded-full bg-[#00d9a5]/8 flex items-center justify-center mx-auto mb-4 border border-[#00d9a5]/20">
+      <div className="hidden md:flex flex-1 items-center justify-center bg-[#0a0a0a]" suppressHydrationWarning>
+        <div className="text-center" suppressHydrationWarning>
+          <div className="w-16 h-16 rounded-full bg-[#00d9a5]/8 flex items-center justify-center mx-auto mb-4 border border-[#00d9a5]/20" suppressHydrationWarning>
             <svg viewBox="0 0 24 24" fill="none" className="w-8 h-8 text-[#00d9a5]/60">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" strokeWidth="2"/>
               <polyline points="22,6 12,13 2,6" stroke="currentColor" strokeWidth="2"/>
@@ -63,16 +63,16 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
 
   if (isLoading) {
     return (
-      <div className="hidden md:flex flex-1 bg-surface-tertiary p-4 overflow-hidden">
-        <div className="flex-1 bg-gradient-to-b from-[#0a1210] to-[#0a0a0a] rounded-xl p-6 space-y-6 border border-[#00d9a5]/10 shadow-[0_0_30px_rgba(0,217,165,0.08)]">
-          <div className="flex items-start gap-4">
+      <div className="hidden md:flex flex-1 bg-surface-tertiary p-4 overflow-hidden" suppressHydrationWarning>
+        <div className="flex-1 bg-gradient-to-b from-[#0a1210] to-[#0a0a0a] rounded-xl p-6 space-y-6 border border-[#00d9a5]/10 shadow-[0_0_30px_rgba(0,217,165,0.08)]" suppressHydrationWarning>
+          <div className="flex items-start gap-4" suppressHydrationWarning>
             <div className="w-12 h-12 rounded-full bg-white/5 animate-pulse flex-shrink-0" />
-            <div className="space-y-2 flex-1">
+            <div className="space-y-2 flex-1" suppressHydrationWarning>
               <div className="h-4 bg-white/5 rounded w-40 animate-pulse" />
               <div className="h-3 bg-white/5 rounded w-56 animate-pulse" />
             </div>
           </div>
-          <div className="space-y-3">
+          <div className="space-y-3" suppressHydrationWarning>
             <div className="h-3 bg-white/5 rounded w-full animate-pulse" />
             <div className="h-3 bg-white/5 rounded w-5/6 animate-pulse" />
             <div className="h-3 bg-white/5 rounded w-4/5 animate-pulse" />
@@ -84,14 +84,14 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
 
   if (!message) {
     return (
-      <div className="hidden md:flex flex-1 items-center justify-center bg-surface-tertiary text-gray-600">
+      <div className="hidden md:flex flex-1 items-center justify-center bg-surface-tertiary text-gray-600" suppressHydrationWarning>
         <p className="text-[13px]">Courrier introuvable</p>
       </div>
     )
   }
 
   return (
-    <div className="hidden md:flex flex-1 flex-col bg-surface-tertiary p-4 overflow-hidden">
+    <div className="hidden md:flex flex-1 flex-col bg-surface-tertiary p-4 overflow-hidden" suppressHydrationWarning>
       {/* Reading panel card - premium with sophisticated warm layering */}
       <div className="flex-1 dark:bg-gradient-to-b dark:from-[#0a1210] dark:to-[#0a0a0a] light:bg-gradient-to-br light:from-[#fefdfb] light:via-[#fcfaf7] light:to-[#f9f6f1] rounded-xl flex flex-col overflow-hidden dark:border dark:border-[#00d9a5]/10 light:border light:border-[#00956a]/6 dark:shadow-[0_0_30px_rgba(0,217,165,0.08)] light:shadow-[0_8px_32px_rgba(0,0,0,0.06)]">
         

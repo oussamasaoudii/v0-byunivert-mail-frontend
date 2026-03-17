@@ -92,9 +92,9 @@ export default function MessageList({ selectedMessageId, onSelectMessage, active
   }, [currentFolder])
 
   return (
-    <div className="flex flex-col dark:bg-[#0a0a0a] light:bg-[#faf8f5] min-w-0 w-[420px] flex-shrink-0">
+    <div className="flex flex-col dark:bg-[#0a0a0a] light:bg-[#faf8f5] min-w-0 w-[420px] flex-shrink-0" suppressHydrationWarning>
       {/* Top header bar - Folder title + Contact/Chat buttons */}
-      <div className="h-[68px] px-6 flex items-center justify-between dark:border-b dark:border-white/[0.08] light:border-b light:border-[#00956a]/8">
+      <div className="h-[68px] px-6 flex items-center justify-between dark:border-b dark:border-white/[0.08] light:border-b light:border-[#00956a]/8" suppressHydrationWarning>
         <h1 className="text-[20px] font-bold dark:text-white light:text-[#1a1a1a]">{folderTitles[currentFolder] || 'Boîte de réception'}</h1>
         <div className="flex items-center gap-2">
           <ContactsButton />
@@ -103,7 +103,7 @@ export default function MessageList({ selectedMessageId, onSelectMessage, active
       </div>
 
       {/* Action toolbar row - Premium styling with interactive elements */}
-      <div className="h-10 px-6 flex items-center gap-3 dark:border-b dark:border-white/[0.08] dark:bg-white/[0.01] light:border-b light:border-[#00956a]/8 light:bg-[#f9f7f4]/40">
+      <div className="h-10 px-6 flex items-center gap-3 dark:border-b dark:border-white/[0.08] dark:bg-white/[0.01] light:border-b light:border-[#00956a]/8 light:bg-[#f9f7f4]/40" suppressHydrationWarning>
         <input type="checkbox" className="w-4 h-4 rounded dark:border-gray-600 light:border-[#00956a]/30 dark:bg-transparent light:bg-white dark:accent-[#00d9a5] light:accent-[#00956a] cursor-pointer" />
         <button 
           onClick={() => window.location.reload()}
