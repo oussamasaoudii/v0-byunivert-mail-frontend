@@ -139,9 +139,9 @@ export default function MailSidebar({ activeFolder = 'inbox', onFolderChange }: 
       }`}>
         
         {/* Logo - matches reference: teal rounded box with house icon */}
-        <div className="px-4 py-5">
+        <div className="px-4 py-5" suppressHydrationWarning>
           <Link href="/mail" className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg dark:bg-[#00d9a5] light:bg-[#00956a] flex items-center justify-center flex-shrink-0 dark:shadow-md dark:shadow-[#00d9a5]/30 light:shadow-sm light:shadow-[#00956a]/20">
+            <div className="w-8 h-8 rounded-lg dark:bg-[#00d9a5] light:bg-[#00956a] flex items-center justify-center flex-shrink-0 dark:shadow-md dark:shadow-[#00d9a5]/30 light:shadow-sm light:shadow-[#00956a]/20" suppressHydrationWarning>
               <DMailLogo />
             </div>
             <span className="text-[14px] font-bold tracking-wide dark:text-white light:text-[#1a1a1a]">Byunivert Mail</span>
@@ -149,14 +149,14 @@ export default function MailSidebar({ activeFolder = 'inbox', onFolderChange }: 
         </div>
 
         {/* Compose button - white pill, full width with padding */}
-        <div className="px-3 pb-5">
+        <div className="px-3 pb-5" suppressHydrationWarning>
           <button className="w-full h-10 dark:bg-white dark:text-black light:bg-[#00956a] light:text-white font-semibold rounded-full text-[13px] dark:hover:bg-gray-100 light:hover:bg-[#007d54] transition-colors shadow-sm">
             Composer
           </button>
         </div>
 
         {/* Main nav - primary folders */}
-        <nav className="flex-1 overflow-y-auto px-2.5">
+        <nav className="flex-1 overflow-y-auto px-2.5" suppressHydrationWarning>
           <div className="space-y-0.5">
             {MAIN_NAV.map((item) => {
               const isActive = activeFolder === item.id

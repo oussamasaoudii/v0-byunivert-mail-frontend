@@ -47,9 +47,9 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
 
   if (!messageId) {
     return (
-      <div className="hidden md:flex flex-1 items-center justify-center bg-[#0a0a0a]">
-        <div className="text-center">
-          <div className="w-16 h-16 rounded-full bg-[#00d9a5]/8 flex items-center justify-center mx-auto mb-4 border border-[#00d9a5]/20">
+      <div className="hidden md:flex flex-1 items-center justify-center bg-[#0a0a0a]" suppressHydrationWarning>
+        <div className="text-center" suppressHydrationWarning>
+          <div className="w-16 h-16 rounded-full bg-[#00d9a5]/8 flex items-center justify-center mx-auto mb-4 border border-[#00d9a5]/20" suppressHydrationWarning>
             <svg viewBox="0 0 24 24" fill="none" className="w-8 h-8 text-[#00d9a5]/60">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" strokeWidth="2"/>
               <polyline points="22,6 12,13 2,6" stroke="currentColor" strokeWidth="2"/>
@@ -63,16 +63,16 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
 
   if (isLoading) {
     return (
-      <div className="hidden md:flex flex-1 bg-surface-tertiary p-4 overflow-hidden">
-        <div className="flex-1 bg-gradient-to-b from-[#0a1210] to-[#0a0a0a] rounded-xl p-6 space-y-6 border border-[#00d9a5]/10 shadow-[0_0_30px_rgba(0,217,165,0.08)]">
-          <div className="flex items-start gap-4">
+      <div className="hidden md:flex flex-1 bg-surface-tertiary p-4 overflow-hidden" suppressHydrationWarning>
+        <div className="flex-1 bg-gradient-to-b from-[#0a1210] to-[#0a0a0a] rounded-xl p-6 space-y-6 border border-[#00d9a5]/10 shadow-[0_0_30px_rgba(0,217,165,0.08)]" suppressHydrationWarning>
+          <div className="flex items-start gap-4" suppressHydrationWarning>
             <div className="w-12 h-12 rounded-full bg-white/5 animate-pulse flex-shrink-0" />
-            <div className="space-y-2 flex-1">
+            <div className="space-y-2 flex-1" suppressHydrationWarning>
               <div className="h-4 bg-white/5 rounded w-40 animate-pulse" />
               <div className="h-3 bg-white/5 rounded w-56 animate-pulse" />
             </div>
           </div>
-          <div className="space-y-3">
+          <div className="space-y-3" suppressHydrationWarning>
             <div className="h-3 bg-white/5 rounded w-full animate-pulse" />
             <div className="h-3 bg-white/5 rounded w-5/6 animate-pulse" />
             <div className="h-3 bg-white/5 rounded w-4/5 animate-pulse" />
@@ -84,19 +84,19 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
 
   if (!message) {
     return (
-      <div className="hidden md:flex flex-1 items-center justify-center bg-surface-tertiary text-gray-600">
+      <div className="hidden md:flex flex-1 items-center justify-center bg-surface-tertiary text-gray-600" suppressHydrationWarning>
         <p className="text-[13px]">Courrier introuvable</p>
       </div>
     )
   }
 
   return (
-    <div className="hidden md:flex flex-1 flex-col bg-surface-tertiary p-4 overflow-hidden">
-      {/* Reading panel card - premium with soft warm tones instead of stark white */}
-      <div className="flex-1 dark:bg-gradient-to-b dark:from-[#0a1210] dark:to-[#0a0a0a] light:bg-gradient-to-b light:from-[#fdfcfb] light:to-[#faf8f5] rounded-xl flex flex-col overflow-hidden dark:border dark:border-[#00d9a5]/10 light:border light:border-[#00956a]/8 dark:shadow-[0_0_30px_rgba(0,217,165,0.08)] light:shadow-[0_10px_30px_rgba(0,0,0,0.04)]">
+    <div className="hidden md:flex flex-1 flex-col bg-surface-tertiary p-4 overflow-hidden" suppressHydrationWarning>
+      {/* Reading panel card - premium with sophisticated warm layering */}
+      <div className="flex-1 dark:bg-gradient-to-b dark:from-[#0a1210] dark:to-[#0a0a0a] light:bg-gradient-to-br light:from-[#fefdfb] light:via-[#fcfaf7] light:to-[#f9f6f1] rounded-xl flex flex-col overflow-hidden dark:border dark:border-[#00d9a5]/10 light:border light:border-[#00956a]/6 dark:shadow-[0_0_30px_rgba(0,217,165,0.08)] light:shadow-[0_8px_32px_rgba(0,0,0,0.06)]">
         
-        {/* Sender header */}
-        <div className="px-6 py-5 dark:border-b dark:border-[#00d9a5]/10 dark:bg-gradient-to-r dark:from-[#0a1210] dark:to-[#0a0a0a] light:border-b light:border-[#00956a]/8 light:bg-gradient-to-r light:from-[#fdfcfb] light:to-[#faf8f5]">
+        {/* Sender header - premium warm gradient */}
+        <div className="px-6 py-5 dark:border-b dark:border-[#00d9a5]/10 dark:bg-gradient-to-r dark:from-[#0a1210] dark:to-[#0a0a0a] light:border-b light:border-[#00956a]/5 light:bg-gradient-to-r light:from-[#fefdfb] light:to-[#fbf9f6]">
           <div className="flex items-start justify-between gap-4">
             <div className="flex items-start gap-4">
               {/* Avatar with gradient */}
@@ -172,25 +172,25 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
           </div>
         </div>
 
-        {/* Email body content - with warm layered atmospheric background */}
-        <div className="flex-1 overflow-y-auto px-6 py-6 space-y-6 relative dark:bg-gradient-to-b dark:from-[#0a1a18] dark:via-[#0a0a0a] dark:to-[#0a0a0a] light:bg-gradient-to-b light:from-[#fdfcfb] light:via-[#faf8f5] light:to-[#f9f7f4]">
-          {/* Atmospheric depth layers - warm and subtle for light mode */}
+        {/* Email body content - premium layered atmosphere */}
+        <div className="flex-1 overflow-y-auto px-6 py-6 space-y-6 relative dark:bg-gradient-to-b dark:from-[#0a1a18] dark:via-[#0a0a0a] dark:to-[#0a0a0a] light:bg-gradient-to-b light:from-[#fefdfb] light:via-[#fcfaf7] light:to-[#faf8f5]">
+          {/* Atmospheric depth layers */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
             <div className="dark:block light:hidden absolute top-0 left-1/3 w-96 h-96 bg-[#00d9a5]/5 rounded-full blur-3xl opacity-20" />
             <div className="dark:block light:hidden absolute bottom-1/4 right-1/4 w-72 h-72 bg-[#00d9a5]/3 rounded-full blur-3xl opacity-15" />
             <div className="dark:block light:hidden absolute inset-0 bg-gradient-to-b from-[#00d9a5]/[0.02] via-transparent to-transparent" />
             
-            {/* Light mode: soft mint undertones, very subtle and premium */}
-            <div className="light:block dark:hidden absolute top-0 left-1/3 w-96 h-96 bg-[#00956a]/3 rounded-full blur-3xl opacity-8" />
-            <div className="light:block dark:hidden absolute bottom-1/4 right-1/4 w-72 h-72 bg-[#00956a]/2 rounded-full blur-3xl opacity-6" />
-            <div className="light:block dark:hidden absolute inset-0 bg-gradient-to-b from-[#00956a]/[0.005] via-transparent to-transparent" />
+            {/* Light mode: sophisticated warm undertones with mint accents */}
+            <div className="light:block dark:hidden absolute top-0 left-1/3 w-96 h-96 bg-[#f4e5d3]/30 rounded-full blur-3xl opacity-40" />
+            <div className="light:block dark:hidden absolute bottom-1/4 right-1/4 w-72 h-72 bg-[#e8d5c4]/20 rounded-full blur-3xl opacity-30" />
+            <div className="light:block dark:hidden absolute top-1/3 right-0 w-80 h-80 bg-[#00956a]/6 rounded-full blur-3xl opacity-8" />
             
-            {/* Warm layered depth for light mode */}
-            <div className="light:block dark:hidden absolute inset-0 bg-gradient-to-b from-[#fdfcfb]/50 via-transparent to-[#f7f5f1]/30" />
+            {/* Premium layered warm depth */}
+            <div className="light:block dark:hidden absolute inset-0 bg-gradient-to-br from-transparent via-[#fdf9f3]/20 to-transparent" />
           </div>
 
-          {/* Content - relative positioning to appear above background */}
-          <div className="max-w-3xl space-y-4 relative z-10">
+          {/* Content - relative positioning with pointer-events enabled */}
+          <div className="max-w-3xl space-y-4 relative z-10 pointer-events-auto">
             <p className="dark:text-white light:text-[#1a1a1a] font-medium text-[14px]">Hi, Shiru</p>
             <div className="dark:text-gray-300 light:text-[#2a2a2a] text-[13.5px] leading-relaxed space-y-3 whitespace-pre-wrap">
               {message.body}
@@ -256,9 +256,9 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
           )}
         </div>
 
-        {/* Quick reply composer - soft warm surfaces */}
-        <div className="dark:border-t dark:border-white/[0.08] light:border-t light:border-[#00956a]/8 p-4 dark:bg-white/[0.01] light:bg-[#faf8f5]/60">
-          <div className="dark:bg-[#0c0c0c] light:bg-[#fdfcfb] rounded-lg dark:border dark:border-white/[0.08] light:border light:border-[#00956a]/10 overflow-hidden dark:shadow-sm light:shadow-sm">
+        {/* Quick reply composer - premium warm surfaces */}
+        <div className="dark:border-t dark:border-white/[0.08] light:border-t light:border-[#00956a]/5 p-4 dark:bg-white/[0.01] light:bg-gradient-to-b light:from-[#fbf9f6] light:to-[#f9f6f1]">
+          <div className="dark:bg-[#0c0c0c] light:bg-gradient-to-br light:from-[#fefdfb] light:to-[#fbf9f6] rounded-lg dark:border dark:border-white/[0.08] light:border light:border-[#00956a]/6 overflow-hidden dark:shadow-sm light:shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
             {/* Text input */}
             <div className="px-5 py-4">
               <textarea
