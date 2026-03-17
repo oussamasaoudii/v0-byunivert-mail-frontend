@@ -67,28 +67,28 @@
 
 /* Light Mode - Premium, Refined, Elegant */
 .light {
-  /* Main background - soft warm ivory with subtle depth */
-  --background: #f5f3f0;
+  /* Main background - warm ivory with subtle depth */
+  --background: #f9f7f4;
   --foreground: #1a1a1a;
   
-  /* Card surfaces - soft warm white with subtle undertone, NOT stark white */
-  --card: #fdfcfb;
+  /* Card surfaces - soft off-white with warm undertone */
+  --card: #fefdfb;
   --card-foreground: #1a1a1a;
   
   /* Popover - soft elevated surfaces */
-  --popover: #fdfcfb;
+  --popover: #fefdfb;
   --popover-foreground: #1a1a1a;
   
   /* Primary - refined, controlled emerald accent */
   --primary: #00956a;
   --primary-foreground: #ffffff;
   
-  /* Secondary - warm soft neutral panels with mint undertone */
-  --secondary: #f3f1ee;
+  /* Secondary - warm soft neutral panels */
+  --secondary: #fbf9f6;
   --secondary-foreground: #1a1a1a;
   
   /* Muted - subtle warm neutrals for secondary content */
-  --muted: #e8e5e0;
+  --muted: #ede8e2;
   --muted-foreground: #7a7a77;
   
   /* Accent - elegant emerald, restrained */
@@ -99,19 +99,19 @@
   --destructive: #d63e38;
   --destructive-foreground: #ffffff;
   
-  /* Borders - soft warm outlines with subtle emerald tint */
-  --border: #e0dbd6;
-  --input: #f9f7f4;
+  /* Borders - soft warm outlines */
+  --border: #e8e3dd;
+  --input: #fbf9f6;
   --ring: #00956a;
   
   /* Sidebar - warm white base */
-  --sidebar: #fdfcfb;
+  --sidebar: #fefdfb;
   --sidebar-foreground: #1a1a1a;
   --sidebar-primary: #00956a;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f3f1ee;
+  --sidebar-accent: #fbf9f6;
   --sidebar-accent-foreground: #00956a;
-  --sidebar-border: #e0dbd6;
+  --sidebar-border: #e8e3dd;
   --sidebar-ring: #00956a;
   
   /* Charts */
@@ -206,9 +206,9 @@
     background: linear-gradient(135deg, #0a0a0a 0%, #0a1210 50%, #0a0a0a 100%);
   }
   
-  /* Light mode background - warm ivory with subtle depth */
+  /* Light mode background - premium warm ivory with sophisticated depth */
   body.light {
-    background: linear-gradient(135deg, #faf9f8 0%, #f4f2f0 50%, #faf9f8 100%);
+    background: linear-gradient(135deg, #fdfbf9 0%, #f7f3ed 50%, #fdfbf9 100%);
   }
 }
 
@@ -285,15 +285,15 @@
   background: linear-gradient(180deg, #0a1210 0%, #0a0a0a 100%);
 }
 
-/* Light Mode Surface Backgrounds - Premium, Refined, Layered */
+/* Light Mode Surface Backgrounds - Premium, Refined, Atmospheric */
 .light .bg-surface-primary {
-  background: linear-gradient(135deg, #fdfcfb 0%, #f9f7f4 100%);
+  background: linear-gradient(135deg, #fefdfb 0%, #f9f6f1 100%);
 }
 
 .light .bg-surface-secondary {
-  background: linear-gradient(135deg, #fdfcfb 0%, #f7f5f1 100%);
+  background: linear-gradient(135deg, #fefdfb 0%, #f7f3ed 100%);
 }
 
 .light .bg-surface-tertiary {
-  background: linear-gradient(180deg, #faf8f5 0%, #fdfcfb 100%);
+  background: linear-gradient(180deg, #fbf9f6 0%, #fefdfb 100%);
 }

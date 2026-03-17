@@ -11,7 +11,7 @@ export default function MailPage() {
   const [activeFolder, setActiveFolder] = useState('inbox')
 
   return (
-    <div className="flex h-screen w-full dark:bg-[#0a0a0a] light:bg-[#f5f3f0] overflow-hidden relative">
+    <div className="flex h-screen w-full dark:bg-[#0a0a0a] light:bg-[#f9f7f4] overflow-hidden relative">
       {/* Theme Toggle - top right */}
       <div className="absolute top-4 right-4 z-50">
         <ThemeToggle />
@@ -27,13 +27,13 @@ export default function MailPage() {
         backgroundImage: 'radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.05) 100%)'
       }} />
 
-      {/* Sidebar - 220px fixed with atmospheric background */}
-      <div className="relative z-10 bg-surface-primary dark:bg-transparent light:bg-[#fdfcfb]">
+      {/* Sidebar - premium warm tone */}
+      <div className="relative z-10 bg-surface-primary dark:bg-transparent light:bg-[#fefdfb]">
         <MailSidebar activeFolder={activeFolder} onFolderChange={setActiveFolder} />
       </div>
       
-      {/* Message List - 420px fixed with subtle atmospheric treatment */}
-      <div className="relative z-10 bg-surface-secondary dark:bg-transparent light:bg-[#faf8f5] border-l dark:border-white/[0.05] light:border-[#00956a]/10">
+      {/* Message List - subtle warm gradient */}
+      <div className="relative z-10 bg-surface-secondary dark:bg-transparent light:bg-[#fbf9f6] border-l dark:border-white/[0.05] light:border-[#00956a]/5">
         <MessageList 
           onSelectMessage={setSelectedMessageId} 
           selectedMessageId={selectedMessageId}
@@ -41,8 +41,8 @@ export default function MailPage() {
         />
       </div>
       
-      {/* Reading Pane - fills remaining space with atmospheric depth */}
-      <div className="relative z-10 flex-1 bg-surface-tertiary dark:bg-transparent light:bg-[#f5f3f0] overflow-hidden">
+      {/* Reading Pane - premium atmospheric background */}
+      <div className="relative z-10 flex-1 bg-surface-tertiary dark:bg-transparent light:bg-[#f9f7f4] overflow-hidden">
         <ReadingPane messageId={selectedMessageId} />
       </div>
     </div>
