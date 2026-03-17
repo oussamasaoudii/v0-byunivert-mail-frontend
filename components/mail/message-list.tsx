@@ -297,8 +297,8 @@ export default function MessageList({ selectedMessageId, onSelectMessage, active
           </div>
         </div>
 
-        {/* Message list with scroll */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-2">
+        {/* Message list with scroll - always visible scrollbar */}
+        <div className="flex-1 overflow-y-scroll p-4 space-y-2">
           {isLoading ? (
             <>
               {[1, 2, 3, 4].map((i) => (

@@ -155,8 +155,8 @@ export default function MailSidebar({ activeFolder = 'inbox', onFolderChange }: 
           </button>
         </div>
 
-        {/* Main nav - primary folders */}
-        <nav className="flex-1 overflow-y-auto px-2.5" suppressHydrationWarning>
+        {/* Main nav - primary folders - always visible scrollbar */}
+        <nav className="flex-1 overflow-y-scroll px-2.5" suppressHydrationWarning>
           <div className="space-y-0.5">
             {MAIN_NAV.map((item) => {
               const isActive = activeFolder === item.id
