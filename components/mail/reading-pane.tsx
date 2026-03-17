@@ -92,22 +92,22 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
 
   return (
     <div className="hidden md:flex flex-1 flex-col bg-surface-tertiary p-4 overflow-hidden">
-      {/* Reading panel card - premium dark glass with atmospheric gradient */}
-      <div className="flex-1 bg-gradient-to-b from-[#0a1210] to-[#0a0a0a] rounded-xl flex flex-col overflow-hidden border border-[#00d9a5]/10 shadow-[0_0_30px_rgba(0,217,165,0.08)]">
+      {/* Reading panel card - premium with soft warm tones instead of stark white */}
+      <div className="flex-1 dark:bg-gradient-to-b dark:from-[#0a1210] dark:to-[#0a0a0a] light:bg-gradient-to-b light:from-[#fdfcfb] light:to-[#faf8f5] rounded-xl flex flex-col overflow-hidden dark:border dark:border-[#00d9a5]/10 light:border light:border-[#00956a]/8 dark:shadow-[0_0_30px_rgba(0,217,165,0.08)] light:shadow-[0_10px_30px_rgba(0,0,0,0.04)]">
         
         {/* Sender header */}
-        <div className="px-6 py-5 border-b border-[#00d9a5]/10 bg-gradient-to-r from-[#0a1210] to-[#0a0a0a]">
+        <div className="px-6 py-5 dark:border-b dark:border-[#00d9a5]/10 dark:bg-gradient-to-r dark:from-[#0a1210] dark:to-[#0a0a0a] light:border-b light:border-[#00956a]/8 light:bg-gradient-to-r light:from-[#fdfcfb] light:to-[#faf8f5]">
           <div className="flex items-start justify-between gap-4">
             <div className="flex items-start gap-4">
               {/* Avatar with gradient */}
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#00d9a5] to-[#008f70] flex items-center justify-center flex-shrink-0 shadow-lg shadow-[#00d9a5]/20 text-[16px] font-bold text-black mt-0.5">
+              <div className="w-12 h-12 rounded-full dark:bg-gradient-to-br dark:from-[#00d9a5] dark:to-[#008f70] light:bg-gradient-to-br light:from-[#00956a] light:to-[#007d54] flex items-center justify-center flex-shrink-0 dark:shadow-lg dark:shadow-[#00d9a5]/20 light:shadow-lg light:shadow-[#00956a]/15 text-[16px] font-bold dark:text-black light:text-white mt-0.5">
                 {message.from.name.charAt(0).toUpperCase()}
               </div>
               
               <div className="flex-1 min-w-0 pt-0.5">
-                <h2 className="text-[14px] font-semibold text-white leading-snug">{message.from.name}</h2>
-                <p className="text-[12px] text-[#00d9a5] mt-0.5 font-medium">{message.from.email}</p>
-                <p className="text-[11px] text-gray-600 mt-1.5">
+                <h2 className="text-[14px] font-semibold dark:text-white light:text-[#1a1a1a] leading-snug">{message.from.name}</h2>
+                <p className="text-[12px] dark:text-[#00d9a5] light:text-[#00956a] mt-0.5 font-medium">{message.from.email}</p>
+                <p className="text-[11px] dark:text-gray-600 light:text-[#6b7370] mt-1.5">
                   {new Date(message.date).toLocaleString('fr-FR', { 
                     year: 'numeric',
                     month: 'short', 
@@ -125,8 +125,8 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
                 onClick={() => setIsStarred(!isStarred)}
                 className={`p-2 rounded-lg transition-all ${
                   isStarred 
-                    ? 'text-[#00d9a5] bg-[#00d9a5]/10 hover:bg-[#00d9a5]/15' 
-                    : 'text-gray-700 hover:text-gray-500 hover:bg-white/5'
+                    ? 'dark:text-[#00d9a5] dark:bg-[#00d9a5]/10 dark:hover:bg-[#00d9a5]/15 light:text-[#00956a] light:bg-[#00956a]/10 light:hover:bg-[#00956a]/15' 
+                    : 'dark:text-gray-700 dark:hover:text-gray-500 dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8'
                 }`}
                 title={isStarred ? 'Retirer des favoris' : 'Ajouter aux favoris'}
               >
@@ -143,7 +143,7 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
               {/* Dropdown menu button */}
               <button 
                 onClick={() => setMenuOpen(!menuOpen)}
-                className="p-2 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded-lg transition-colors relative"
+                className="p-2 dark:text-gray-700 dark:hover:text-gray-500 dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 rounded-lg transition-colors relative"
                 title="Plus d'actions"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -153,17 +153,17 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
 
               {/* Dropdown menu - actions */}
               {menuOpen && (
-                <div className="absolute right-0 top-full mt-2 bg-[#0d0d0d] rounded-lg border border-white/[0.08] shadow-xl overflow-hidden z-50 min-w-[180px]">
-                  <button className="w-full px-4 py-2.5 text-[12px] text-gray-400 hover:text-white hover:bg-white/5 transition-colors text-left">
+                <div className="absolute right-0 top-full mt-2 dark:bg-[#0d0d0d] light:bg-white rounded-lg dark:border dark:border-white/[0.08] light:border light:border-[#00956a]/10 dark:shadow-xl light:shadow-lg overflow-hidden z-50 min-w-[180px]">
+                  <button className="w-full px-4 py-2.5 text-[12px] dark:text-gray-400 dark:hover:text-white dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 transition-colors text-left">
                     Marquer comme lu
                   </button>
-                  <button className="w-full px-4 py-2.5 text-[12px] text-gray-400 hover:text-white hover:bg-white/5 transition-colors text-left">
+                  <button className="w-full px-4 py-2.5 text-[12px] dark:text-gray-400 dark:hover:text-white dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 transition-colors text-left">
                     Archiver
                   </button>
-                  <button className="w-full px-4 py-2.5 text-[12px] text-gray-400 hover:text-white hover:bg-white/5 transition-colors text-left">
+                  <button className="w-full px-4 py-2.5 text-[12px] dark:text-gray-400 dark:hover:text-white dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 transition-colors text-left">
                     Mettre en spam
                   </button>
-                  <button className="w-full px-4 py-2.5 text-[12px] text-gray-400 hover:text-white hover:bg-white/5 transition-colors text-left border-t border-white/[0.08]">
+                  <button className="w-full px-4 py-2.5 text-[12px] dark:text-gray-400 dark:hover:text-white dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 transition-colors text-left dark:border-t dark:border-white/[0.08] light:border-t light:border-[#00956a]/10">
                     Supprimer
                   </button>
                 </div>
@@ -172,44 +172,52 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
           </div>
         </div>
 
-        {/* Email body content - with atmospheric background */}
-        <div className="flex-1 overflow-y-auto px-6 py-6 space-y-6 relative bg-gradient-to-b from-[#0a1a18] via-[#0a0a0a] to-[#0a0a0a]">
-          {/* Atmospheric neon glow background */}
+        {/* Email body content - with warm layered atmospheric background */}
+        <div className="flex-1 overflow-y-auto px-6 py-6 space-y-6 relative dark:bg-gradient-to-b dark:from-[#0a1a18] dark:via-[#0a0a0a] dark:to-[#0a0a0a] light:bg-gradient-to-b light:from-[#fdfcfb] light:via-[#faf8f5] light:to-[#f9f7f4]">
+          {/* Atmospheric depth layers - warm and subtle for light mode */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <div className="absolute top-0 left-1/3 w-96 h-96 bg-[#00d9a5]/5 rounded-full blur-3xl opacity-20" />
-            <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-[#00d9a5]/3 rounded-full blur-3xl opacity-15" />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#00d9a5]/[0.02] via-transparent to-transparent" />
+            <div className="dark:block light:hidden absolute top-0 left-1/3 w-96 h-96 bg-[#00d9a5]/5 rounded-full blur-3xl opacity-20" />
+            <div className="dark:block light:hidden absolute bottom-1/4 right-1/4 w-72 h-72 bg-[#00d9a5]/3 rounded-full blur-3xl opacity-15" />
+            <div className="dark:block light:hidden absolute inset-0 bg-gradient-to-b from-[#00d9a5]/[0.02] via-transparent to-transparent" />
+            
+            {/* Light mode: soft mint undertones, very subtle and premium */}
+            <div className="light:block dark:hidden absolute top-0 left-1/3 w-96 h-96 bg-[#00956a]/3 rounded-full blur-3xl opacity-8" />
+            <div className="light:block dark:hidden absolute bottom-1/4 right-1/4 w-72 h-72 bg-[#00956a]/2 rounded-full blur-3xl opacity-6" />
+            <div className="light:block dark:hidden absolute inset-0 bg-gradient-to-b from-[#00956a]/[0.005] via-transparent to-transparent" />
+            
+            {/* Warm layered depth for light mode */}
+            <div className="light:block dark:hidden absolute inset-0 bg-gradient-to-b from-[#fdfcfb]/50 via-transparent to-[#f7f5f1]/30" />
           </div>
 
           {/* Content - relative positioning to appear above background */}
           <div className="max-w-3xl space-y-4 relative z-10">
-            <p className="text-white font-medium text-[14px]">Hi, Shiru</p>
-            <div className="text-gray-300 text-[13.5px] leading-relaxed space-y-3 whitespace-pre-wrap">
+            <p className="dark:text-white light:text-[#1a1a1a] font-medium text-[14px]">Hi, Shiru</p>
+            <div className="dark:text-gray-300 light:text-[#2a2a2a] text-[13.5px] leading-relaxed space-y-3 whitespace-pre-wrap">
               {message.body}
             </div>
             
-            <div className="pt-3 mt-6 border-t border-white/[0.08] space-y-1.5">
-              <p className="text-gray-500 text-[13px]">Meilleures salutations,</p>
-              <p className="text-white font-medium text-[13px]">{message.from.name}</p>
+            <div className="pt-3 mt-6 dark:border-t dark:border-white/[0.08] light:border-t light:border-[#00956a]/10 space-y-1.5">
+              <p className="dark:text-gray-500 light:text-[#6b7370] text-[13px]">Meilleures salutations,</p>
+              <p className="dark:text-white light:text-[#1a1a1a] font-medium text-[13px]">{message.from.name}</p>
             </div>
           </div>
 
           {/* Attachments section - premium cards */}
           {message.attachments.length > 0 && (
-            <div className="mt-8 pt-6 border-t border-white/[0.08] relative z-10">
-              <h3 className="text-[13px] font-semibold text-white mb-4">Pièces jointes ({message.attachments.length})</h3>
+            <div className="mt-8 pt-6 dark:border-t dark:border-white/[0.08] light:border-t light:border-[#00956a]/10 relative z-10">
+              <h3 className="text-[13px] font-semibold dark:text-white light:text-[#1a1a1a] mb-4">Pièces jointes ({message.attachments.length})</h3>
               <div className="grid grid-cols-2 gap-3">
                 {message.attachments.map((attachment) => (
                   <div
                     key={attachment.id}
-                    className="relative rounded-lg overflow-hidden bg-gradient-to-br from-[#0a3d35] via-[#0c3b33] to-[#082b25] border border-white/[0.08] hover:border-[#00d9a5]/40 transition-all cursor-pointer group h-[130px] shadow-sm"
+                    className="relative rounded-lg overflow-hidden dark:bg-gradient-to-br dark:from-[#0a3d35] dark:via-[#0c3b33] dark:to-[#082b25] light:bg-gradient-to-br light:from-[#f3f8f6] light:via-[#f0f5f3] light:to-[#ecf3f0] dark:border dark:border-white/[0.08] light:border light:border-[#00956a]/15 dark:hover:border-[#00d9a5]/40 light:hover:border-[#00956a]/40 transition-all cursor-pointer group h-[130px] dark:shadow-sm light:shadow-sm"
                   >
                     {/* CRM-style visualization */}
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="relative">
-                        <div className="w-16 h-16 rounded-full border border-[#00d9a5]/30 flex items-center justify-center">
-                          <div className="w-10 h-10 rounded-full border border-[#00d9a5]/40 flex items-center justify-center bg-[#00d9a5]/5">
-                            <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5 text-[#00d9a5]">
+                        <div className="w-16 h-16 rounded-full dark:border dark:border-[#00d9a5]/30 light:border light:border-[#00956a]/30 flex items-center justify-center">
+                          <div className="w-10 h-10 rounded-full dark:border dark:border-[#00d9a5]/40 light:border light:border-[#00956a]/40 flex items-center justify-center dark:bg-[#00d9a5]/5 light:bg-[#00956a]/8">
+                            <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5 dark:text-[#00d9a5] light:text-[#00956a]">
                               <circle cx="12" cy="12" r="3" fill="currentColor"/>
                               <circle cx="12" cy="4" r="2" fill="currentColor" opacity="0.6"/>
                               <circle cx="19" cy="8" r="2" fill="currentColor" opacity="0.6"/>
@@ -221,26 +229,26 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
                             </svg>
                           </div>
                         </div>
-                        <div className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 bg-[#00d9a5] text-black text-[8px] font-bold px-1.5 py-0.5 rounded shadow-md shadow-[#00d9a5]/30">
+                        <div className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 dark:bg-[#00d9a5] light:bg-[#00956a] dark:text-black light:text-white text-[8px] font-bold px-1.5 py-0.5 rounded dark:shadow-md dark:shadow-[#00d9a5]/30 light:shadow-md light:shadow-[#00956a]/20">
                           CRM
                         </div>
                       </div>
                       
-                      <div className="absolute top-3 right-5 w-1.5 h-1.5 rounded-full bg-[#00d9a5]/40" />
-                      <div className="absolute top-6 left-3 w-1 h-1 rounded-full bg-[#00d9a5]/30" />
-                      <div className="absolute bottom-5 right-3 w-1 h-1 rounded-full bg-[#00d9a5]/30" />
-                      <div className="absolute bottom-7 left-5 w-1.5 h-1.5 rounded-full bg-[#00d9a5]/20" />
+                      <div className="absolute top-3 right-5 w-1.5 h-1.5 rounded-full dark:bg-[#00d9a5]/40 light:bg-[#00956a]/40" />
+                      <div className="absolute top-6 left-3 w-1 h-1 rounded-full dark:bg-[#00d9a5]/30 light:bg-[#00956a]/30" />
+                      <div className="absolute bottom-5 right-3 w-1 h-1 rounded-full dark:bg-[#00d9a5]/30 light:bg-[#00956a]/30" />
+                      <div className="absolute bottom-7 left-5 w-1.5 h-1.5 rounded-full dark:bg-[#00d9a5]/20 light:bg-[#00956a]/20" />
                     </div>
                     
                     <div 
                       className="absolute inset-0 opacity-[0.02]" 
                       style={{
-                        backgroundImage: 'linear-gradient(rgba(0,217,165,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,217,165,1) 1px, transparent 1px)',
+                        backgroundImage: `linear-gradient(rgba(${0}, ${217}, ${165}, 1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,217,165,1) 1px, transparent 1px)`,
                         backgroundSize: '20px 20px'
                       }}
                     />
                     
-                    <div className="absolute inset-0 bg-[#00d9a5]/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute inset-0 dark:bg-[#00d9a5]/5 light:bg-[#00956a]/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                 ))}
               </div>
@@ -248,65 +256,65 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
           )}
         </div>
 
-        {/* Quick reply composer */}
-        <div className="border-t border-white/[0.08] p-4 bg-white/[0.01]">
-          <div className="bg-[#0c0c0c] rounded-lg border border-white/[0.08] overflow-hidden shadow-sm">
+        {/* Quick reply composer - soft warm surfaces */}
+        <div className="dark:border-t dark:border-white/[0.08] light:border-t light:border-[#00956a]/8 p-4 dark:bg-white/[0.01] light:bg-[#faf8f5]/60">
+          <div className="dark:bg-[#0c0c0c] light:bg-[#fdfcfb] rounded-lg dark:border dark:border-white/[0.08] light:border light:border-[#00956a]/10 overflow-hidden dark:shadow-sm light:shadow-sm">
             {/* Text input */}
             <div className="px-5 py-4">
               <textarea
                 placeholder="Rédiger votre message..."
                 value={replyText}
                 onChange={(e) => setReplyText(e.target.value)}
-                className="w-full bg-transparent text-white placeholder:text-gray-700 text-[13px] resize-none focus:outline-none min-h-[56px] font-normal leading-relaxed"
+                className="w-full dark:bg-transparent light:bg-transparent dark:text-white light:text-[#1a1a1a] dark:placeholder:text-gray-700 light:placeholder:text-[#00956a]/50 text-[13px] resize-none focus:outline-none min-h-[56px] font-normal leading-relaxed"
               />
             </div>
             
             {/* Formatting toolbar */}
-            <div className="px-4 py-3 border-t border-white/[0.08] flex items-center justify-between bg-white/[0.01]">
+            <div className="px-4 py-3 dark:border-t dark:border-white/[0.08] light:border-t light:border-[#00956a]/8 flex items-center justify-between dark:bg-white/[0.01] light:bg-[#f9f7f4]/50">
               <div className="flex items-center gap-0.5">
-                <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors" title="Bold">
+                <button className="p-1.5 dark:text-gray-700 dark:hover:text-gray-500 dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 rounded transition-colors" title="Bold">
                   <Bold className="w-4 h-4" />
                 </button>
-                <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors" title="Italic">
+                <button className="p-1.5 dark:text-gray-700 dark:hover:text-gray-500 dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 rounded transition-colors" title="Italic">
                   <Italic className="w-4 h-4" />
                 </button>
-                <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors" title="Underline">
+                <button className="p-1.5 dark:text-gray-700 dark:hover:text-gray-500 dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 rounded transition-colors" title="Underline">
                   <Underline className="w-4 h-4" />
                 </button>
-                <div className="w-px h-4 bg-white/5 mx-1" />
-                <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors" title="List">
+                <div className="w-px h-4 dark:bg-white/5 light:bg-[#00956a]/10 mx-1" />
+                <button className="p-1.5 dark:text-gray-700 dark:hover:text-gray-500 dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 rounded transition-colors" title="List">
                   <List className="w-4 h-4" />
                 </button>
-                <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors" title="Ordered list">
+                <button className="p-1.5 dark:text-gray-700 dark:hover:text-gray-500 dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 rounded transition-colors" title="Ordered list">
                   <ListOrdered className="w-4 h-4" />
                 </button>
-                <div className="w-px h-4 bg-white/5 mx-1" />
-                <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors" title="Align left">
+                <div className="w-px h-4 dark:bg-white/5 light:bg-[#00956a]/10 mx-1" />
+                <button className="p-1.5 dark:text-gray-700 dark:hover:text-gray-500 dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 rounded transition-colors" title="Align left">
                   <AlignLeft className="w-4 h-4" />
                 </button>
-                <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors" title="Align center">
+                <button className="p-1.5 dark:text-gray-700 dark:hover:text-gray-500 dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 rounded transition-colors" title="Align center">
                   <AlignCenter className="w-4 h-4" />
                 </button>
-                <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors" title="Align right">
+                <button className="p-1.5 dark:text-gray-700 dark:hover:text-gray-500 dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 rounded transition-colors" title="Align right">
                   <AlignRight className="w-4 h-4" />
                 </button>
-                <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors" title="Justify">
+                <button className="p-1.5 dark:text-gray-700 dark:hover:text-gray-500 dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 rounded transition-colors" title="Justify">
                   <AlignJustify className="w-4 h-4" />
                 </button>
-                <div className="w-px h-4 bg-white/5 mx-1" />
-                <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors" title="Quote">
+                <div className="w-px h-4 dark:bg-white/5 light:bg-[#00956a]/10 mx-1" />
+                <button className="p-1.5 dark:text-gray-700 dark:hover:text-gray-500 dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 rounded transition-colors" title="Quote">
                   <Quote className="w-4 h-4" />
                 </button>
-                <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors" title="Link">
+                <button className="p-1.5 dark:text-gray-700 dark:hover:text-gray-500 dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 rounded transition-colors" title="Link">
                   <Link2 className="w-4 h-4" />
                 </button>
-                <button className="p-1.5 text-gray-700 hover:text-gray-500 hover:bg-white/5 rounded transition-colors" title="Voice">
+                <button className="p-1.5 dark:text-gray-700 dark:hover:text-gray-500 dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 rounded transition-colors" title="Voice">
                   <Mic className="w-4 h-4" />
                 </button>
               </div>
               
               {/* Send button */}
-              <button className="h-8 px-4 bg-[#00d9a5] text-black rounded-full text-[12px] font-semibold hover:bg-[#00d9a5]/90 active:bg-[#00d9a5]/80 transition-colors flex items-center gap-2 shadow-md shadow-[#00d9a5]/20">
+              <button className="h-8 px-4 dark:bg-[#00d9a5] dark:text-black light:bg-[#00956a] light:text-white rounded-full text-[12px] font-semibold dark:hover:bg-[#00d9a5]/90 dark:active:bg-[#00d9a5]/80 light:hover:bg-[#007d54] light:active:bg-[#006a46] transition-colors flex items-center gap-2 dark:shadow-md dark:shadow-[#00d9a5]/20 light:shadow-md light:shadow-[#00956a]/20">
                 <Send className="w-3.5 h-3.5" />
                 Envoyer
               </button>
