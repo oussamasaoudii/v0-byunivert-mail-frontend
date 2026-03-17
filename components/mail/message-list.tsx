@@ -214,17 +214,17 @@ export default function MessageList({ selectedMessageId, onSelectMessage, active
           </button>
           {settingsOpen && (
             <div className="absolute right-0 top-full mt-2 dark:bg-[#0d0d0d] light:bg-white rounded-lg dark:border dark:border-[#00d9a5]/20 light:border light:border-[#00956a]/15 dark:shadow-[0_4px_20px_rgba(0,217,165,0.15)] light:shadow-[0_4px_20px_rgba(0,0,0,0.08)] overflow-hidden z-50 min-w-[200px]">
-              <a href="/index.php?_task=settings" className="w-full px-4 py-2.5 text-[12px] dark:text-gray-400 dark:hover:text-[#00d9a5] dark:hover:bg-[#00d9a5]/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 transition-colors text-left flex items-center gap-2 block">
+              <a href="/mail/settings" className="w-full px-4 py-2.5 text-[12px] dark:text-gray-400 dark:hover:text-[#00d9a5] dark:hover:bg-[#00d9a5]/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 transition-colors text-left flex items-center gap-2 block">
                 <Settings className="w-3.5 h-3.5" />
                 Paramètres généraux
               </a>
-              <a href="/index.php?_task=settings&_action=identities" className="w-full px-4 py-2.5 text-[12px] dark:text-gray-400 dark:hover:text-[#00d9a5] dark:hover:bg-[#00d9a5]/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 transition-colors text-left flex items-center gap-2 block">
+              <a href="/mail/settings/identities" className="w-full px-4 py-2.5 text-[12px] dark:text-gray-400 dark:hover:text-[#00d9a5] dark:hover:bg-[#00d9a5]/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 transition-colors text-left flex items-center gap-2 block">
                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
                 Signatures
               </a>
-              <a href="/index.php?_task=settings&_action=preferences" className="w-full px-4 py-2.5 text-[12px] dark:text-gray-400 dark:hover:text-[#00d9a5] dark:hover:bg-[#00d9a5]/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 transition-colors text-left flex items-center gap-2 block dark:border-t dark:border-white/[0.08] light:border-t light:border-[#00956a]/8">
+              <a href="/mail/settings/preferences" className="w-full px-4 py-2.5 text-[12px] dark:text-gray-400 dark:hover:text-[#00d9a5] dark:hover:bg-[#00d9a5]/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 transition-colors text-left flex items-center gap-2 block dark:border-t dark:border-white/[0.08] light:border-t light:border-[#00956a]/8">
                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg>
-                Règles de filtrage
+                Préférences
               </a>
             </div>
           )}

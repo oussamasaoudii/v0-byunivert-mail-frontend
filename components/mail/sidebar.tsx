@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
 import { getFolders, type Folder } from '@/lib/adapters/mail-adapter'
 
@@ -105,16 +106,24 @@ const MAIN_NAV = [
 ]
 
 const SECONDARY_NAV = [
-  { id: 'contacts', label: 'Contacts', icon: DiamondIcon, href: '/index.php?_task=addressbook' },
-  { id: 'labels', label: 'Étiquettes', icon: CrownIcon, href: '/index.php?_task=settings&_action=folders' },
-  { id: 'rules', label: 'Règles', icon: ChartIcon, href: '/index.php?_task=settings&_action=preferences' },
-  { id: 'signatures', label: 'Signatures', icon: GlobeIcon, href: '/index.php?_task=settings&_action=identities' },
-  { id: 'settings', label: 'Paramètres', icon: SwapIcon, href: '/index.php?_task=settings' },
+  { id: 'contacts', label: 'Contacts', icon: DiamondIcon, href: '/mail/contacts' },
+  { id: 'folders', label: 'Dossiers', icon: CrownIcon, href: '/mail/settings/folders' },
+  { id: 'identities', label: 'Identités', icon: GlobeIcon, href: '/mail/settings/identities' },
+  { id: 'responses', label: 'Réponses', icon: ChartIcon, href: '/mail/settings/responses' },
+  { id: 'settings', label: 'Paramètres', icon: SwapIcon, href: '/mail/settings/preferences' },
 ]
 
-export default function MailSidebar({ activeFolder = 'inbox', onFolderChange }: { activeFolder?: string; onFolderChange?: (folder: string) => void }) {
+export default function MailSidebar({
+  activeFolder = 'inbox',
+  onFolderChange,
+}: {
+  activeFolder?: string | null
+  onFolderChange?: (folder: string) => void
+}) {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [folders, setFolders] = useState<Folder[]>([])
+  const pathname = usePathname()
+  const router = useRouter()
 
   useEffect(() => {
     let active = true
@@ -141,7 +150,11 @@ export default function MailSidebar({ activeFolder = 'inbox', onFolderChange }: 
   }, [folders])
 
   const handleFolderChange = (folder: string) => {
-    onFolderChange?.(folder)
+    if (onFolderChange) {
+      onFolderChange(folder)
+    } else {
+      router.push(`/mail?folder=${encodeURIComponent(folder)}`)
+    }
     setMobileOpen(false)
   }
 
@@ -220,10 +233,15 @@ export default function MailSidebar({ activeFolder = 'inbox', onFolderChange }: 
           <div className="space-y-0.5">
             {SECONDARY_NAV.map((item) => {
               const Icon = item.icon
+              const active = pathname === item.href || pathname.startsWith(`${item.href}/`)
               return (
                 <Link key={item.id} href={item.href} prefetch={false}>
                   <button
-                    className="w-full px-3 py-2 rounded-lg text-[12.5px] font-medium dark:text-gray-600 dark:hover:text-gray-400 dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 transition-all flex items-center gap-3"
+                    className={`w-full px-3 py-2 rounded-lg text-[12.5px] font-medium transition-all flex items-center gap-3 ${
+                      active
+                        ? 'dark:bg-[#00d9a5]/12 dark:text-[#00d9a5] light:bg-[#00956a]/10 light:text-[#00956a]'
+                        : 'dark:text-gray-600 dark:hover:text-gray-400 dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8'
+                    }`}
                   >
                     <Icon />
                     <span>{item.label}</span>

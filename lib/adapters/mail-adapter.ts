@@ -4,6 +4,16 @@ export interface Contact {
   avatar?: string
 }
 
+export interface AddressBookContact {
+  id: string
+  name: string
+  email: string
+  phone?: string | null
+  organization?: string | null
+  source?: string | null
+  groups?: string[]
+}
+
 export interface Attachment {
   id: string
   name: string
@@ -45,6 +55,69 @@ export interface MailAccount {
   provider: string
 }
 
+export interface FolderSetting {
+  id: string
+  label: string
+  mailbox: string
+  unread: number
+  total: number
+  subscribed: boolean
+  specialRole: string
+  description: string
+}
+
+export interface IdentityProfile {
+  id: string
+  name: string
+  email: string
+  organization?: string | null
+  replyTo?: string | null
+  signature?: string | null
+  isDefault: boolean
+  changedAt?: string | null
+}
+
+export interface PreferenceItem {
+  key: string
+  label: string
+  description: string
+  value: string | boolean | number | null
+  type: 'boolean' | 'text' | 'number'
+}
+
+export interface PreferenceSection {
+  id: string
+  label: string
+  description: string
+  items: PreferenceItem[]
+}
+
+export interface SavedResponse {
+  id: string
+  name: string
+  content: string
+  isHtml: boolean
+}
+
+export interface SecuritySettings {
+  enabled: boolean
+  confirmCurrent: boolean
+  minimumLength: number
+  actionUrl: string
+}
+
+export interface ProfileSummary {
+  email: string
+  displayName: string
+  username: string
+  language: string
+  timezone: string
+  storageHost: string
+  identitiesCount: number
+  responsesCount: number
+  backend: string
+}
+
 interface SessionResponse {
   ok: boolean
   authenticated: boolean
@@ -64,6 +137,41 @@ interface MessagesResponse {
 interface MessageResponse {
   ok: boolean
   message: MessagePayload | null
+}
+
+interface ContactsResponse {
+  ok: boolean
+  contacts: AddressBookContact[]
+}
+
+interface FolderSettingsResponse {
+  ok: boolean
+  folders: FolderSetting[]
+}
+
+interface IdentitiesResponse {
+  ok: boolean
+  identities: IdentityProfile[]
+}
+
+interface PreferencesResponse {
+  ok: boolean
+  sections: PreferenceSection[]
+}
+
+interface ResponsesResponse {
+  ok: boolean
+  responses: SavedResponse[]
+}
+
+interface SecurityResponse {
+  ok: boolean
+  security: SecuritySettings
+}
+
+interface ProfileResponse {
+  ok: boolean
+  profile: ProfileSummary
 }
 
 interface MessagePayload {
@@ -218,4 +326,67 @@ export async function searchMessages(query: string): Promise<Message[]> {
         message.from.email.toLowerCase().includes(normalized)
       )
     })
+}
+
+export async function getContacts(): Promise<AddressBookContact[]> {
+  const payload = await fetchJson<ContactsResponse>('/rc-api/contacts.php', {
+    method: 'GET',
+    headers: {},
+  })
+
+  return payload.contacts
+}
+
+export async function getFolderSettings(): Promise<FolderSetting[]> {
+  const payload = await fetchJson<FolderSettingsResponse>('/rc-api/folder-settings.php', {
+    method: 'GET',
+    headers: {},
+  })
+
+  return payload.folders
+}
+
+export async function getIdentities(): Promise<IdentityProfile[]> {
+  const payload = await fetchJson<IdentitiesResponse>('/rc-api/identities.php', {
+    method: 'GET',
+    headers: {},
+  })
+
+  return payload.identities
+}
+
+export async function getPreferences(): Promise<PreferenceSection[]> {
+  const payload = await fetchJson<PreferencesResponse>('/rc-api/preferences.php', {
+    method: 'GET',
+    headers: {},
+  })
+
+  return payload.sections
+}
+
+export async function getResponses(): Promise<SavedResponse[]> {
+  const payload = await fetchJson<ResponsesResponse>('/rc-api/responses.php', {
+    method: 'GET',
+    headers: {},
+  })
+
+  return payload.responses
+}
+
+export async function getSecuritySettings(): Promise<SecuritySettings> {
+  const payload = await fetchJson<SecurityResponse>('/rc-api/security.php', {
+    method: 'GET',
+    headers: {},
+  })
+
+  return payload.security
+}
+
+export async function getProfileSummary(): Promise<ProfileSummary> {
+  const payload = await fetchJson<ProfileResponse>('/rc-api/profile.php', {
+    method: 'GET',
+    headers: {},
+  })
+
+  return payload.profile
 }
