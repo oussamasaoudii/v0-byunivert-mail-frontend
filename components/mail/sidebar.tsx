@@ -196,7 +196,7 @@ export default function MailSidebar({
 
         {/* Main nav - primary folders */}
         <nav className="flex-1 overflow-y-auto px-2.5" suppressHydrationWarning>
-          <div className="space-y-0.5">
+          <div className="space-y-0.5" suppressHydrationWarning>
             {MAIN_NAV.map((item) => {
               const isActive = activeFolder === item.id
               const Icon = item.icon
@@ -227,10 +227,10 @@ export default function MailSidebar({
           </div>
 
           {/* Divider */}
-          <div className="my-5 dark:border-t dark:border-white/[0.08] light:border-t light:border-[#00956a]/10" />
+          <div className="my-5 dark:border-t dark:border-white/[0.08] light:border-t light:border-[#00956a]/10" suppressHydrationWarning />
 
           {/* Secondary nav - email features */}
-          <div className="space-y-0.5">
+          <div className="space-y-0.5" suppressHydrationWarning>
             {SECONDARY_NAV.map((item) => {
               const Icon = item.icon
               const active = pathname === item.href || pathname.startsWith(`${item.href}/`)

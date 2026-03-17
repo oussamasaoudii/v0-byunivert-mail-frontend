@@ -23,26 +23,29 @@ export default function MailPageClient({
   useEffect(() => {
     let active = true
 
-    getSession()
-      .then((session) => {
-        if (!active) {
-          return
-        }
-
-        if (!session.authenticated) {
+    const checkSession = async () => {
+      try {
+        const session = await getSession()
+        
+        if (!active) return
+        
+        if (!session || !session.authenticated) {
           setSessionState('anonymous')
           router.replace('/')
           return
         }
-
+        
         setSessionState('authenticated')
-      })
-      .catch(() => {
+      } catch (error) {
+        console.log('[v0] Session check failed:', error instanceof Error ? error.message : 'Unknown error')
         if (active) {
           setSessionState('anonymous')
           router.replace('/')
         }
-      })
+      }
+    }
+
+    checkSession()
 
     return () => {
       active = false
@@ -64,8 +67,8 @@ export default function MailPageClient({
 
   if (sessionState !== 'authenticated') {
     return (
-      <div className="flex h-screen w-full items-center justify-center bg-[#0a0a0a]">
-        <div className="w-10 h-10 rounded-full border-2 border-[#00d9a5]/30 border-t-[#00d9a5] animate-spin" />
+      <div className="flex h-screen w-full items-center justify-center bg-[#0a0a0a]" suppressHydrationWarning>
+        <div className="w-10 h-10 rounded-full border-2 border-[#00d9a5]/30 border-t-[#00d9a5] animate-spin" suppressHydrationWarning />
       </div>
     )
   }

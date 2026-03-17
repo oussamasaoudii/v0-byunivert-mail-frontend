@@ -56,14 +56,14 @@ export default function LoginPage() {
 
   if (isCheckingSession) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
-        <div className="w-10 h-10 rounded-full border-2 border-[#00d9a5]/30 border-t-[#00d9a5] animate-spin" />
+      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center" suppressHydrationWarning>
+        <div className="w-10 h-10 rounded-full border-2 border-[#00d9a5]/30 border-t-[#00d9a5] animate-spin" suppressHydrationWarning />
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] dark:bg-[#0a0a0a] light:bg-white flex items-center justify-center px-4 py-8 relative overflow-hidden">
+    <div className="min-h-screen bg-[#0a0a0a] dark:bg-[#0a0a0a] light:bg-white flex items-center justify-center px-4 py-8 relative overflow-hidden" suppressHydrationWarning>
       {/* Theme Toggle - top right */}
       <div className="absolute top-6 right-6 z-20">
         <ThemeToggle />
