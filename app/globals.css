@@ -297,3 +297,55 @@
 .light .bg-surface-tertiary {
   background: linear-gradient(180deg, #fbf9f6 0%, #fefdfb 100%);
 }
+
+/* Custom Scrollbar - Sleek Minimal Design */
+/* Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(0, 217, 165, 0.2);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 217, 165, 0.35);
+}
+
+/* Light mode scrollbar */
+.light ::-webkit-scrollbar-thumb {
+  background: rgba(0, 149, 106, 0.2);
+}
+
+.light ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 149, 106, 0.35);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+}
+
+.dark * {
+  scrollbar-color: rgba(0, 217, 165, 0.2) transparent;
+}
+
+.light * {
+  scrollbar-color: rgba(0, 149, 106, 0.2) transparent;
+}
