@@ -1,8 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
+import { getFolders, type Folder } from '@/lib/adapters/mail-adapter'
 
 /* DMail Logo - house/home icon matching reference */
 const DMailLogo = () => (
@@ -95,24 +96,49 @@ const SwapIcon = () => (
 )
 
 const MAIN_NAV = [
-  { id: 'inbox', label: 'Boîte de réception', icon: InboxIcon, badge: null },
-  { id: 'starred', label: 'Favoris', icon: StarIcon, badge: null },
-  { id: 'sent', label: 'Envoyés', icon: SendIcon, badge: null },
-  { id: 'drafts', label: 'Brouillons', icon: DraftIcon, badge: null },
-  { id: 'spam', label: 'Spam', icon: SpamIcon, badge: 2 },
-  { id: 'trash', label: 'Corbeille', icon: TrashIcon, badge: null },
+  { id: 'inbox', label: 'Boîte de réception', icon: InboxIcon },
+  { id: 'starred', label: 'Favoris', icon: StarIcon },
+  { id: 'sent', label: 'Envoyés', icon: SendIcon },
+  { id: 'drafts', label: 'Brouillons', icon: DraftIcon },
+  { id: 'spam', label: 'Spam', icon: SpamIcon },
+  { id: 'trash', label: 'Corbeille', icon: TrashIcon },
 ]
 
 const SECONDARY_NAV = [
-  { id: 'contacts', label: 'Contacts', icon: DiamondIcon },
-  { id: 'labels', label: 'Étiquettes', icon: CrownIcon },
-  { id: 'rules', label: 'Règles', icon: ChartIcon },
-  { id: 'signatures', label: 'Signatures', icon: GlobeIcon },
-  { id: 'settings', label: 'Paramètres', icon: SwapIcon },
+  { id: 'contacts', label: 'Contacts', icon: DiamondIcon, href: '/index.php?_task=addressbook' },
+  { id: 'labels', label: 'Étiquettes', icon: CrownIcon, href: '/index.php?_task=settings&_action=folders' },
+  { id: 'rules', label: 'Règles', icon: ChartIcon, href: '/index.php?_task=settings&_action=preferences' },
+  { id: 'signatures', label: 'Signatures', icon: GlobeIcon, href: '/index.php?_task=settings&_action=identities' },
+  { id: 'settings', label: 'Paramètres', icon: SwapIcon, href: '/index.php?_task=settings' },
 ]
 
 export default function MailSidebar({ activeFolder = 'inbox', onFolderChange }: { activeFolder?: string; onFolderChange?: (folder: string) => void }) {
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [folders, setFolders] = useState<Folder[]>([])
+
+  useEffect(() => {
+    let active = true
+
+    getFolders()
+      .then((data) => {
+        if (active) {
+          setFolders(data)
+        }
+      })
+      .catch(() => {
+        if (active) {
+          setFolders([])
+        }
+      })
+
+    return () => {
+      active = false
+    }
+  }, [])
+
+  const folderMap = useMemo(() => {
+    return new Map(folders.map((folder) => [folder.id, folder]))
+  }, [folders])
 
   const handleFolderChange = (folder: string) => {
     onFolderChange?.(folder)
@@ -140,7 +166,7 @@ export default function MailSidebar({ activeFolder = 'inbox', onFolderChange }: 
         
         {/* Logo - matches reference: teal rounded box with house icon */}
         <div className="px-4 py-5" suppressHydrationWarning>
-          <Link href="/mail" className="flex items-center gap-2.5">
+          <Link href="/mail" className="flex items-center gap-2.5" prefetch={false}>
             <div className="w-8 h-8 rounded-lg dark:bg-[#00d9a5] light:bg-[#00956a] flex items-center justify-center flex-shrink-0 dark:shadow-md dark:shadow-[#00d9a5]/30 light:shadow-sm light:shadow-[#00956a]/20" suppressHydrationWarning>
               <DMailLogo />
             </div>
@@ -161,6 +187,8 @@ export default function MailSidebar({ activeFolder = 'inbox', onFolderChange }: 
             {MAIN_NAV.map((item) => {
               const isActive = activeFolder === item.id
               const Icon = item.icon
+              const folder = folderMap.get(item.id)
+              const badge = folder ? (folder.unread > 0 ? folder.unread : null) : null
               return (
                 <button
                   key={item.id}
@@ -170,14 +198,14 @@ export default function MailSidebar({ activeFolder = 'inbox', onFolderChange }: 
                       ? 'dark:bg-[#00d9a5] dark:text-black dark:shadow-[0_0_20px_rgba(0,217,165,0.35)] light:bg-[#00956a] light:text-white light:shadow-[0_0_16px_rgba(0,149,106,0.2)]'
                       : 'dark:text-gray-500 dark:hover:text-gray-300 dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8'
                   }`}
-                >
-                  <Icon />
-                  <span className="flex-1 text-left">{item.label}</span>
-                  {item.badge && (
+                  >
+                    <Icon />
+                    <span className="flex-1 text-left">{item.label}</span>
+                  {badge && (
                     <span className={`text-[10px] font-bold min-w-[18px] h-5 px-1.5 rounded-full flex items-center justify-center ${
                       isActive ? 'dark:bg-black/20 dark:text-black light:bg-white/20 light:text-white' : 'dark:bg-[#e74c3c] dark:text-white light:bg-[#d63e38] light:text-white'
                     }`}>
-                      {item.badge}
+                      {badge}
                     </span>
                   )}
                 </button>
@@ -193,7 +221,7 @@ export default function MailSidebar({ activeFolder = 'inbox', onFolderChange }: 
             {SECONDARY_NAV.map((item) => {
               const Icon = item.icon
               return (
-                <Link key={item.id} href={`/mail/${item.id}`}>
+                <Link key={item.id} href={item.href} prefetch={false}>
                   <button
                     className="w-full px-3 py-2 rounded-lg text-[12.5px] font-medium dark:text-gray-600 dark:hover:text-gray-400 dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 transition-all flex items-center gap-3"
                   >

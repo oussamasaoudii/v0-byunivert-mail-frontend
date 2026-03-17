@@ -1,14 +1,61 @@
 'use client'
 
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import MailSidebar from '@/components/mail/sidebar'
 import MessageList from '@/components/mail/message-list'
 import ReadingPane from '@/components/mail/reading-pane'
 import { ThemeToggle } from '@/components/theme-toggle'
-import { useState } from 'react'
+import { getSession } from '@/lib/adapters/mail-adapter'
+
+type SessionState = 'checking' | 'authenticated' | 'anonymous'
 
 export default function MailPage() {
   const [selectedMessageId, setSelectedMessageId] = useState<string | null>(null)
   const [activeFolder, setActiveFolder] = useState('inbox')
+  const [sessionState, setSessionState] = useState<SessionState>('checking')
+  const router = useRouter()
+
+  useEffect(() => {
+    let active = true
+
+    getSession()
+      .then((session) => {
+        if (!active) {
+          return
+        }
+
+        if (!session.authenticated) {
+          setSessionState('anonymous')
+          router.replace('/')
+          return
+        }
+
+        setSessionState('authenticated')
+      })
+      .catch(() => {
+        if (active) {
+          setSessionState('anonymous')
+          router.replace('/')
+        }
+      })
+
+    return () => {
+      active = false
+    }
+  }, [router])
+
+  useEffect(() => {
+    setSelectedMessageId(null)
+  }, [activeFolder])
+
+  if (sessionState !== 'authenticated') {
+    return (
+      <div className="flex h-screen w-full items-center justify-center bg-[#0a0a0a]">
+        <div className="w-10 h-10 rounded-full border-2 border-[#00d9a5]/30 border-t-[#00d9a5] animate-spin" />
+      </div>
+    )
+  }
 
   return (
     <div className="flex h-screen w-full dark:bg-[#0a0a0a] light:bg-background overflow-hidden relative" suppressHydrationWarning>

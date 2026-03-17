@@ -41,6 +41,10 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
     getMessage(messageId).then((data) => {
       setMessage(data)
       setIsStarred(data?.starred || false)
+    }).catch(() => {
+      setMessage(null)
+      setIsStarred(false)
+    }).finally(() => {
       setIsLoading(false)
     })
   }, [messageId])

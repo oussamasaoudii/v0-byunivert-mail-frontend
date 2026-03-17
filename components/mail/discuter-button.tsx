@@ -12,7 +12,7 @@ export default function DiscuterButton({ onClick, className = '' }: DiscuterButt
   }
 
   return (
-    <Link href="/mail/messages">
+    <Link href="/index.php?_task=mail&_action=compose" prefetch={false}>
       <button
         onClick={handleClick}
         className={`h-8 px-3.5 rounded-full border border-white/15 text-[12px] text-gray-400 hover:bg-white/5 hover:text-gray-200 transition-colors flex items-center gap-2 font-medium ${className}`}

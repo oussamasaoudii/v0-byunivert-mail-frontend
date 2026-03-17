@@ -1,9 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Mail, Eye, EyeOff } from 'lucide-react'
 import { ThemeToggle } from '@/components/theme-toggle'
+import { getSession, login } from '@/lib/adapters/mail-adapter'
 
 export default function LoginPage() {
   const router = useRouter()
@@ -12,7 +13,31 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
   const [rememberMe, setRememberMe] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [isCheckingSession, setIsCheckingSession] = useState(true)
   const [error, setError] = useState('')
+
+  useEffect(() => {
+    let active = true
+
+    getSession()
+      .then((session) => {
+        if (active && session.authenticated) {
+          router.replace('/mail')
+        }
+      })
+      .catch(() => {
+        // Stay on login if session lookup fails.
+      })
+      .finally(() => {
+        if (active) {
+          setIsCheckingSession(false)
+        }
+      })
+
+    return () => {
+      active = false
+    }
+  }, [router])
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -20,19 +45,21 @@ export default function LoginPage() {
     setIsLoading(true)
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 800))
-      
-      if (email && password && password.length >= 6) {
-        router.push('/mail')
-      } else {
-        setError('Veuillez vérifier vos identifiants')
-      }
+      await login(email, password)
+      router.replace('/mail')
     } catch (err) {
-      setError('Une erreur est survenue. Veuillez réessayer.')
+      setError(err instanceof Error ? err.message : 'Une erreur est survenue. Veuillez réessayer.')
     } finally {
       setIsLoading(false)
     }
+  }
+
+  if (isCheckingSession) {
+    return (
+      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
+        <div className="w-10 h-10 rounded-full border-2 border-[#00d9a5]/30 border-t-[#00d9a5] animate-spin" />
+      </div>
+    )
   }
 
   return (
