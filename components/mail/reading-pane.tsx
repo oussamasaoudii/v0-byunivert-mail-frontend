@@ -189,8 +189,8 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
             <div className="light:block dark:hidden absolute inset-0 bg-gradient-to-br from-transparent via-[#fdf9f3]/20 to-transparent" />
           </div>
 
-          {/* Content - relative positioning to appear above background */}
-          <div className="max-w-3xl space-y-4 relative z-10">
+          {/* Content - relative positioning with pointer-events enabled */}
+          <div className="max-w-3xl space-y-4 relative z-10 pointer-events-auto">
             <p className="dark:text-white light:text-[#1a1a1a] font-medium text-[14px]">Hi, Shiru</p>
             <div className="dark:text-gray-300 light:text-[#2a2a2a] text-[13.5px] leading-relaxed space-y-3 whitespace-pre-wrap">
               {message.body}
