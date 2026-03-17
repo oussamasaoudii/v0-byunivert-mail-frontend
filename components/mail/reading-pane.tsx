@@ -47,7 +47,7 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
 
   if (!messageId) {
     return (
-      <div className="hidden md:flex flex-1 items-center justify-center bg-[#0a0a0a]" suppressHydrationWarning>
+      <div className="hidden md:flex h-full w-full items-center justify-center bg-[#0a0a0a]" suppressHydrationWarning>
         <div className="text-center" suppressHydrationWarning>
           <div className="w-16 h-16 rounded-full bg-[#00d9a5]/8 flex items-center justify-center mx-auto mb-4 border border-[#00d9a5]/20" suppressHydrationWarning>
             <svg viewBox="0 0 24 24" fill="none" className="w-8 h-8 text-[#00d9a5]/60">
