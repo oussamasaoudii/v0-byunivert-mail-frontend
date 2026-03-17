@@ -92,10 +92,10 @@ export default function MessageList({ selectedMessageId, onSelectMessage, active
   }, [currentFolder])
 
   return (
-    <div className="flex flex-col dark:bg-[#0a0a0a] light:bg-[#faf8f5] min-w-0 w-[420px] flex-shrink-0" suppressHydrationWarning>
+    <div className="flex flex-col dark:bg-[#0a0a0a] light:bg-card min-w-0 w-[420px] flex-shrink-0" suppressHydrationWarning>
       {/* Top header bar - Folder title + Contact/Chat buttons */}
-      <div className="h-[68px] px-6 flex items-center justify-between dark:border-b dark:border-white/[0.08] light:border-b light:border-[#00956a]/8" suppressHydrationWarning>
-        <h1 className="text-[20px] font-bold dark:text-white light:text-[#1a1a1a]">{folderTitles[currentFolder] || 'Boîte de réception'}</h1>
+      <div className="h-[68px] px-6 flex items-center justify-between dark:border-b dark:border-white/[0.08] light:border-b light:border-border" suppressHydrationWarning>
+        <h1 className="text-[20px] font-bold dark:text-white light:text-foreground">{folderTitles[currentFolder] || 'Boîte de réception'}</h1>
         <div className="flex items-center gap-2">
           <ContactsButton />
           <DiscuterButton />
@@ -103,11 +103,11 @@ export default function MessageList({ selectedMessageId, onSelectMessage, active
       </div>
 
       {/* Action toolbar row - Premium styling with interactive elements */}
-      <div className="h-10 px-6 flex items-center gap-3 dark:border-b dark:border-white/[0.08] dark:bg-white/[0.01] light:border-b light:border-[#00956a]/8 light:bg-[#f9f7f4]/40" suppressHydrationWarning>
-        <input type="checkbox" className="w-4 h-4 rounded dark:border-gray-600 light:border-[#00956a]/30 dark:bg-transparent light:bg-white dark:accent-[#00d9a5] light:accent-[#00956a] cursor-pointer" />
+      <div className="h-10 px-6 flex items-center gap-3 dark:border-b dark:border-white/[0.08] dark:bg-white/[0.01] light:border-b light:border-border light:bg-secondary/30" suppressHydrationWarning>
+        <input type="checkbox" className="w-4 h-4 rounded dark:border-muted light:border-border dark:bg-transparent light:bg-card dark:accent-primary light:accent-primary cursor-pointer" />
         <button 
           onClick={() => window.location.reload()}
-          className="p-1.5 dark:text-gray-700 dark:hover:text-gray-500 dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 rounded transition-colors"
+          className="p-1.5 dark:text-muted-foreground dark:hover:text-gray-500 dark:hover:bg-white/5 light:text-muted-foreground light:hover:text-primary light:hover:bg-primary/8 rounded transition-colors"
           title="Actualiser"
         >
           <RotateCw className="w-4 h-4" />
@@ -121,26 +121,26 @@ export default function MessageList({ selectedMessageId, onSelectMessage, active
               setNotificationsOpen(false)
               setSettingsOpen(false)
             }}
-            className={`p-1.5 rounded transition-colors ${menuOpen ? 'dark:text-[#00d9a5] dark:bg-[#00d9a5]/10 light:text-[#00956a] light:bg-[#00956a]/10' : 'dark:text-gray-700 dark:hover:text-gray-500 dark:hover:bg-white/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8'}`}
+            className={`p-1.5 rounded transition-colors ${menuOpen ? 'dark:text-primary dark:bg-primary/10 light:text-primary light:bg-primary/10' : 'dark:text-muted-foreground dark:hover:text-gray-500 dark:hover:bg-white/5 light:text-muted-foreground light:hover:text-primary light:hover:bg-primary/8'}`}
             title="Plus d'options"
           >
             <MoreVertical className="w-4 h-4" />
           </button>
           {menuOpen && (
-            <div className="absolute left-0 top-full mt-2 dark:bg-[#0d0d0d] light:bg-white rounded-lg dark:border dark:border-[#00d9a5]/20 light:border light:border-[#00956a]/15 dark:shadow-[0_4px_20px_rgba(0,217,165,0.15)] light:shadow-[0_4px_20px_rgba(0,0,0,0.08)] overflow-hidden z-50 min-w-[180px]">
-              <button onClick={() => setMenuOpen(false)} className="w-full px-4 py-2.5 text-[12px] dark:text-gray-400 dark:hover:text-[#00d9a5] dark:hover:bg-[#00d9a5]/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 transition-colors text-left flex items-center gap-2">
+            <div className="absolute left-0 top-full mt-2 dark:bg-[#0d0d0d] light:bg-card rounded-lg dark:border dark:border-primary/20 light:border light:border-border dark:shadow-[0_4px_20px_rgba(0,217,165,0.15)] light:shadow-[0_4px_20px_rgba(0,0,0,0.08)] overflow-hidden z-50 min-w-[180px]">
+              <button onClick={() => setMenuOpen(false)} className="w-full px-4 py-2.5 text-[12px] dark:text-muted-foreground dark:hover:text-primary dark:hover:bg-primary/5 light:text-muted-foreground light:hover:text-primary light:hover:bg-primary/8 transition-colors text-left flex items-center gap-2">
                 <span className="w-4 h-4 flex items-center justify-center">
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                 </span>
                 Sélectionner tout
               </button>
-              <button onClick={() => setMenuOpen(false)} className="w-full px-4 py-2.5 text-[12px] dark:text-gray-400 dark:hover:text-[#00d9a5] dark:hover:bg-[#00d9a5]/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 transition-colors text-left flex items-center gap-2">
+              <button onClick={() => setMenuOpen(false)} className="w-full px-4 py-2.5 text-[12px] dark:text-muted-foreground dark:hover:text-primary dark:hover:bg-primary/5 light:text-muted-foreground light:hover:text-primary light:hover:bg-primary/8 transition-colors text-left flex items-center gap-2">
                 <span className="w-4 h-4 flex items-center justify-center">
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
                 </span>
                 Marquer comme lu
               </button>
-              <button onClick={() => setMenuOpen(false)} className="w-full px-4 py-2.5 text-[12px] dark:text-gray-400 dark:hover:text-[#00d9a5] dark:hover:bg-[#00d9a5]/5 light:text-[#6b7370] light:hover:text-[#00956a] light:hover:bg-[#00956a]/8 transition-colors text-left flex items-center gap-2">
+              <button onClick={() => setMenuOpen(false)} className="w-full px-4 py-2.5 text-[12px] dark:text-muted-foreground dark:hover:text-primary dark:hover:bg-primary/5 light:text-muted-foreground light:hover:text-primary light:hover:bg-primary/8 transition-colors text-left flex items-center gap-2">
                 <span className="w-4 h-4 flex items-center justify-center">
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14a2 2 0 01-2 2H7a2 2 0 01-2-2V4z" /></svg>
                 </span>
