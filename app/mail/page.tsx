@@ -11,7 +11,7 @@ export default function MailPage() {
   const [activeFolder, setActiveFolder] = useState('inbox')
 
   return (
-    <div className="flex h-screen w-full dark:bg-[#0a0a0a] light:bg-[#f9f7f4] overflow-hidden relative" suppressHydrationWarning>
+    <div className="flex h-screen w-full dark:bg-[#0a0a0a] light:bg-background overflow-hidden relative" suppressHydrationWarning>
       {/* Theme Toggle - top right */}
       <div className="absolute top-4 right-4 z-50" suppressHydrationWarning>
         <ThemeToggle />
@@ -28,12 +28,12 @@ export default function MailPage() {
       }} />
 
       {/* Sidebar - premium warm tone */}
-      <div className="relative z-10 bg-surface-primary dark:bg-transparent light:bg-[#fefdfb]" suppressHydrationWarning>
+      <div className="relative z-10 dark:bg-transparent light:bg-card" suppressHydrationWarning>
         <MailSidebar activeFolder={activeFolder} onFolderChange={setActiveFolder} />
       </div>
       
       {/* Message List - subtle warm gradient */}
-      <div className="relative z-10 bg-surface-secondary dark:bg-transparent light:bg-[#fbf9f6] border-l dark:border-white/[0.05] light:border-[#00956a]/5" suppressHydrationWarning>
+      <div className="relative z-10 dark:bg-transparent light:bg-secondary border-l dark:border-white/[0.05] light:border-border" suppressHydrationWarning>
         <MessageList 
           onSelectMessage={setSelectedMessageId} 
           selectedMessageId={selectedMessageId}
@@ -42,7 +42,7 @@ export default function MailPage() {
       </div>
       
       {/* Reading Pane - premium atmospheric background */}
-      <div className="relative z-10 flex-1 bg-surface-tertiary dark:bg-transparent light:bg-[#f9f7f4] overflow-hidden" suppressHydrationWarning>
+      <div className="relative z-10 flex-1 dark:bg-transparent light:bg-background overflow-hidden" suppressHydrationWarning>
         <ReadingPane messageId={selectedMessageId} />
       </div>
     </div>

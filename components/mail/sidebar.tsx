@@ -150,7 +150,7 @@ export default function MailSidebar({ activeFolder = 'inbox', onFolderChange }: 
 
         {/* Compose button - white pill, full width with padding */}
         <div className="px-3 pb-5" suppressHydrationWarning>
-          <button className="w-full h-10 dark:bg-white dark:text-black light:bg-[#00956a] light:text-white font-semibold rounded-full text-[13px] dark:hover:bg-gray-100 light:hover:bg-[#007d54] transition-colors shadow-sm">
+          <button className="w-full h-10 dark:bg-white dark:text-black dark:hover:bg-gray-100 light:bg-primary light:text-primary-foreground light:hover:bg-primary/90 font-semibold rounded-full text-[13px] transition-colors shadow-sm">
             Composer
           </button>
         </div>
