@@ -134,7 +134,7 @@ export default function MailSidebar({ activeFolder = 'inbox', onFolderChange }: 
       )}
 
       {/* Sidebar - exact 220px width like reference */}
-      <aside className={`fixed md:relative w-[220px] h-full bg-transparent flex flex-col z-40 transition-transform md:translate-x-0 dark:border-r dark:border-white/[0.05] light:border-r light:border-[#00956a]/10 ${
+      <aside className={`fixed md:relative md:translate-x-0 w-[220px] h-full bg-transparent flex flex-col z-40 transition-transform dark:border-r dark:border-white/[0.05] light:border-r light:border-[#00956a]/10 ${
         mobileOpen ? 'translate-x-0' : '-translate-x-full'
       }`}>
         
@@ -155,8 +155,8 @@ export default function MailSidebar({ activeFolder = 'inbox', onFolderChange }: 
           </button>
         </div>
 
-        {/* Main nav - primary folders - always visible scrollbar */}
-        <nav className="flex-1 overflow-y-scroll px-2.5" suppressHydrationWarning>
+        {/* Main nav - primary folders */}
+        <nav className="flex-1 overflow-y-auto px-2.5" suppressHydrationWarning>
           <div className="space-y-0.5">
             {MAIN_NAV.map((item) => {
               const isActive = activeFolder === item.id

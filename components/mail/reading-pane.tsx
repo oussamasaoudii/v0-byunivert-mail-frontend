@@ -172,8 +172,8 @@ export default function ReadingPane({ messageId }: ReadingPaneProps) {
           </div>
         </div>
 
-        {/* Email body content - premium layered atmosphere with always visible scrollbar */}
-        <div className="flex-1 overflow-y-scroll px-6 py-6 space-y-6 relative dark:bg-gradient-to-b dark:from-[#0a1a18] dark:via-[#0a0a0a] dark:to-[#0a0a0a] light:bg-gradient-to-b light:from-[#fefdfb] light:via-[#fcfaf7] light:to-[#faf8f5]">
+        {/* Email body content - premium layered atmosphere */}
+        <div className="flex-1 overflow-y-auto px-6 py-6 space-y-6 relative dark:bg-gradient-to-b dark:from-[#0a1a18] dark:via-[#0a0a0a] dark:to-[#0a0a0a] light:bg-gradient-to-b light:from-[#fefdfb] light:via-[#fcfaf7] light:to-[#faf8f5]">
           {/* Atmospheric depth layers */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
             <div className="dark:block light:hidden absolute top-0 left-1/3 w-96 h-96 bg-[#00d9a5]/5 rounded-full blur-3xl opacity-20" />
